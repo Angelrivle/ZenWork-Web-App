@@ -1,0 +1,31 @@
+{
+  "name": "@zenwork/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./adapter": "./src/adapter.ts"
+  },
+  "scripts": {
+    "db:generate": "prisma generate --schema prisma/schema.prisma",
+    "db:migrate": "prisma migrate dev --schema prisma/schema.prisma",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio --schema prisma/schema.prisma",
+    "db:push": "prisma db push --schema prisma/schema.prisma",
+    "db:generate:prod": "prisma generate --schema prisma-postgres/schema.prisma",
+    "db:migrate:prod": "prisma migrate deploy --schema prisma-postgres/schema.prisma",
+    "db:migrate:prod:dev": "prisma migrate dev --schema prisma-postgres/schema.prisma",
+    "db:studio:prod": "prisma studio --schema prisma-postgres/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "@zenwork/shared": "file:../shared",
+    "prisma": "^6.19.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

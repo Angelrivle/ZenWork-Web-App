@@ -1,0 +1,662 @@
+// ZenWork - Prisma Schema (working copy)
+// Provider local: sqlite. Para producción usa scripts/generate.js
+// que genera a partir de schema.base.prisma.
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../../zenwork-local.db"
+}
+
+// ============================================================
+// AUTHENTICATION AND USERS
+// ============================================================
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  emailVerified  DateTime?
+  passwordHash   String?
+  name           String
+  avatar         String?
+  timezone       String    @default("UTC")
+  language       String    @default("es")
+  isActive       Boolean   @default(true)
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  memberships        Membership[]
+  ownedOrganizations Organization[]         @relation("OrgOwner")
+  accounts           UserAccount[]
+  refreshTokens      RefreshToken[]
+  twoFactorConfig    TwoFactorConfig?
+  twoFactorBackupCodes TwoFactorBackupCode[]
+  sentInvitations    Invitation[]            @relation("InvitationSender")
+  assignedIssues     Issue[]                 @relation("IssueAssignee")
+  createdIssues      Issue[]                 @relation("IssueCreator")
+  issueComments      IssueComment[]
+  boardCards          BoardCard[]             @relation("CardAssignee")
+  notifications      Notification[]
+  auditLogs          AuditLog[]
+  webhooks           Webhook[]
+  documentEdits      DocumentEdit[]
+  messageSender      Message[]           @relation("MessageAuthor")
+
+  @@index([email])
+  @@index([deletedAt])
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}
+
+// Cuentas OAuth (Discord, GitHub, etc.) vinculadas a un usuario ZenWork.
+// Permite iniciar sesión con proveedores externos además de email+contraseña.
+model UserAccount {
+  id             String   @id @default(cuid())
+  userId         String
+  provider       String // "discord" | "github"
+  providerId     String // id del usuario en el proveedor
+  providerEmail  String?
+  accessToken    String?
+  refreshToken   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerId])
+  @@index([userId])
+  @@map("user_accounts")
+}
+
+model TwoFactorConfig {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  secret         String
+  enabled        Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("two_factor_configs")
+}
+
+model TwoFactorBackupCode {
+  id        String    @id @default(cuid())
+  userId    String
+  codeHash  String
+  used      Boolean   @default(false)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("two_factor_backup_codes")
+}
+
+// ============================================================
+// ORGANIZATIONS AND MEMBERSHIPS (Multi-tenant)
+// ============================================================
+
+model Organization {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String
+  description String?
+  logo        String?
+  ownerId     String
+  settings    String    @default("{}")
+  isActive    Boolean   @default(true)
+  deletedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  owner         User           @relation("OrgOwner", fields: [ownerId], references: [id])
+  memberships   Membership[]
+  projects      Project[]
+  boards        Board[]
+  documents     Document[]
+  invitations   Invitation[]
+  webhooks      Webhook[]
+  notifications Notification[]
+  messages      Message[]
+
+  @@unique([slug])
+  @@index([ownerId])
+  @@index([deletedAt])
+  @@map("organizations")
+}
+
+model Membership {
+  id             String   @id @default(cuid())
+  userId         String
+  organizationId String
+  role           String   @default("MEMBER")
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@index([organizationId])
+  @@index([userId])
+  @@map("memberships")
+}
+
+// ============================================================
+// INVITATIONS
+// ============================================================
+
+model Invitation {
+  id             String   @id @default(cuid())
+  email          String
+  organizationId String
+  role           String   @default("MEMBER")
+  token          String   @unique
+  status         String   @default("PENDING")
+  invitedById    String
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  invitedBy    User         @relation("InvitationSender", fields: [invitedById], references: [id])
+
+  @@index([organizationId])
+  @@index([token])
+  @@index([email])
+  @@map("invitations")
+}
+
+// ============================================================
+// PROJECTS (Jira-style)
+// ============================================================
+
+model Project {
+  id             String    @id @default(cuid())
+  name           String
+  key            String
+  description    String?
+  organizationId String
+  status         String    @default("ACTIVE")
+  settings       String    @default("{}")
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  issues          Issue[]
+  issueTypes      IssueType[]
+  issueStatuses   IssueStatus[]
+  labels          Label[]
+  boards          Board[]
+  documents       Document[]
+  messages        Message[]
+
+  @@unique([organizationId, key])
+  @@index([organizationId])
+  @@index([deletedAt])
+  @@map("projects")
+}
+
+model IssueType {
+  id        String   @id @default(cuid())
+  projectId String
+  name      String
+  icon      String?
+  color     String?
+  isDefault Boolean  @default(false)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues  Issue[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
+  @@map("issue_types")
+}
+
+model IssueStatus {
+  id        String   @id @default(cuid())
+  projectId String
+  name      String
+  color     String
+  category  String   @default("TODO")
+  sortOrder Int      @default(0)
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues  Issue[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
+  @@map("issue_statuses")
+}
+
+model Issue {
+  id          String    @id @default(cuid())
+  projectId   String
+  number      Int
+  title       String
+  description String?
+  typeId      String
+  statusId    String
+  priority    String    @default("MEDIUM")
+  assigneeId  String?
+  creatorId   String
+  storyPoints Float?
+  dueDate     DateTime?
+  metadata    String    @default("{}")
+  deletedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  type        IssueType   @relation(fields: [typeId], references: [id])
+  status      IssueStatus @relation(fields: [statusId], references: [id])
+  assignee    User?       @relation("IssueAssignee", fields: [assigneeId], references: [id])
+  creator     User        @relation("IssueCreator", fields: [creatorId], references: [id])
+  labels      IssueLabel[]
+  comments    IssueComment[]
+  subtasks    Issue[]     @relation("IssueSubtasks")
+  parent      Issue?      @relation("IssueSubtasks", fields: [parentId], references: [id])
+  parentId    String?
+  relationsTo IssueRelation[] @relation("SourceIssue")
+  relationsFrom IssueRelation[] @relation("TargetIssue")
+  boardCards  BoardCard[]
+
+  @@unique([projectId, number])
+  @@index([projectId])
+  @@index([statusId])
+  @@index([assigneeId])
+  @@index([creatorId])
+  @@index([typeId])
+  @@index([parentId])
+  @@index([deletedAt])
+  @@index([projectId, statusId, createdAt])
+  @@map("issues")
+}
+
+model IssueLabel {
+  id      String @id @default(cuid())
+  issueId String
+  labelId String
+
+  issue Issue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  label Label @relation(fields: [labelId], references: [id], onDelete: Cascade)
+
+  @@unique([issueId, labelId])
+  @@map("issue_labels")
+}
+
+model Label {
+  id        String   @id @default(cuid())
+  projectId String
+  name      String
+  color     String
+  createdAt DateTime @default(now())
+
+  project Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues  IssueLabel[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
+  @@map("labels")
+}
+
+model IssueComment {
+  id        String   @id @default(cuid())
+  issueId   String
+  authorId  String
+  content   String
+  metadata  String   @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issue  Issue @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  author User  @relation(fields: [authorId], references: [id])
+
+  @@index([issueId])
+  @@index([authorId])
+  @@map("issue_comments")
+}
+
+model IssueRelation {
+  id            String   @id @default(cuid())
+  sourceIssueId String
+  targetIssueId String
+  type          String
+  createdAt     DateTime @default(now())
+
+  sourceIssue Issue @relation("SourceIssue", fields: [sourceIssueId], references: [id], onDelete: Cascade)
+  targetIssue Issue @relation("TargetIssue", fields: [targetIssueId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceIssueId, targetIssueId, type])
+  @@index([sourceIssueId])
+  @@index([targetIssueId])
+  @@map("issue_relations")
+}
+
+// ============================================================
+// KANBAN BOARDS (Trello-style)
+// ============================================================
+
+model Board {
+  id             String    @id @default(cuid())
+  name           String
+  description    String?
+  organizationId String
+  projectId      String?
+  settings       String    @default("{}")
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  project      Project?     @relation(fields: [projectId], references: [id])
+  columns      BoardColumn[]
+
+  @@index([organizationId])
+  @@index([projectId])
+  @@index([deletedAt])
+  @@map("boards")
+}
+
+model BoardColumn {
+  id        String   @id @default(cuid())
+  boardId   String
+  name      String
+  color     String?
+  position  Float    @default(0)
+  limit     Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  board Board      @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  cards BoardCard[]
+
+  @@index([boardId])
+  @@index([boardId, position])
+  @@map("board_columns")
+}
+
+model BoardCard {
+  id          String    @id @default(cuid())
+  columnId    String
+  title       String
+  description String?
+  position    Float     @default(0)
+  dueDate     DateTime?
+  issueId     String?
+  assigneeId  String?
+  metadata    String    @default("{}")
+  deletedAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  column   BoardColumn @relation(fields: [columnId], references: [id], onDelete: Cascade)
+  issue    Issue?      @relation(fields: [issueId], references: [id])
+  assignee User?       @relation("CardAssignee", fields: [assigneeId], references: [id])
+  checklists CardChecklist[]
+  labels    CardLabel[]
+
+  @@index([columnId])
+  @@index([columnId, position])
+  @@index([issueId])
+  @@index([assigneeId])
+  @@map("board_cards")
+}
+
+model CardChecklist {
+  id        String   @id @default(cuid())
+  cardId    String
+  title     String
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  card  BoardCard           @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  items CardChecklistItem[]
+
+  @@index([cardId])
+  @@map("card_checklists")
+}
+
+model CardChecklistItem {
+  id          String   @id @default(cuid())
+  checklistId String
+  text        String
+  isChecked   Boolean  @default(false)
+  position    Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  checklist CardChecklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+
+  @@index([checklistId])
+  @@map("card_checklist_items")
+}
+
+model CardLabel {
+  id     String @id @default(cuid())
+  cardId String
+  name   String
+  color  String
+
+  card BoardCard @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@unique([cardId, name])
+  @@map("card_labels")
+}
+
+// ============================================================
+// COLLABORATIVE DOCUMENTS (Notion-style)
+// ============================================================
+
+model Document {
+  id             String    @id @default(cuid())
+  title          String
+  slug           String
+  content        String    @default("{}")
+  organizationId String
+  projectId      String?
+  parentId       String?
+  isPublished    Boolean   @default(false)
+  icon           String?
+  cover          String?
+  metadata       String    @default("{}")
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  project      Project?       @relation(fields: [projectId], references: [id])
+  parent       Document?      @relation("DocumentTree", fields: [parentId], references: [id])
+  children     Document[]     @relation("DocumentTree")
+  edits         DocumentEdit[]
+
+  @@unique([organizationId, slug])
+  @@index([organizationId])
+  @@index([projectId])
+  @@index([parentId])
+  @@index([deletedAt])
+  @@map("documents")
+}
+
+model DocumentEdit {
+  id         String   @id @default(cuid())
+  documentId String
+  userId     String
+  content    String
+  createdAt  DateTime @default(now())
+
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@index([documentId])
+  @@index([userId])
+  @@index([documentId, createdAt])
+  @@map("document_edits")
+}
+
+// ============================================================
+// NOTIFICATIONS AND WEBHOOKS
+// ============================================================
+
+model Notification {
+  id             String   @id @default(cuid())
+  userId         String
+  organizationId String
+  type           String
+  title          String
+  message        String
+  data           String   @default("{}")
+  readAt         DateTime?
+  createdAt      DateTime @default(now())
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([userId, readAt])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+// Mensajes del chat general de la organización (estilo Slack/Discord).
+// `parentId` permite respuestas en hilo (respuesta a un mensaje).
+model Message {
+  id             String    @id @default(cuid())
+  organizationId String
+  projectId      String?
+  authorId       String
+  content        String
+  parentId       String?   // id de mensaje al que responde (hilo)
+  editedAt       DateTime?
+  deletedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  project       Project?    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author        User        @relation("MessageAuthor", fields: [authorId], references: [id])
+  parent        Message?    @relation("MessageThread", fields: [parentId], references: [id])
+  replies       Message[]   @relation("MessageThread")
+
+  @@index([organizationId, createdAt])
+  @@index([projectId, createdAt])
+  @@index([authorId])
+  @@index([parentId])
+  @@map("messages")
+}
+
+model Webhook {
+  id             String    @id @default(cuid())
+  organizationId String
+  userId         String
+  url            String
+  secret         String
+  events         String
+  isActive       Boolean   @default(true)
+  metadata       String    @default("{}")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id])
+  deliveries   WebhookDelivery[]
+
+  @@index([organizationId])
+  @@index([userId])
+  @@map("webhooks")
+}
+
+model WebhookDelivery {
+  id          String   @id @default(cuid())
+  webhookId   String
+  event       String
+  payload     String
+  response    String?
+  status      String   @default("PENDING")
+  attempts    Int      @default(0)
+  maxAttempts Int      @default(5)
+  nextRetryAt DateTime?
+  deliveredAt DateTime?
+  createdAt   DateTime @default(now())
+
+  webhook Webhook @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+
+  @@index([webhookId])
+  @@index([status])
+  @@index([nextRetryAt])
+  @@index([createdAt])
+  @@map("webhook_deliveries")
+}
+
+// ============================================================
+// AUDIT AND EVENTS
+// ============================================================
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String?
+  userId         String?
+  action         String
+  resourceType   String
+  resourceId     String?
+  oldValues      String?
+  newValues      String?
+  metadata       String   @default("{}")
+  ipAddress      String?
+  userAgent      String?
+  createdAt      DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([organizationId])
+  @@index([userId])
+  @@index([resourceType, resourceId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  type      String
+  payload   String
+  source    String
+  processed Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([processed])
+  @@index([type])
+  @@index([createdAt])
+  @@map("events")
+}
