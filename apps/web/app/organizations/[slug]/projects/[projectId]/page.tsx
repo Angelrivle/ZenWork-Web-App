@@ -40,7 +40,7 @@ export default async function ProjectDetailPage({
       },
       deletedAt: null,
     },
-    select: { id: true, organizationId: true, name: true, key: true, description: true },
+    select: { id: true, organizationId: true, name: true, key: true, description: true, status: true, createdAt: true },
   });
 
   if (!project) redirect("/login");
@@ -63,38 +63,81 @@ export default async function ProjectDetailPage({
     assigneeId: sp.assigneeId || "",
   };
 
-  return (
-    <>
-      <div className="dash-toolbar">
-        <div>
-          <div className="crumb">
-            <Link href={`/organizations/${slug}`}>{slug}</Link>
-            <span>/</span>
-            <Link href={`/organizations/${slug}/projects`}>Proyectos</Link>
-            <span>/</span>
-            <span>{project.name}</span>
-          </div>
-          <header className="dash-header" style={{ marginBottom: 4 }}>
-            <h1>{project.name}</h1>
-            <p>
-              {project.key} · {project.description || "Sin descripción"}
-            </p>
-          </header>
-        </div>
-        <div className="actions">
-          <Link href={`/organizations/${slug}/projects/${project.id}/settings`} className="btn btn-ghost">
-            Opciones
-          </Link>
-          <CreateIssueButton
-            slug={slug}
-            projectId={project.id}
-            types={detail?.issueTypes || []}
-            statuses={detail?.issueStatuses || []}
-            members={members}
-          />
-        </div>
-      </div>
+  const totalIssues = issuesResult.total;
+  const inProgressIssues = issuesResult.issues.filter(
+    (i) => i.status.category === "IN_PROGRESS" || i.status.name.toLowerCase().includes("progreso")
+  ).length;
+  const urgentIssues = issuesResult.issues.filter(
+    (i) => i.priority === "URGENT" || i.priority === "CRITICAL" || i.priority === "BLOCKER"
+  ).length;
+  const doneIssues = issuesResult.issues.filter(
+    (i) => i.status.category === "DONE" || i.status.name.toLowerCase().includes("hecho")
+  ).length;
 
+  return (
+    <div className="w-full">
+      {/* Sub-header & Action Bar (Stitch) */}
+      <section className="border-b border-outline-variant/30 bg-surface-dim px-space-xl py-space-lg">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+          {/* Breadcrumb & Project Metadata */}
+          <div className="space-y-space-2xs min-w-0">
+            <nav className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+              <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+                {slug}
+              </Link>
+              <span>/</span>
+              <Link href={`/organizations/${slug}/projects`} className="hover:text-on-surface">
+                Proyectos
+              </Link>
+              <span>/</span>
+              <span className="text-outline-variant truncate">{project.name}</span>
+              <span>/</span>
+              <span className="text-primary font-medium">Issues</span>
+            </nav>
+            <div className="flex items-baseline gap-space-md flex-wrap">
+              <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                {project.name}
+              </h1>
+              <div className="flex items-center gap-space-xs font-code text-label-sm text-outline bg-surface-container px-space-sm py-space-2xs border border-outline-variant/40">
+                <span className="text-on-surface font-semibold">{project.key}</span>
+                <span className="text-outline-variant">•</span>
+                <span className="text-primary">
+                  {project.status === "ACTIVE" ? "Activo" : "Archivado"}
+                </span>
+                <span className="text-outline-variant">•</span>
+                <span>
+                  Creado el {new Date(project.createdAt).toLocaleDateString("es-ES")}
+                </span>
+              </div>
+            </div>
+            {project.description && (
+              <p className="font-body-sm text-body-sm text-outline mt-space-2xs max-w-2xl">
+                {project.description}
+              </p>
+            )}
+          </div>
+
+          {/* Quick Action Controls */}
+          <div className="flex items-center gap-space-sm self-start md:self-auto">
+            <Link
+              href={`/organizations/${slug}/projects/${project.id}/settings`}
+              className="h-9 px-space-md bg-surface-container border border-outline-variant/40 hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors flex items-center gap-space-xs"
+            >
+              <span className="material-symbols-outlined text-[16px] text-outline">settings</span>
+              <span>Opciones</span>
+            </Link>
+            <CreateIssueButton
+              slug={slug}
+              projectId={project.id}
+              types={detail?.issueTypes || []}
+              statuses={detail?.issueStatuses || []}
+              members={members}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Filter Toolbar (Stitch) */}
       <IssueFilters
         basePath={`/organizations/${slug}/projects/${projectId}`}
         statuses={detail?.issueStatuses || []}
@@ -102,21 +145,90 @@ export default async function ProjectDetailPage({
         current={filters}
       />
 
+      {/* Metric Strip: High-Density Project Overview (Stitch) */}
+      <section className="grid grid-cols-2 sm:grid-cols-4 border-b border-outline-variant/30 bg-surface">
+        <div className="p-space-md border-r border-outline-variant/30 flex items-center justify-between">
+          <div>
+            <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
+              Issues Totales
+            </p>
+            <p className="font-headline-md text-headline-md text-on-surface font-semibold">
+              {totalIssues}
+            </p>
+          </div>
+          <span className="material-symbols-outlined text-outline text-[24px]">dataset</span>
+        </div>
+        <div className="p-space-md border-r border-outline-variant/30 flex items-center justify-between">
+          <div>
+            <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
+              En Progreso
+            </p>
+            <p className="font-headline-md text-headline-md text-primary font-semibold">
+              {inProgressIssues}
+            </p>
+          </div>
+          <span className="material-symbols-outlined text-primary text-[24px]">pending</span>
+        </div>
+        <div className="p-space-md border-r border-outline-variant/30 flex items-center justify-between">
+          <div>
+            <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
+              Urgentes / Bloqueos
+            </p>
+            <p className="font-headline-md text-headline-md text-error font-semibold">
+              {urgentIssues}
+            </p>
+          </div>
+          <span className="material-symbols-outlined text-error text-[24px]">warning</span>
+        </div>
+        <div className="p-space-md flex items-center justify-between">
+          <div>
+            <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">
+              Completadas
+            </p>
+            <p className="font-headline-md text-headline-md text-on-surface-variant font-semibold">
+              {doneIssues}
+            </p>
+          </div>
+          <span className="material-symbols-outlined text-on-surface-variant text-[24px]">task_alt</span>
+        </div>
+      </section>
+
+      {/* Issue Table: Ultra-Clean Linear Matrix (Stitch) */}
       {issuesResult.issues.length === 0 ? (
-        <div className="empty-state">
-          No se encontraron issues{filters.search || filters.statusId || filters.priority || filters.assigneeId ? " con los filtros actuales" : ""}.
+        <div className="bg-surface border-b border-outline-variant/30 py-16 px-space-xl text-center space-y-space-md">
+          <div className="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center mx-auto text-outline">
+            <span className="material-symbols-outlined text-[26px]">task</span>
+          </div>
+          <div className="space-y-1">
+            <p className="font-headline-sm text-headline-sm text-on-surface font-medium">No se encontraron incidencias</p>
+            <p className="font-body-sm text-body-sm text-outline max-w-md mx-auto">
+              {filters.search || filters.statusId || filters.priority || filters.assigneeId
+                ? "No hay incidencias que coincidan con los filtros aplicados. Prueba a restablecer los filtros."
+                : "Este proyecto aún no tiene incidencias creadas. Crea una para comenzar el backlog del equipo."}
+            </p>
+          </div>
+          <div className="pt-space-xs inline-block">
+            <CreateIssueButton
+              slug={slug}
+              projectId={project.id}
+              types={detail?.issueTypes || []}
+              statuses={detail?.issueStatuses || []}
+              members={members}
+            />
+          </div>
         </div>
       ) : (
-        <div className="panel" style={{ padding: 8, overflowX: "auto" }}>
-          <table className="issue-table">
+        <div className="w-full overflow-x-auto bg-surface">
+          <table className="w-full text-left border-collapse min-w-[980px]">
             <thead>
-              <tr>
-                <th>Issue</th>
-                <th>Estado</th>
-                <th>Prioridad</th>
-                <th>Responsable</th>
-                <th>Vencimiento</th>
-                <th>Puntos</th>
+              <tr className="bg-surface-container-low border-b border-outline-variant/40 text-outline font-label-sm text-label-sm uppercase tracking-wider select-none">
+                <th className="py-space-xs px-space-md w-28">Clave</th>
+                <th className="py-space-xs px-space-md">Resumen / Título</th>
+                <th className="py-space-xs px-space-md w-36">Estado</th>
+                <th className="py-space-xs px-space-md w-32">Prioridad</th>
+                <th className="py-space-xs px-space-md w-44">Responsable</th>
+                <th className="py-space-xs px-space-md w-36">Fecha Entrega</th>
+                <th className="py-space-xs px-space-md w-24">Puntos</th>
               </tr>
             </thead>
             <IssueTableBody
@@ -136,6 +248,6 @@ export default async function ProjectDetailPage({
           </table>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -91,87 +91,135 @@ export default async function ProjectTareasPage({
   }
 
   return (
-    <>
-      <div className="crumb">
-        <Link href={projectBase}>{project.name}</Link>
-        <span>/</span>
-        <span>Vista Kanban</span>
-      </div>
-      <header className="dash-header" style={{ marginBottom: 20 }}>
-        <h1>Vista Kanban de Issues</h1>
-        <p>
-          Los mismos issues de {project.name}, agrupados por estado (solo lectura). Para
-          mover tarjetas con drag &amp; drop usá <Link href={`${projectBase}/boards`}>Tablero</Link>,
-          el Kanban estilo Trello independiente de los issues.
-        </p>
-      </header>
+    <div className="w-full">
+      {/* Sub-header & Context Layer */}
+      <section className="border-b border-outline-variant/30 bg-surface-dim px-space-xl py-space-lg">
+        <div className="space-y-space-2xs min-w-0">
+          <nav className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+            <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+              {slug}
+            </Link>
+            <span>/</span>
+            <Link href={projectBase} className="hover:text-on-surface truncate">
+              {project.name}
+            </Link>
+            <span>/</span>
+            <span className="text-primary font-medium">Kanban Flujo de Issues</span>
+          </nav>
+          <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-space-md">
+            <div>
+              <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                Flujo de Trabajo del Proyecto
+              </h1>
+              <p className="font-body-sm text-body-sm text-outline mt-1 max-w-3xl">
+                Visualización de las incidencias técnicas de {project.name} organizadas por su estado en el ciclo de vida de desarrollo.
+              </p>
+            </div>
+            <div className="flex items-center gap-space-sm shrink-0">
+              <Link
+                href={projectBase}
+                className="h-9 px-space-md bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface font-body-sm text-body-sm flex items-center gap-space-xs transition-colors"
+              >
+                <span className="material-symbols-outlined text-[16px] text-outline">view_list</span>
+                <span>Ver tabla de issues</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {issues.length === 0 ? (
-        <div className="empty-state">
-          No hay tareas todavía. Creá un issue desde la sección Issues.
+        <div className="p-space-3xl text-center space-y-space-sm bg-surface border-b border-outline-variant/30">
+          <div className="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center mx-auto text-outline">
+            <span className="material-symbols-outlined text-[26px]">view_column</span>
+          </div>
+          <p className="font-headline-sm text-headline-sm text-on-surface font-medium">No hay incidencias en el flujo</p>
+          <p className="font-body-sm text-body-sm text-outline max-w-md mx-auto">
+            Crea una incidencia desde la sección de issues para que aparezca distribuida en su columna correspondiente.
+          </p>
         </div>
       ) : (
-        <div className="kanban-board">
-          {statuses.map((status) => {
-            const inStatus = issues.filter((i) => i.statusId === status.id);
-            return (
-              <section className="kanban-col" key={status.id}>
-                <header
-                  className="kanban-col-header"
-                  style={{ borderTopColor: status.color }}
+        <div className="p-space-xl overflow-x-auto bg-background min-h-[calc(100vh-14rem)]">
+          <div className="flex gap-space-lg items-start min-w-[1000px]">
+            {statuses.map((status) => {
+              const inStatus = issues.filter((i) => i.statusId === status.id);
+              return (
+                <div
+                  key={status.id}
+                  className="w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col shadow-sm"
                 >
-                  <span className="kanban-dot" style={{ background: status.color }} />
-                  <strong>{status.name}</strong>
-                  <span className="kanban-count">{inStatus.length}</span>
-                </header>
+                  <div className="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+                    <div className="flex items-center gap-space-xs">
+                      <span className="w-2 h-2" style={{ backgroundColor: status.color }} />
+                      <h2 className="font-headline-sm text-headline-sm text-on-surface font-medium">
+                        {status.name}
+                      </h2>
+                      <span className="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs">
+                        {inStatus.length}
+                      </span>
+                    </div>
+                  </div>
 
-                <div className="kanban-col-body">
-                  {inStatus.length === 0 ? (
-                    <div className="kanban-empty">Sin tareas</div>
-                  ) : (
-                    inStatus.map((issue) => {
-                      const due = dueLabel(issue.dueDate);
-                      return (
-                        <Link
-                          className="kanban-card"
-                          href={`${projectBase}/issues/${issue.id}`}
-                          key={issue.id}
-                        >
-                          <span className="kanban-card-key">
-                            {project.key}-{issue.number}
-                          </span>
-                          <span className="kanban-card-title">{issue.title}</span>
-                          <span className="kanban-card-meta">
-                            <span
-                              className="kanban-priority"
-                              style={{
-                                background: PRIORITY_STYLES[issue.priority] || "var(--text-3)",
-                              }}
-                              title={`Prioridad ${issue.priority}`}
-                            />
-                            {due && (
-                              <span className={`kanban-due${due.over ? " over" : due.soon ? " soon" : ""}`}>
-                                {due.text}
+                  <div className="p-space-sm space-y-space-sm flex flex-col min-h-[120px]">
+                    {inStatus.length === 0 ? (
+                      <div className="p-space-md text-center text-outline font-body-sm text-label-sm">
+                        Sin incidencias
+                      </div>
+                    ) : (
+                      inStatus.map((issue) => {
+                        const due = dueLabel(issue.dueDate);
+                        return (
+                          <Link
+                            key={issue.id}
+                            href={`${projectBase}/issues/${issue.id}`}
+                            className="p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all shadow-sm group"
+                          >
+                            <div className="flex items-center justify-between gap-space-xs mb-space-xs">
+                              <span className="font-code text-label-sm text-outline group-hover:text-primary transition-colors">
+                                {project.key}-{issue.number}
                               </span>
-                            )}
-                            <span className="kanban-assignee" title={issue.assignee?.name}>
-                              {issue.assignee?.avatar ? (
-                                <img src={issue.assignee.avatar} alt="" />
+                              <span
+                                className="font-code text-label-sm uppercase px-1.5 py-0.5 border text-[11px]"
+                                style={{
+                                  color: PRIORITY_STYLES[issue.priority] || "var(--text-3)",
+                                  borderColor: "currentColor",
+                                }}
+                              >
+                                {issue.priority}
+                              </span>
+                            </div>
+                            <h3 className="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors font-medium line-clamp-2 mb-space-sm">
+                              {issue.title}
+                            </h3>
+                            <div className="flex items-center justify-between pt-space-xs border-t border-outline-variant/20 text-outline font-code text-label-sm">
+                              {due ? (
+                                <span className={`flex items-center gap-1 ${due.over ? "text-error" : ""}`}>
+                                  <span className="material-symbols-outlined text-[13px]">calendar_today</span>
+                                  <span>{due.text}</span>
+                                </span>
                               ) : (
-                                initials(issue.assignee?.name || "—")
+                                <span />
                               )}
-                            </span>
-                          </span>
-                        </Link>
-                      );
-                    })
-                  )}
+                              {issue.assignee && (
+                                <div
+                                  className="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold"
+                                  title={issue.assignee.name}
+                                >
+                                  {initials(issue.assignee.name)}
+                                </div>
+                              )}
+                            </div>
+                          </Link>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
-              </section>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

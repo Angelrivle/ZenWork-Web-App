@@ -5,12 +5,13 @@ import { authenticator } from "otplib";
 import QRCode from "qrcode";
 import { nanoid } from "nanoid";
 import CryptoJS from "crypto-js";
+import crypto from "crypto";
 import {
   JWT_CONFIG,
   TWO_FACTOR_CONFIG,
   COOKIE_NAMES,
 } from "@zenwork/shared";
-import type { OrgRole, JWTPayload } from "@zenwork/shared";
+import type { OrgRole, JWTPayload, TwoFactorTempPayload } from "@zenwork/shared";
 
 // ============================================================
 // PASSWORD UTILITIES (Argon2id)
@@ -66,10 +67,44 @@ export async function generateAccessToken(
     .sign(accessSecret);
 }
 
+export async function generateTwoFactorTempToken(
+  userId: string,
+  email: string
+): Promise<string> {
+  const expiry = 300; // 5 minutos para resolver el desafío 2FA
+  const payload: TwoFactorTempPayload = {
+    sub: userId,
+    email,
+    purpose: "2fa_pending",
+    iat: Math.floor(Date.now() / 1000),
+    exp: Math.floor(Date.now() / 1000) + expiry,
+  };
+
+  return new SignJWT(payload as unknown as Record<string, unknown>)
+    .setProtectedHeader({ alg: JWT_CONFIG.ALGORITHM })
+    .setIssuer(JWT_CONFIG.ISSUER)
+    .setIssuedAt()
+    .setExpirationTime(`${expiry}s`)
+    .sign(accessSecret);
+}
+
+export async function verifyTwoFactorTempToken(token: string): Promise<TwoFactorTempPayload> {
+  const { payload } = await jwtVerify(token, accessSecret, {
+    issuer: JWT_CONFIG.ISSUER,
+  });
+  if (payload.purpose !== "2fa_pending") {
+    throw new Error("Token no corresponde a un desafío 2FA pendiente");
+  }
+  return payload as unknown as TwoFactorTempPayload;
+}
+
 export async function verifyAccessToken(token: string): Promise<JWTPayload> {
   const { payload } = await jwtVerify(token, accessSecret, {
     issuer: JWT_CONFIG.ISSUER,
   });
+  if (payload.purpose === "2fa_pending") {
+    throw new Error("Token temporal de 2FA no válido para acceso a la sesión");
+  }
   return payload as unknown as JWTPayload;
 }
 
@@ -86,9 +121,15 @@ export async function verifyAccessTokenAllowExpired(
     const { payload } = await jwtVerify(token, accessSecret, {
       issuer: JWT_CONFIG.ISSUER,
     });
+    if (payload.purpose === "2fa_pending") {
+      throw new Error("Token temporal de 2FA no válido para refresh");
+    }
     return payload as unknown as JWTPayload;
   } catch (error) {
     if (error instanceof joseErrors.JWTExpired) {
+      if (error.payload?.purpose === "2fa_pending") {
+        throw new Error("Token temporal de 2FA no válido para refresh");
+      }
       return error.payload as unknown as JWTPayload;
     }
     throw error;
@@ -97,6 +138,10 @@ export async function verifyAccessTokenAllowExpired(
 
 export async function generateRefreshToken(): Promise<string> {
   return nanoid(64); // Token aleatorio de 64 caracteres
+}
+
+function hashRefreshToken(token: string): string {
+  return crypto.createHash("sha256").update(token).digest("hex");
 }
 
 export async function storeRefreshToken(
@@ -109,7 +154,7 @@ export async function storeRefreshToken(
   await prisma.refreshToken.create({
     data: {
       userId,
-      token: await hash(token),
+      token: hashRefreshToken(token),
       expiresAt,
     },
   });
@@ -119,21 +164,44 @@ export async function validateRefreshToken(
   token: string,
   userId: string
 ): Promise<{ valid: boolean; tokenId?: string }> {
-  const tokens = await prisma.refreshToken.findMany({
-    where: { userId, revoked: false },
+  const hashed = hashRefreshToken(token);
+
+  // Búsqueda O(1) directa por hash indexado (elimina vector de DoS por CPU en bucle con Argon2)
+  const stored = await prisma.refreshToken.findFirst({
+    where: { token: hashed, userId, revoked: false },
   });
 
-  for (const storedToken of tokens) {
-    const isValid = await verify(storedToken.token, token);
-    if (isValid) {
-      if (new Date() > storedToken.expiresAt) {
-        await prisma.refreshToken.update({
-          where: { id: storedToken.id },
-          data: { revoked: true },
-        });
-        return { valid: false };
+  if (stored) {
+    if (new Date() > stored.expiresAt) {
+      await prisma.refreshToken.update({
+        where: { id: stored.id },
+        data: { revoked: true },
+      });
+      return { valid: false };
+    }
+    return { valid: true, tokenId: stored.id };
+  }
+
+  // Fallback de retrocompatibilidad para tokens antiguos hasheados con Argon2
+  const legacyTokens = await prisma.refreshToken.findMany({
+    where: { userId, revoked: false, token: { startsWith: "$argon2" } },
+  });
+
+  for (const storedToken of legacyTokens) {
+    try {
+      const isValid = await verify(storedToken.token, token);
+      if (isValid) {
+        if (new Date() > storedToken.expiresAt) {
+          await prisma.refreshToken.update({
+            where: { id: storedToken.id },
+            data: { revoked: true },
+          });
+          return { valid: false };
+        }
+        return { valid: true, tokenId: storedToken.id };
       }
-      return { valid: true, tokenId: storedToken.id };
+    } catch {
+      // Ignorar formato no compatible
     }
   }
 

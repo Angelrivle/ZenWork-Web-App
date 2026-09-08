@@ -37,8 +37,13 @@ export function CreateIssueButton({
 
   return (
     <>
-      <button type="button" className="btn btn-primary btn-sm" onClick={() => setOpen(true)}>
-        Crear issue
+      <button
+        type="button"
+        className="h-9 px-space-lg bg-primary-container hover:bg-inverse-primary text-on-primary font-body-sm text-body-sm font-medium transition-colors flex items-center gap-space-xs shadow-none cursor-pointer"
+        onClick={() => setOpen(true)}
+      >
+        <span className="material-symbols-outlined text-[18px]">add</span>
+        <span>Crear issue</span>
       </button>
       {open && (
         <CreateIssueModal

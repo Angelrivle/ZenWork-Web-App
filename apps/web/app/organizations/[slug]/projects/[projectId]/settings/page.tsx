@@ -56,23 +56,61 @@ export default async function ProjectSettingsPage({
   const canManage = myRole === "OWNER" || myRole === "ADMIN";
 
   return (
-    <>
-      <div className="crumb">
-        <Link href={`/organizations/${slug}`}>{project.organization.name}</Link>
-        <span>/</span>
-        <Link href={`/organizations/${slug}/projects`}>Proyectos</Link>
-        <span>/</span>
-        <Link href={`/organizations/${slug}/projects/${projectId}`}>{project.name}</Link>
-        <span>/</span>
-        <span>Opciones</span>
+    <div className="w-full">
+      {/* Top Breadcrumb & Project Header Layer (Stitch) */}
+      <div className="w-full bg-surface-container-low px-space-2xl pt-space-xl pb-space-lg border-b border-outline-variant/20">
+        <div className="max-w-6xl mx-auto flex flex-col gap-space-md">
+          {/* Monospaced Breadcrumb Track */}
+          <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline tracking-wider uppercase">
+            <Link href={`/organizations/${slug}`} className="hover:text-on-surface cursor-pointer transition-colors">
+              {project.organization.name}
+            </Link>
+            <span className="text-outline-variant">/</span>
+            <Link href={`/organizations/${slug}/projects`} className="hover:text-on-surface cursor-pointer transition-colors">
+              Proyectos
+            </Link>
+            <span className="text-outline-variant">/</span>
+            <Link href={`/organizations/${slug}/projects/${projectId}`} className="hover:text-on-surface cursor-pointer transition-colors">
+              {project.name}
+            </Link>
+            <span className="text-outline-variant">/</span>
+            <span className="text-primary font-medium">Opciones</span>
+          </div>
+
+          {/* Master Title & Contextual Meta Badges */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+            <div className="space-y-space-xs">
+              <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                Opciones de {project.name}
+              </h1>
+              <div className="flex flex-wrap items-center gap-space-sm pt-space-2xs">
+                <span className="font-code text-label-sm bg-surface-container-high text-primary px-space-sm py-space-2xs font-medium uppercase">
+                  {project.key}
+                </span>
+                <div className="flex items-center gap-space-2xs bg-surface-container px-space-sm py-space-2xs">
+                  <span className="w-1.5 h-1.5 bg-emerald-500 inline-block"></span>
+                  <span className="font-label-sm text-label-sm text-on-surface">
+                    {project.status === "ACTIVE" ? "Activo" : "Archivado"}
+                  </span>
+                </div>
+                <span className="font-label-sm text-label-sm text-outline flex items-center gap-space-2xs bg-surface-container px-space-sm py-space-2xs">
+                  <span className="material-symbols-outlined text-[14px]">calendar_today</span>
+                  Creado el {project.createdAt.toLocaleDateString("es-ES")}
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-space-sm self-start md:self-end">
+              <Link
+                href={`/organizations/${slug}/projects/${projectId}`}
+                className="h-9 px-space-md bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm transition-colors flex items-center gap-space-xs border border-outline-variant/30"
+              >
+                <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                <span>Volver al proyecto</span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      <header className="dash-header" style={{ marginBottom: 16 }}>
-        <h1>Opciones de {project.name}</h1>
-        <p>
-          {project.key} · {project.status === "ACTIVE" ? "Activo" : "Archivado"} · Creado el{" "}
-          {project.createdAt.toLocaleDateString("es-ES")}
-        </p>
-      </header>
 
       <ProjectSettingsManager
         slug={slug}
@@ -95,6 +133,6 @@ export default async function ProjectSettingsPage({
         labels={labels.map((l) => ({ id: l.id, name: l.name, color: l.color }))}
         canManage={canManage}
       />
-    </>
+    </div>
   );
 }

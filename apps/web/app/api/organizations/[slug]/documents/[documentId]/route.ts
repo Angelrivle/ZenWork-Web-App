@@ -74,12 +74,30 @@ export async function PATCH(
           memberships: { some: { userId: payload.sub, isActive: true } },
         },
       },
+      include: {
+        organization: {
+          select: {
+            memberships: {
+              where: { userId: payload.sub, isActive: true },
+              select: { role: true },
+            },
+          },
+        },
+      },
     });
 
     if (!document) {
       return NextResponse.json(
         { error: "Documento no encontrado" },
         { status: 404 }
+      );
+    }
+
+    const myRole = document.organization.memberships[0]?.role || "GUEST";
+    if (myRole === "GUEST") {
+      return NextResponse.json(
+        { error: "Los invitados no tienen permisos para editar documentos" },
+        { status: 403 }
       );
     }
 

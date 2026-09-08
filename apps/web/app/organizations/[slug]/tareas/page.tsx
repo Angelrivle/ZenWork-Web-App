@@ -141,122 +141,232 @@ export default async function TareasPage({
   });
   const later = dueItems.filter((i) => new Date(i.dueDate) > in7);
 
-  function group(title: string, items: DueItem[], accent?: string) {
+  function group(title: string, items: DueItem[], statusColor: string, icon: string) {
     return (
-      <div className="task-group" key={title}>
-        <h3>
-          {title} <span className="count">{items.length}</span>
-        </h3>
+      <div className="space-y-space-sm" key={title}>
+        <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/30">
+          <div className="flex items-center gap-space-xs">
+            <span className={`material-symbols-outlined text-[18px] ${statusColor}`}>{icon}</span>
+            <h2 className="font-headline-sm text-headline-sm text-on-surface font-medium">{title}</h2>
+            <span className="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant ml-space-xs border border-outline-variant/30">
+              {items.length}
+            </span>
+          </div>
+        </div>
+
         {items.length === 0 ? (
-          <p style={{ color: "var(--text-3)", fontSize: 13.5, margin: "0 0 8px" }}>Nada por aquí.</p>
+          <div className="p-space-lg bg-surface border border-outline-variant/20 text-outline font-body-sm text-center flex items-center justify-center gap-space-xs">
+            <span className="material-symbols-outlined text-[18px]">check_circle</span>
+            <span>No hay entregas pendientes para este período. Todo al día.</span>
+          </div>
         ) : (
-          items.map((item) => {
-            return (
-              <Link className="task-row" href={item.href} key={item.id}>
-                <span
-                  className="badge"
-                  style={{
-                    background: item.type === "issue" ? "var(--brand-soft)" : "var(--success-soft)",
-                    color: item.type === "issue" ? "var(--link)" : "var(--success)",
-                  }}
-                >
-                  {item.type === "issue" ? "ISSUE" : "TARJETA"}
-                </span>
-                <span className="title">{item.title}</span>
-                <span style={{ color: "var(--text-3)", fontSize: 12 }}>{item.sub}</span>
-                <span className="due">
-                  {fmt(new Date(item.dueDate))}
-                </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+            {items.map((item) => (
+              <Link
+                key={item.id}
+                href={item.href}
+                className="p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/30 hover:border-outline-variant/60 transition-all flex flex-col justify-between group shadow-sm"
+              >
+                <div className="space-y-space-xs">
+                  <div className="flex items-center justify-between gap-space-xs">
+                    <span
+                      className={`font-code text-label-sm px-1.5 py-0.5 uppercase border ${
+                        item.type === "issue"
+                          ? "bg-primary-container/15 text-primary border-primary/30"
+                          : "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                      }`}
+                    >
+                      {item.type === "issue" ? "INCIDENCIA" : "TARJETA TABLERO"}
+                    </span>
+                    <div className="flex items-center gap-1 font-code text-label-sm text-outline">
+                      <span className="material-symbols-outlined text-[14px]">event</span>
+                      <span>{fmt(new Date(item.dueDate))}</span>
+                    </div>
+                  </div>
+                  <h3 className="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+                    {item.title}
+                  </h3>
+                </div>
+                <div className="pt-space-sm mt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-outline font-label-sm text-label-sm">
+                  <span className="truncate">{item.sub}</span>
+                  <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                    arrow_forward
+                  </span>
+                </div>
               </Link>
-            );
-          })
+            ))}
+          </div>
         )}
       </div>
     );
   }
 
   return (
-    <>
-      <div className="crumb">
-        <Link href={`/organizations/${slug}`}>{org.name}</Link>
-        <span>/</span>
-        <span>Vencimientos</span>
-      </div>
-      <header className="dash-header" style={{ marginBottom: 24 }}>
-        <h1>Vencimientos</h1>
-        <p>
-          Fechas límite de issues y tarjetas de todos los proyectos de {org.name}, y el
-          progreso de las checklists de las tarjetas del tablero.
-        </p>
-      </header>
-
-      {overdue.length > 0 &&
-        <div className={overdue.length ? "task-group" : ""} style={{ marginBottom: 26 }}>
-          <h3 style={{ color: "var(--error)" }}>
-            Vencidas <span className="count">{overdue.length}</span>
-          </h3>
-          <div className="task-group">
-            {overdue.map((item) => (
-              <Link className="task-row" href={item.href} key={item.id}>
-                <span
-                  className="badge"
-                  style={{
-                    background: item.type === "issue" ? "var(--brand-soft)" : "var(--success-soft)",
-                    color: item.type === "issue" ? "var(--link)" : "var(--success)",
-                  }}
-                >
-                  {item.type === "issue" ? "ISSUE" : "TARJETA"}
-                </span>
-                <span className="title">{item.title}</span>
-                <span style={{ color: "var(--text-3)", fontSize: 12 }}>{item.sub}</span>
-                <span className="due over">{fmt(new Date(item.dueDate))}</span>
-              </Link>
-            ))}
+    <div className="w-full">
+      {/* Sub-header & Context Layer */}
+      <section className="border-b border-outline-variant/30 bg-surface-dim px-space-xl py-space-lg">
+        <div className="space-y-space-2xs min-w-0">
+          <nav className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+            <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+              {org.name}
+            </Link>
+            <span>/</span>
+            <span className="text-primary font-medium">Control de Entregas y Plazos</span>
+          </nav>
+          <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-space-md">
+            <div>
+              <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                Control de Plazos y Vencimientos
+              </h1>
+              <p className="font-body-sm text-body-sm text-outline mt-1 max-w-3xl">
+                Monitorea de forma centralizada todas las fechas límite de incidencias de proyectos y tarjetas de tableros Kanban en {org.name}.
+              </p>
+            </div>
+            <div className="flex items-center gap-space-sm shrink-0">
+              <div className="flex items-center gap-space-xs font-code text-label-sm text-outline bg-surface-container px-space-md py-space-xs border border-outline-variant/40">
+                <span className="text-on-surface font-semibold">{dueItems.length}</span>
+                <span>compromisos totales</span>
+              </div>
+            </div>
           </div>
         </div>
-      }
+      </section>
 
-      {group("Próximas (7 días)", upcoming)}
-      {group("Más adelante", later)}
+      <div className="p-space-xl max-w-7xl mx-auto space-y-space-2xl">
+        {/* Metric Strip de Salud de Plazos */}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-error">Vencidas</p>
+              <p className="font-headline-md text-headline-md font-semibold text-error">{overdue.length}</p>
+            </div>
+            <span className="material-symbols-outlined text-error text-[28px]">warning</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-primary">Próximos 7 días</p>
+              <p className="font-headline-md text-headline-md font-semibold text-primary">{upcoming.length}</p>
+            </div>
+            <span className="material-symbols-outlined text-primary text-[28px]">schedule</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">Más adelante</p>
+              <p className="font-headline-md text-headline-md font-semibold text-on-surface">{later.length}</p>
+            </div>
+            <span className="material-symbols-outlined text-outline text-[28px]">calendar_month</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-emerald-400">Listas Checklist</p>
+              <p className="font-headline-md text-headline-md font-semibold text-emerald-400">{cardsWithChecklists.length}</p>
+            </div>
+            <span className="material-symbols-outlined text-emerald-400 text-[28px]">checklist</span>
+          </div>
+        </section>
 
-      <div className="task-group">
-        <h3>
-          Listas de tareas en tarjetas <span className="count">{cardsWithChecklists.length}</span>
-        </h3>
-        {cardsWithChecklists.length === 0 ? (
-          <p style={{ color: "var(--text-3)", fontSize: 13.5, margin: 0 }}>
-            Aún no hay checklists en las tarjetas.
-          </p>
-        ) : (
-          <div className="dash-list">
-            {cardsWithChecklists.map((card) => {
-              const all = card.checklists.flatMap((l) => l.items);
-              const done = all.filter((i) => i.isChecked).length;
-              const pct = all.length ? Math.round((done / all.length) * 100) : 0;
-              return (
+        {/* Tareas Vencidas */}
+        {overdue.length > 0 && (
+          <div className="border border-error/40 bg-error/5 p-space-lg space-y-space-md">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-space-xs text-error font-headline-sm text-headline-sm font-semibold">
+                <span className="material-symbols-outlined text-[20px]">error</span>
+                <span>Requieren atención inmediata ({overdue.length})</span>
+              </div>
+              <span className="font-code text-label-sm text-error uppercase">PLAZO EXPIRADO</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+              {overdue.map((item) => (
                 <Link
-                  className="dash-item"
-                  href={`/organizations/${slug}/boards/${card.column.board.id}`}
-                  key={card.id}
+                  key={item.id}
+                  href={item.href}
+                  className="p-space-md bg-surface border border-error/30 hover:border-error transition-all flex flex-col justify-between group"
                 >
-                  <span className="task-progress">
-                    <span className="bar" style={{ width: 60 }}>
-                      <i style={{ width: `${pct}%` }} />
-                    </span>
-                    {pct}%
-                  </span>
-                  <div className="dash-item-body">
-                    <h3>{card.title}</h3>
-                    <p>
-                      {done}/{all.length} hechas · {card.column.board.name}
-                    </p>
+                  <div className="space-y-space-xs">
+                    <div className="flex items-center justify-between gap-space-xs">
+                      <span className="font-code text-label-sm px-1.5 py-0.5 uppercase bg-error/15 text-error border border-error/30">
+                        {item.type === "issue" ? "INCIDENCIA" : "TARJETA"}
+                      </span>
+                      <span className="font-code text-label-sm text-error font-medium flex items-center gap-1">
+                        <span className="material-symbols-outlined text-[14px]">event_busy</span>
+                        <span>Venció el {fmt(new Date(item.dueDate))}</span>
+                      </span>
+                    </div>
+                    <h3 className="font-body-md text-body-md font-medium text-on-surface group-hover:text-error transition-colors line-clamp-2">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <div className="pt-space-sm mt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-outline font-label-sm text-label-sm">
+                    <span className="truncate">{item.sub}</span>
+                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                   </div>
                 </Link>
-              );
-            })}
+              ))}
+            </div>
           </div>
         )}
+
+        {/* Próximas Entregas */}
+        {group("Próximos 7 días", upcoming, "text-primary", "event_upcoming")}
+
+        {/* Entregas Posteriores */}
+        {group("Planificadas más adelante", later, "text-outline", "date_range")}
+
+        {/* Checklists y Subtareas */}
+        <section className="space-y-space-sm pt-space-md">
+          <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/30">
+            <div className="flex items-center gap-space-xs">
+              <span className="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
+              <h2 className="font-headline-sm text-headline-sm text-on-surface font-medium">Progreso de checklists en tableros</h2>
+              <span className="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant ml-space-xs border border-outline-variant/30">
+                {cardsWithChecklists.length}
+              </span>
+            </div>
+          </div>
+
+          {cardsWithChecklists.length === 0 ? (
+            <div className="p-space-lg bg-surface border border-outline-variant/20 text-outline font-body-sm text-center">
+              Aún no hay listas de tareas o checklists configuradas en las tarjetas del tablero.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-sm">
+              {cardsWithChecklists.map((card) => {
+                const all = card.checklists.flatMap((l) => l.items);
+                const done = all.filter((i) => i.isChecked).length;
+                const pct = all.length ? Math.round((done / all.length) * 100) : 0;
+                return (
+                  <Link
+                    className="p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/30 transition-all flex flex-col justify-between group"
+                    href={`/organizations/${slug}/boards/${card.column.board.id}`}
+                    key={card.id}
+                  >
+                    <div className="space-y-space-xs">
+                      <div className="flex items-center justify-between text-outline font-label-sm text-label-sm">
+                        <span className="truncate">{card.column.board.name}</span>
+                        <span className="font-code text-on-surface font-semibold">{pct}%</span>
+                      </div>
+                      <h3 className="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors line-clamp-2">
+                        {card.title}
+                      </h3>
+                    </div>
+                    <div className="pt-space-sm mt-space-sm border-t border-outline-variant/20 space-y-1">
+                      <div className="h-1.5 w-full bg-surface-container-high overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-400 transition-all duration-300"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <span className="font-label-sm text-label-sm text-outline block text-right">
+                        {done} de {all.length} ítems completados
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </section>
       </div>
-    </>
+    </div>
   );
 }

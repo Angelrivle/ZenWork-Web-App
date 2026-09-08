@@ -332,44 +332,59 @@ export async function createIssue(
     parentIssueId?: string;
   }
 ) {
-  return transaction(async (tx) => {
-    // Obtener siguiente número secuencial
-    const lastIssue = await tx.issue.findFirst({
-      where: { projectId },
-      orderBy: { number: "desc" },
-      select: { number: true },
-    });
+  let attempts = 0;
+  while (attempts < 3) {
+    attempts++;
+    try {
+      return await transaction(async (tx) => {
+        // Obtener siguiente número secuencial
+        const lastIssue = await tx.issue.findFirst({
+          where: { projectId },
+          orderBy: { number: "desc" },
+          select: { number: true },
+        });
 
-    const issue = await tx.issue.create({
-      data: {
-        projectId,
-        number: (lastIssue?.number || 0) + 1,
-        title: data.title,
-        description: data.description,
-        typeId: data.typeId,
-        statusId: data.statusId,
-        priority: data.priority || "MEDIUM",
-        assigneeId: data.assigneeId,
-        creatorId,
-        storyPoints: data.storyPoints,
-        dueDate: data.dueDate,
-        metadata: serializeJSON(data.metadata || {}),
-        parentId: data.parentIssueId,
-      },
-      include: {
-        type: true,
-        status: true,
-        assignee: {
-          select: { id: true, name: true, avatar: true },
-        },
-        creator: {
-          select: { id: true, name: true, avatar: true },
-        },
-      },
-    });
+        const issue = await tx.issue.create({
+          data: {
+            projectId,
+            number: (lastIssue?.number || 0) + 1,
+            title: data.title,
+            description: data.description,
+            typeId: data.typeId,
+            statusId: data.statusId,
+            priority: data.priority || "MEDIUM",
+            assigneeId: data.assigneeId,
+            creatorId,
+            storyPoints: data.storyPoints,
+            dueDate: data.dueDate,
+            metadata: serializeJSON(data.metadata || {}),
+            parentId: data.parentIssueId,
+          },
+          include: {
+            type: true,
+            status: true,
+            assignee: {
+              select: { id: true, name: true, avatar: true },
+            },
+            creator: {
+              select: { id: true, name: true, avatar: true },
+            },
+          },
+        });
 
-    return { ...issue, metadata: parseJSON(issue.metadata) };
-  });
+        return { ...issue, metadata: parseJSON(issue.metadata) };
+      });
+    } catch (err: any) {
+      // Reintentar en caso de colisión de número único por concurrencia
+      const isUniqueConstraint =
+        err?.code === "P2002" || (typeof err?.message === "string" && err.message.includes("Unique constraint"));
+      if (isUniqueConstraint && attempts < 3) {
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw new Error("No se pudo generar el issue tras varios intentos");
 }
 
 export async function getIssues(

@@ -61,7 +61,9 @@ export function NotificationBell({ slug }: { slug: string }) {
     <div className="bell-wrap">
       <button
         type="button"
-        className={`bell-btn${open ? " is-open" : ""}`}
+        className={`w-9 h-9 flex items-center justify-center text-outline hover:text-on-surface bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors relative${
+          open ? " is-open bg-surface-container-high text-on-surface" : ""
+        }`}
         onClick={() => {
           setOpen((v) => !v);
           if (!open) load();
@@ -69,10 +71,7 @@ export function NotificationBell({ slug }: { slug: string }) {
         aria-label="Notificaciones"
         title="Notificaciones"
       >
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-        </svg>
+        <span className="material-symbols-outlined text-[20px]">notifications</span>
         {unreadCount > 0 && <span className="bell-dot">{unreadCount > 9 ? "9+" : unreadCount}</span>}
       </button>
 

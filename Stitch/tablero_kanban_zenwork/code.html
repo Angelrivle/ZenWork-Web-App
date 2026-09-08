@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'secondary-container': '#48494c', 'inverse-primary': '#2a54cd', 'surface-variant': '#333535', 'outline': '#8e909f', 'surface-container-high': '#282a2b', 'on-secondary': '#2f3034', 'tertiary-fixed': '#e4e2e4', 'on-secondary-container': '#b8b8bc', 'surface-container-lowest': '#0c0f0f', 'tertiary': '#c8c6c8', 'on-surface-variant': '#c4c5d6', 'primary-fixed': '#dce1ff', 'on-secondary-fixed-variant': '#46474a', 'surface-container': '#1e2020', 'primary': '#b6c4ff', 'on-secondary-fixed': '#1a1b1f', 'surface-dim': '#121414', 'surface-tint': '#b6c4ff', 'on-tertiary-fixed-variant': '#474649', 'tertiary-fixed-dim': '#c8c6c8', 'on-primary-container': '#d3daff', 'secondary': '#c7c6ca', 'surface-bright': '#38393a', 'on-error': '#690005', 'primary-fixed-dim': '#b6c4ff', 'on-tertiary': '#303032', 'on-primary-fixed': '#001550', 'on-surface': '#e2e2e2', 'surface-container-low': '#1a1c1c', 'secondary-fixed-dim': '#c7c6ca', 'primary-container': '#2d56cf', 'tertiary-container': '#616062', 'inverse-surface': '#e2e2e2', 'on-primary-fixed-variant': '#003ab2', 'secondary-fixed': '#e3e2e6', 'on-error-container': '#ffdad6', 'surface': '#121414', 'on-tertiary-container': '#dedbdd', 'on-primary': '#00277f', 'on-tertiary-fixed': '#1b1b1d', 'background': '#121414', 'error': '#ffb4ab', 'inverse-on-surface': '#2f3131', 'error-container': '#93000a', 'surface-container-highest': '#333535', 'on-background': '#e2e2e2', 'outline-variant': '#434654' }, 'borderRadius': { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, 'spacing': { 'gutter': '1px', 'space-xs': '0.25rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-lg': '1rem', 'space-2xl': '2rem', 'sidebar-width': '16rem', 'space-md': '0.75rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem', 'space-sm': '0.5rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'headline-xl': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-lg': ['Geist'], 'label-md': ['JetBrains Mono'], 'body-sm': ['Geist'], 'body-md': ['Geist'], 'headline-md': ['Geist'], 'headline-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md font-semibold">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork Demo</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Test Org</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resumen-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span>Resumen / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="miembros" href="#"><span class="material-symbols-outlined text-[18px]">group</span><span>Miembros</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="analiticas" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span>Analíticas</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vencimientos" href="#"><span class="material-symbols-outlined text-[18px]">event_upcoming</span><span>Vencimientos</span></a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Mi primer proyecto en ZenWork</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="issues" href="#"><span class="material-symbols-outlined text-[18px]">task_alt</span><span>Issues</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary font-medium border-l-2 border-primary" data-path="tablero" href="#"><span class="material-symbols-outlined text-[18px]">view_kanban</span><span>Tablero</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vista-kanban" href="#"><span class="material-symbols-outlined text-[18px]">view_column</span><span>Vista Kanban</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documentos" href="#"><span class="material-symbols-outlined text-[18px]">description</span><span>Documentos</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="chat" href="#"><span class="material-symbols-outlined text-[18px]">forum</span><span>Chat</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="opciones" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Opciones</span></a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs"><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resumen-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">home</span><span>Inicio</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="perfil" href="#"><span class="material-symbols-outlined text-[18px]">account_circle</span><span>Perfil</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-error hover:bg-surface-container-high hover:text-error transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Cerrar sesión</span></a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1"><img alt="ZenWork Minimal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Ve2GrO3DIWI2aRCEkt5whFHMvxdXFzwtu1ycUy2umIaFLPdpQw3WZ1jHHvKVu5834N5-_13VSvSQL5pq8Qs1z3Xvv0yxVcilZtNGjm9mH0cuuronftlWC9Ut8uTWEeRStRwbKFrw7QKT2QyLJPlZckhXz5TcGR8c8EGGfiWyWtZjwVOoUnrbbB66qeup_8isoMFhLYpQ8w2kWfA_EtXw4pkpNIYx2Gf9Dbx1eSdkUp__vMbmjtoDZCsOvw"/><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full"><span class="material-symbols-outlined text-[18px] mr-space-sm">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-primary px-space-md py-space-xs font-body-sm text-body-sm font-medium transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-8 h-8 flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full"><div class="flex flex-col w-full">
+<div class="px-space-2xl py-space-xl flex flex-col gap-space-lg bg-surface-dim">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-2xs">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>Test</span>
+<span class="text-outline-variant">/</span>
+<span>Proyectos</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface">Mi primer proyecto en ZenWork</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium">Tablero</span>
+</nav>
+<div class="flex items-center gap-space-md">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Tablero principal</h1>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-primary border border-outline-variant/40">ZEN-BOARD</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Arrastra y organiza tarjetas entre estados con sincronización en tiempo real.</p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="h-9 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm flex items-center gap-space-xs transition-colors border border-outline-variant/50" id="btn-add-col" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Nueva columna</span>
+</button>
+<button class="h-9 px-space-md bg-primary-container hover:bg-inverse-primary text-on-primary font-body-sm text-body-sm font-medium flex items-center gap-space-xs transition-colors shadow-sm" id="btn-quick-create" type="button">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Crear tarjeta</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md pt-space-xs border-t border-outline-variant/20">
+<div class="flex flex-1 items-center gap-space-md max-w-2xl">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">filter_list</span>
+<input class="w-full h-9 pl-9 pr-space-md bg-surface border border-outline-variant/40 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:border-primary focus:outline-none transition-colors" id="search-input" placeholder="Filtrar tarjetas por título, tag o código..." type="text"/>
+</div>
+<div class="relative w-48">
+<select class="w-full h-9 px-space-md bg-surface border border-outline-variant/40 text-on-surface font-body-sm text-body-sm focus:border-primary focus:outline-none appearance-none cursor-pointer pr-8" id="assignee-filter">
+<option value="all">Todos los asignados</option>
+<option value="AZ">AZ (Ángel Zapata)</option>
+<option value="Angel">Angel (Lead Dev)</option>
+<option value="unassigned">Sin asignar</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md justify-between lg:justify-end text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-primary"></span>
+<span class="text-on-surface-variant font-code">8 TAREAS EN TOTAL</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-[16px] text-outline">swap_vert</span>
+<span class="uppercase">Agrupar: Estado</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-2xl overflow-x-auto bg-background min-h-[calc(100vh-14rem)]">
+<div class="flex gap-space-lg items-start min-w-[1240px]">
+<!-- COLUMNA 1: POR HACER -->
+<div class="w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col" data-column="todo">
+<div class="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-outline"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Por hacer</h2>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs count-badge">3</span>
+</div>
+<button class="text-outline hover:text-on-surface p-1 transition-colors" title="Opciones">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="p-space-sm space-y-space-sm flex flex-col cards-container min-h-[140px]" id="column-todo">
+<!-- Tarjeta 1 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="AZ" data-key="ZEN-101" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-101</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-error/10 text-error border border-error/30 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">keyboard_double_arrow_up</span>
+                Alta
+              </span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Implementar autenticación OAuth 2.0</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Seguridad</span>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1 font-code text-label-sm text-outline">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+<span>12 Oct</span>
+</div>
+<div class="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold">AZ</div>
+</div>
+</div>
+</div>
+<!-- Tarjeta 2 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="unassigned" data-key="ZEN-104" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-104</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-surface-variant text-outline border border-outline-variant/40">Media</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Diseñar esquema de base de datos Postgres</h3>
+<p class="font-body-sm text-body-sm text-outline line-clamp-1 mb-space-sm">Definición de tablas relacionales para usuarios y proyectos (asdsada).</p>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Backend</span>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">chat_bubble_outline</span>
+<span class="font-code text-label-sm text-outline">3</span>
+</div>
+</div>
+</div>
+<!-- Tarjeta 3 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="unassigned" data-key="ZEN-106" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-106</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-surface-variant text-outline border border-outline-variant/40">Baja</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Optimizar pipeline de CI/CD</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">DevOps</span>
+<span class="material-symbols-outlined text-[16px] text-outline">attachment</span>
+</div>
+</div>
+</div>
+<div class="p-space-sm pt-0">
+<button class="add-card-btn w-full py-space-xs px-space-sm border border-dashed border-outline-variant/40 hover:border-outline text-outline hover:text-on-surface font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir tarjeta</span>
+</button>
+</div>
+</div>
+<!-- COLUMNA 2: EN PROGRESO -->
+<div class="w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col" data-column="in-progress">
+<div class="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-primary"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">En progreso</h2>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs count-badge">2</span>
+</div>
+<button class="text-outline hover:text-on-surface p-1 transition-colors" title="Opciones">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="p-space-sm space-y-space-sm flex flex-col cards-container min-h-[140px]" id="column-in-progress">
+<!-- Tarjeta 1 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="Angel" data-key="ZEN-98" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-98</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-primary/10 text-primary border border-primary/30">Media</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Integrar editor de bloques estilo Notion</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Editor</span>
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 bg-primary-container text-on-primary font-code text-label-sm flex items-center justify-center font-bold">AN</div>
+</div>
+</div>
+</div>
+<!-- Tarjeta 2 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="Angel" data-key="ZEN-99" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-99</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-error/10 text-error border border-error/30">Alta</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Sincronización WebSockets para Chat en tiempo real</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Frontend</span>
+<div class="w-6 h-6 bg-primary-container text-on-primary font-code text-label-sm flex items-center justify-center font-bold">AN</div>
+</div>
+</div>
+</div>
+<div class="p-space-sm pt-0">
+<button class="add-card-btn w-full py-space-xs px-space-sm border border-dashed border-outline-variant/40 hover:border-outline text-outline hover:text-on-surface font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir tarjeta</span>
+</button>
+</div>
+</div>
+<!-- COLUMNA 3: EN REVISIÓN -->
+<div class="w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col" data-column="review">
+<div class="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-on-secondary-container"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">En revisión</h2>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs count-badge">1</span>
+</div>
+<button class="text-outline hover:text-on-surface p-1 transition-colors" title="Opciones">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="p-space-sm space-y-space-sm flex flex-col cards-container min-h-[140px]" id="column-review">
+<!-- Tarjeta 1 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm" data-assignee="AZ" data-key="ZEN-95" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-95</span>
+<span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-surface-variant text-outline border border-outline-variant/40">Media</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">Refactorizar filtros de búsqueda avanzada</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">UI/UX</span>
+<div class="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold">AZ</div>
+</div>
+</div>
+</div>
+<div class="p-space-sm pt-0">
+<button class="add-card-btn w-full py-space-xs px-space-sm border border-dashed border-outline-variant/40 hover:border-outline text-outline hover:text-on-surface font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir tarjeta</span>
+</button>
+</div>
+</div>
+<!-- COLUMNA 4: HECHO -->
+<div class="w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col" data-column="done">
+<div class="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-green-500"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Hecho</h2>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs count-badge">2</span>
+</div>
+<button class="text-outline hover:text-on-surface p-1 transition-colors" title="Opciones">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="p-space-sm space-y-space-sm flex flex-col cards-container min-h-[140px]" id="column-done">
+<!-- Tarjeta 1 (Original 'Crear mi casa' perfeccionada) -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing opacity-85 shadow-sm" data-assignee="AZ" data-key="ZEN-90" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline">ZEN-90</span>
+<span class="flex items-center gap-1 font-code text-label-sm text-green-400">
+<span class="material-symbols-outlined text-[16px]">check_box</span>
+<span>COMPLETADO</span>
+</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface line-through text-outline mb-space-sm leading-snug">Crear mi casa</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Hogar</span>
+<div class="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold">AZ</div>
+</div>
+</div>
+<!-- Tarjeta 2 -->
+<div class="task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing opacity-85 shadow-sm" data-assignee="Angel" data-key="ZEN-88" draggable="true">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="font-code text-label-sm text-outline">ZEN-88</span>
+<span class="flex items-center gap-1 font-code text-label-sm text-green-400">
+<span class="material-symbols-outlined text-[16px]">check_box</span>
+<span>COMPLETADO</span>
+</span>
+</div>
+<h3 class="font-body-md text-body-md text-on-surface line-through text-outline mb-space-sm leading-snug">Setup inicial de Tailwind y Design System</h3>
+<div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Infra</span>
+<div class="w-6 h-6 bg-primary-container text-on-primary font-code text-label-sm flex items-center justify-center font-bold">AN</div>
+</div>
+</div>
+</div>
+<div class="p-space-sm pt-0">
+<button class="add-card-btn w-full py-space-xs px-space-sm border border-dashed border-outline-variant/40 hover:border-outline text-outline hover:text-on-surface font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Añadir tarjeta</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function() {
+  let draggedCard = null;
+
+  function initDragAndDrop() {
+    const cards = document.querySelectorAll('.task-card');
+    const containers = document.querySelectorAll('.cards-container');
+
+    cards.forEach(card => {
+      card.addEventListener('dragstart', (e) => {
+        draggedCard = card;
+        card.classList.add('opacity-40', 'border-primary');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+
+      card.addEventListener('dragend', () => {
+        card.classList.remove('opacity-40', 'border-primary');
+        draggedCard = null;
+        updateBadges();
+      });
+    });
+
+    containers.forEach(container => {
+      container.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        container.classList.add('bg-surface-container-high/40');
+      });
+
+      container.addEventListener('dragleave', () => {
+        container.classList.remove('bg-surface-container-high/40');
+      });
+
+      container.addEventListener('drop', (e) => {
+        e.preventDefault();
+        container.classList.remove('bg-surface-container-high/40');
+        if (draggedCard) {
+          container.appendChild(draggedCard);
+          updateBadges();
+        }
+      });
+    });
+  }
+
+  function updateBadges() {
+    document.querySelectorAll('[data-column]').forEach(col => {
+      const badge = col.querySelector('.count-badge');
+      const cards = col.querySelectorAll('.task-card');
+      if (badge) {
+        badge.textContent = cards.length;
+      }
+    });
+  }
+
+  const searchInput = document.getElementById('search-input');
+  const assigneeFilter = document.getElementById('assignee-filter');
+
+  function applyFilters() {
+    const query = (searchInput?.value || '').toLowerCase().trim();
+    const assignee = assigneeFilter?.value || 'all';
+
+    document.querySelectorAll('.task-card').forEach(card => {
+      const text = card.innerText.toLowerCase();
+      const cardAssignee = card.getAttribute('data-assignee');
+
+      const matchesSearch = !query || text.includes(query);
+      const matchesAssignee = (assignee === 'all') || (cardAssignee === assignee);
+
+      if (matchesSearch && matchesAssignee) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+  assigneeFilter?.addEventListener('change', applyFilters);
+
+  document.querySelectorAll('.add-card-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const column = e.currentTarget.closest('[data-column]');
+      const container = column.querySelector('.cards-container');
+      const title = prompt('Título de la nueva tarjeta:');
+      if (title && title.trim()) {
+        const nextId = Math.floor(100 + Math.random() * 900);
+        const newCard = document.createElement('div');
+        newCard.draggable = true;
+        newCard.className = 'task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm';
+        newCard.setAttribute('data-assignee', 'unassigned');
+        newCard.setAttribute('data-key', 'ZEN-' + nextId);
+        newCard.innerHTML = `
+          <div class="flex items-center justify-between gap-space-xs mb-space-xs">
+            <span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-${nextId}</span>
+            <span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-surface-variant text-outline border border-outline-variant/40">Media</span>
+          </div>
+          <h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">${title.trim()}</h3>
+          <div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+            <span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">General</span>
+            <span class="material-symbols-outlined text-[16px] text-outline">person_outline</span>
+          </div>
+        `;
+        container.appendChild(newCard);
+        initDragAndDrop();
+        updateBadges();
+      }
+    });
+  });
+
+  const quickCreate = document.getElementById('btn-quick-create');
+  quickCreate?.addEventListener('click', () => {
+    const todoCol = document.getElementById('column-todo');
+    const title = prompt('Crear tarjeta rápida en "Por hacer":');
+    if (title && title.trim()) {
+      const nextId = Math.floor(100 + Math.random() * 900);
+      const newCard = document.createElement('div');
+      newCard.draggable = true;
+      newCard.className = 'task-card group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-grab active:cursor-grabbing shadow-sm';
+      newCard.setAttribute('data-assignee', 'AZ');
+      newCard.setAttribute('data-key', 'ZEN-' + nextId);
+      newCard.innerHTML = `
+        <div class="flex items-center justify-between gap-space-xs mb-space-xs">
+          <span class="font-code text-label-sm text-outline group-hover:text-primary transition-colors">ZEN-${nextId}</span>
+          <span class="font-code text-label-sm uppercase px-1.5 py-0.5 bg-primary/10 text-primary border border-primary/30">Normal</span>
+        </div>
+        <h3 class="font-body-md text-body-md text-on-surface mb-space-sm leading-snug">${title.trim()}</h3>
+        <div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+          <span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant">Sprint</span>
+          <div class="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold">AZ</div>
+        </div>
+      `;
+      todoCol.prepend(newCard);
+      initDragAndDrop();
+      updateBadges();
+    }
+  });
+
+  const addColBtn = document.getElementById('btn-add-col');
+  addColBtn?.addEventListener('click', () => {
+    const name = prompt('Nombre de la nueva columna:');
+    if (name && name.trim()) {
+      const container = document.querySelector('.overflow-x-auto > div');
+      const colId = 'col-' + Date.now();
+      const col = document.createElement('div');
+      col.className = 'w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col';
+      col.setAttribute('data-column', colId);
+      col.innerHTML = `
+        <div class="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+          <div class="flex items-center gap-space-xs">
+            <span class="w-2 h-2 bg-outline"></span>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">${name.trim()}</h2>
+            <span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs count-badge">0</span>
+          </div>
+          <button class="text-outline hover:text-on-surface p-1 transition-colors">
+            <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+          </button>
+        </div>
+        <div class="p-space-sm space-y-space-sm flex flex-col cards-container min-h-[140px]" id="${colId}"></div>
+        <div class="p-space-sm pt-0">
+          <button type="button" class="add-card-btn w-full py-space-xs px-space-sm border border-dashed border-outline-variant/40 hover:border-outline text-outline hover:text-on-surface font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container">
+            <span class="material-symbols-outlined text-[16px]">add</span>
+            <span>Añadir tarjeta</span>
+          </button>
+        </div>
+      `;
+      container.appendChild(col);
+      initDragAndDrop();
+    }
+  });
+
+  initDragAndDrop();
+})();
+</script></main></div></body></html>

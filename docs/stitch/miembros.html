@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'outline-variant': '#434654', 'primary-container': '#2d56cf', 'on-surface': '#e2e2e2', 'on-error': '#690005', 'surface-dim': '#121414', 'secondary-container': '#48494c', 'tertiary-fixed': '#e4e2e4', 'secondary': '#c7c6ca', 'on-primary-fixed-variant': '#003ab2', 'tertiary': '#c8c6c8', 'surface-variant': '#333535', 'surface-container-lowest': '#0c0f0f', 'inverse-on-surface': '#2f3131', 'on-error-container': '#ffdad6', 'on-surface-variant': '#c4c5d6', 'on-tertiary-fixed': '#1b1b1d', 'surface-container-high': '#282a2b', 'inverse-surface': '#e2e2e2', 'inverse-primary': '#2a54cd', 'secondary-fixed-dim': '#c7c6ca', 'on-primary-container': '#d3daff', 'on-primary-fixed': '#001550', 'error-container': '#93000a', 'on-tertiary-fixed-variant': '#474649', 'on-primary': '#00277f', 'primary': '#b6c4ff', 'background': '#121414', 'on-tertiary': '#303032', 'surface-container': '#1e2020', 'on-background': '#e2e2e2', 'outline': '#8e909f', 'surface-bright': '#38393a', 'tertiary-container': '#616062', 'surface': '#121414', 'on-secondary': '#2f3034', 'on-secondary-fixed-variant': '#46474a', 'surface-container-low': '#1a1c1c', 'secondary-fixed': '#e3e2e6', 'on-secondary-fixed': '#1a1b1f', 'on-secondary-container': '#b8b8bc', 'error': '#ffb4ab', 'primary-fixed-dim': '#b6c4ff', 'surface-tint': '#b6c4ff', 'tertiary-fixed-dim': '#c8c6c8', 'primary-fixed': '#dce1ff', 'on-tertiary-container': '#dedbdd', 'surface-container-highest': '#333535' }, 'borderRadius': { 'DEFAULT': '0px', 'none': '0px', 'lg': '0px', 'xl': '0px', 'full': '0px' }, 'spacing': { 'space-md': '0.75rem', 'gutter': '1px', 'space-xs': '0.25rem', 'space-lg': '1rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-sm': '0.5rem', 'sidebar-width': '16rem', 'space-2xl': '2rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'label-md': ['JetBrains Mono'], 'headline-sm': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-md': ['Geist'], 'body-md': ['Geist'], 'headline-lg': ['Geist'], 'headline-xl': ['Geist'], 'body-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased rounded-none"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none rounded-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim rounded-none"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-surface font-label-md text-label-md font-semibold rounded-none">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Espacio Principal</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl rounded-none"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="resumen-dashboard" href="#">Resumen / Dashboard</a><a aria-current="page" class="block px-space-sm py-space-xs transition-colors rounded-none bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container" data-path="miembros" href="#">Miembros</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="analiticas" href="#">Analíticas</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="vencimientos" href="#">Vencimientos</a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none rounded-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Proyecto Activo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="issues" href="#">Issues</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="tablero" href="#">Tablero</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="documentos" href="#">Documentos</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="chat" href="#">Chat</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="opciones" href="#">Opciones</a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs rounded-none"><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="inicio" href="#">Inicio</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="perfil" href="#">Perfil</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-error transition-colors border-l-2 border-transparent rounded-none" data-path="cerrar-sesion" href="#">Cerrar sesión</a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col rounded-none"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg rounded-none"><div class="flex items-center gap-space-lg flex-1"><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full rounded-none"><span class="material-symbols-outlined text-[18px] mr-space-sm text-outline">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none rounded-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-md py-space-xs font-body-sm text-body-sm font-medium border border-primary-container transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-9 h-9 flex items-center justify-center text-outline hover:text-on-surface bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-9 h-9 bg-surface-container-high border border-outline-variant/40 flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-outline hover:text-on-surface text-[20px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full rounded-none"><div class="flex flex-col w-full">
+<div class="w-full bg-surface-container-low px-space-xl py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs min-w-0">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>Test</span>
+<span>/</span>
+<span class="text-on-surface font-medium">Miembros</span>
+<span class="ml-space-xs px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-primary">ORG-01</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-none mt-space-2xs">
+        Miembros de Test
+      </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mt-space-2xs">
+        Administra quién tiene acceso a esta organización y qué rol tiene asignado. Eres propietario.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-center">
+<button class="flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface px-space-md py-space-xs font-body-sm text-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">file_download</span>
+<span>Exportar CSV</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface px-space-md py-space-xs font-body-sm text-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">admin_panel_settings</span>
+<span>Políticas de Acceso</span>
+</button>
+</div>
+</div>
+<div class="px-space-xl py-space-md bg-surface-dim">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter bg-surface-variant/40 p-gutter">
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Miembros Totales</span>
+<span class="material-symbols-outlined text-[18px] text-outline">group</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold">4</span>
+<span class="font-label-sm text-label-sm text-outline">/ 10 licencias</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Propietarios</span>
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold">1</span>
+<span class="font-label-sm text-label-sm text-outline">Privilegios totales</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Activos Hoy</span>
+<span class="material-symbols-outlined text-[18px] text-on-secondary">sensors</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold">2</span>
+<span class="font-label-sm text-label-sm text-on-secondary">50% concurrencia</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Pendientes</span>
+<span class="material-symbols-outlined text-[18px] text-error">pending_actions</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold">1</span>
+<span class="font-label-sm text-label-sm text-error">Esperando confirmación</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-space-xl py-space-md bg-surface-container-low">
+<div class="bg-surface-container p-space-md flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-primary">person_add</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-none">Invitar nuevo miembro</span>
+<span class="font-body-sm text-body-sm text-outline mt-space-2xs leading-none">Añade colaboradores mediante correo corporativo</span>
+</div>
+</div>
+<form class="flex flex-col sm:flex-row items-stretch gap-space-xs flex-1 max-w-2xl lg:justify-end" id="invite-form" onsubmit="event.preventDefault();">
+<div class="relative flex-1">
+<input class="w-full h-9 bg-surface-dim px-space-md text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-highest transition-colors" placeholder="email@compania.com" type="email"/>
+</div>
+<div class="relative w-full sm:w-44">
+<select class="w-full h-9 bg-surface-dim text-on-surface px-space-md font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container-highest cursor-pointer">
+<option value="member">Miembro</option>
+<option value="owner">Propietario</option>
+<option value="admin">Administrador</option>
+<option value="read_only">Solo lectura</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 pointer-events-none text-[18px] text-outline">expand_more</span>
+</div>
+<button class="h-9 px-space-lg bg-primary-container hover:bg-inverse-primary text-on-surface font-body-sm text-body-sm font-medium flex items-center justify-center gap-space-xs transition-colors whitespace-nowrap shadow-sm" onclick="alert('Invitación enviada con éxito');" type="button">
+<span class="material-symbols-outlined text-[16px]">send</span>
+<span>Invitar miembro</span>
+</button>
+</form>
+</div>
+</div>
+<div class="px-space-xl py-space-md bg-surface flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-space-sm top-2 text-[18px] text-outline">search</span>
+<input class="w-full h-8 pl-space-xl pr-space-md bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors" id="member-search" placeholder="Filtrar por nombre o email..." type="text"/>
+</div>
+<button class="h-8 px-space-sm bg-surface-container-low hover:bg-surface-container-high text-outline hover:text-on-surface flex items-center gap-space-2xs text-body-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+<span>Rol</span>
+</button>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center">
+<span class="font-label-sm text-label-sm text-outline">Mostrando 4 de 4 registros</span>
+</div>
+</div>
+<div class="px-space-xl pb-space-3xl bg-surface flex flex-col gap-space-xl">
+<div class="w-full overflow-x-auto bg-surface-container-low shadow-sm">
+<table class="w-full text-left font-body-md text-body-md min-w-[860px]">
+<thead>
+<tr class="bg-surface-dim font-label-sm text-label-sm text-outline uppercase tracking-wider select-none">
+<th class="py-space-sm px-space-lg font-medium">Miembro</th>
+<th class="py-space-sm px-space-md font-medium">Correo Electrónico</th>
+<th class="py-space-sm px-space-md font-medium">Rol</th>
+<th class="py-space-sm px-space-md font-medium">Estado</th>
+<th class="py-space-sm px-space-md font-medium">Proyectos Asignados</th>
+<th class="py-space-sm px-space-lg text-right font-medium">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent">
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 bg-primary-container text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold shrink-0">
+                  AZ
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Admin ZenWork</span>
+<span class="font-label-sm text-label-sm text-primary">Tú (Propietario del espacio)</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code text-code text-on-surface-variant">
+              admin@zenwork.com
+            </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs bg-primary-container/20 text-primary font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">shield_person</span>
+                Propietario
+              </span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-on-secondary rounded-none"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Activo</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-on-surface">Todos</span>
+<span class="font-label-sm text-label-sm text-outline">(4 proyectos)</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<button class="p-space-xs text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Opciones">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group bg-surface-container-low/60">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 bg-surface-container-high text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold shrink-0">
+                  AR
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Angel</span>
+<span class="font-label-sm text-label-sm text-outline">Miembro de equipo</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code text-code text-on-surface-variant">
+              angelriveradeveloper@gmail.com
+            </td>
+<td class="py-space-md px-space-md">
+<div class="relative inline-block">
+<select class="h-7 bg-surface-container text-on-surface pl-space-xs pr-space-lg font-label-sm text-label-sm appearance-none focus:outline-none cursor-pointer">
+<option selected="">Miembro</option>
+<option>Administrador</option>
+<option>Solo lectura</option>
+</select>
+<span class="material-symbols-outlined absolute right-1 top-1.5 pointer-events-none text-[14px] text-outline">arrow_drop_down</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-on-secondary rounded-none"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Activo</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-on-surface">ZenWork Demo</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<button class="px-space-sm py-space-2xs bg-error-container/20 hover:bg-error-container text-error hover:text-on-error font-body-sm text-body-sm transition-colors">
+                Eliminar
+              </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 bg-surface-container-high text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold shrink-0">
+                  MB
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Mateo Backend</span>
+<span class="font-label-sm text-label-sm text-outline">Infraestructura &amp; API</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code text-code text-on-surface-variant">
+              mateo.dev@zenwork.internal
+            </td>
+<td class="py-space-md px-space-md">
+<div class="relative inline-block">
+<select class="h-7 bg-surface-container text-on-surface pl-space-xs pr-space-lg font-label-sm text-label-sm appearance-none focus:outline-none cursor-pointer">
+<option selected="">Desarrollador</option>
+<option>Administrador</option>
+<option>Miembro</option>
+</select>
+<span class="material-symbols-outlined absolute right-1 top-1.5 pointer-events-none text-[14px] text-outline">arrow_drop_down</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-on-secondary rounded-none"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Activo</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-on-surface">ZenWork Demo</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<button class="px-space-sm py-space-2xs bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors">
+                Editar permisos
+              </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group bg-surface-container-low/60">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-8 h-8 bg-surface-container text-outline flex items-center justify-center font-label-md text-label-md font-semibold shrink-0">
+                  SX
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Sofia UX</span>
+<span class="font-label-sm text-label-sm text-outline">Diseño de producto</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code text-code text-on-surface-variant">
+              sofia.design@zenwork.internal
+            </td>
+<td class="py-space-md px-space-md">
+<div class="relative inline-block">
+<select class="h-7 bg-surface-container text-on-surface pl-space-xs pr-space-lg font-label-sm text-label-sm appearance-none focus:outline-none cursor-pointer">
+<option selected="">Diseñador</option>
+<option>Miembro</option>
+<option>Solo lectura</option>
+</select>
+<span class="material-symbols-outlined absolute right-1 top-1.5 pointer-events-none text-[14px] text-outline">arrow_drop_down</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-error rounded-none animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-error">Invitación pendiente</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-on-surface">ZenWork Demo</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<button class="px-space-sm py-space-2xs bg-surface-container hover:bg-surface-container-high text-primary font-body-sm text-body-sm transition-colors">
+                Reenviar invitación
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-lg bg-surface-container-low flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-md max-w-xl">
+<div class="w-10 h-10 bg-primary-container/20 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">security</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Autenticación SAML / SSO Empresarial</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">
+            Refuerza el acceso de los miembros requiriendo Okta, Google Workspace o Azure Active Directory para el inicio de sesión.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="font-code text-label-sm px-space-sm py-space-xs bg-surface-container text-outline">PLAN ENTERPRISE</span>
+<button class="h-9 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors">
+          Configurar SSO
+        </button>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">preview</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Referencia de Vista de Tablero &amp; Arquitectura</span>
+</div>
+<span class="font-code text-label-sm text-outline">ZEN-VIEW-MEMBER-REF</span>
+</div>
+<div class="w-full bg-surface-dim overflow-hidden flex items-center justify-center">
+<img alt="Vista previa del espacio de trabajo ZenWork" class="w-full h-auto object-cover opacity-85 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHyoFd1RRTPA4cYCnNumBV4VZ_po4pz6ClBT6JL1nU7kMrFHthNRHshI-Rh0XECGDFFR_WmmapF3XieUlf_C2-IBwCrhUjTRCWRpJuo8QSg0PqlsMcHLS1bFI1DUwXj4cBflYPeZQ4GWceBzqiQasagNV6L6aF49X30guGIG8JgjdsI350FrEsEJqeHloRYZhVaO1KUXORdxmTUcCcJFfbYelxr-pSmy-n6e5N9qaC_NzNpV3gpRZ3B3sTmPV0rBAv0O4"/>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const searchInput = document.getElementById('member-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          if (text.includes(query)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    }
+  })();
+</script></main></div></body></html>

@@ -47,19 +47,31 @@ export default async function MembersPage({
   const [members, invitations] = await Promise.all([getMembers(org.id), getInvitations(org.id)]);
 
   return (
-    <>
-      <div className="crumb">
-        <Link href={`/organizations/${slug}`}>{org.name}</Link>
-        <span>/</span>
-        <span>Miembros</span>
+    <div className="w-full">
+      {/* Top Header Stitch */}
+      <div className="w-full bg-surface-container-low px-space-xl py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md border-b border-outline-variant/20">
+        <div className="flex flex-col gap-space-2xs min-w-0">
+          <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+            <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+              {org.name}
+            </Link>
+            <span>/</span>
+            <span className="text-on-surface font-medium">Miembros</span>
+            <span className="ml-space-xs px-space-xs py-space-2xs bg-surface-container font-code text-label-sm text-primary">
+              {slug.toUpperCase()}
+            </span>
+          </div>
+          <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-none mt-space-2xs">
+            Miembros de {org.name}
+          </h1>
+          <p className="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mt-space-2xs">
+            Administra quién tiene acceso a esta organización y qué rol tiene asignado.
+            {canManage
+              ? ` Eres ${myRole === "OWNER" ? "propietario" : "administrador"}.`
+              : " Solo lectura."}
+          </p>
+        </div>
       </div>
-      <header className="dash-header" style={{ marginBottom: 20 }}>
-        <h1>Miembros de {org.name}</h1>
-        <p>
-          Administra quién tiene acceso a esta organización y qué rol tiene.
-          {canManage ? " Tú eres " + (myRole === "OWNER" ? "propietario" : "administrador") + "." : ""}
-        </p>
-      </header>
 
       <MembersManager
         slug={slug}
@@ -75,6 +87,6 @@ export default async function MembersPage({
         myRole={myRole}
         canManage={canManage}
       />
-    </>
+    </div>
   );
 }

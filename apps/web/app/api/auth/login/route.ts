@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyPassword, generateAccessToken, generateRefreshToken, storeRefreshToken, setAuthCookies } from "@zenwork/auth";
+import { verifyPassword, generateAccessToken, generateTwoFactorTempToken, generateRefreshToken, storeRefreshToken, setAuthCookies } from "@zenwork/auth";
 import { prisma } from "@zenwork/db";
 import { loginSchema } from "@zenwork/shared";
 import { checkLoginRateLimit, validateRequest } from "@zenwork/middleware";
@@ -70,8 +70,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (twoFactorConfig?.enabled) {
-      // Retornar token temporal para verificación 2FA
-      const tempToken = await generateAccessToken(user.id, user.email);
+      // Retornar token temporal con scope 2fa_pending para verificación 2FA
+      const tempToken = await generateTwoFactorTempToken(user.id, user.email);
 
       return NextResponse.json({
         requires2FA: true,

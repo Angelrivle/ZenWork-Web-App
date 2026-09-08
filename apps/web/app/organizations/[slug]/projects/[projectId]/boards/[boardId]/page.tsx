@@ -81,22 +81,42 @@ export default async function ProjectBoardDetailPage({
   const projectBase = `/organizations/${slug}/projects/${project.id}`;
 
   return (
-    <>
-      <div className="dash-toolbar" style={{ marginBottom: 18 }}>
-        <div>
-          <div className="crumb">
-            <Link href={projectBase}>{project.name}</Link>
-            <span>/</span>
-            <Link href={`${projectBase}/boards`}>Tablero</Link>
-            <span>/</span>
-            <span>{board.name}</span>
+    <div className="w-full">
+      {/* Sub-header & Board Action Bar */}
+      <section className="border-b border-outline-variant/30 bg-surface-dim px-space-xl py-space-lg">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+          <div className="space-y-space-2xs min-w-0">
+            <nav className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+              <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+                {slug}
+              </Link>
+              <span>/</span>
+              <Link href={projectBase} className="hover:text-on-surface truncate">
+                {project.name}
+              </Link>
+              <span>/</span>
+              <span className="text-primary font-medium">Tablero Kanban</span>
+            </nav>
+            <div className="flex items-baseline gap-space-md flex-wrap">
+              <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                {board.name}
+              </h1>
+              <div className="flex items-center gap-space-xs font-code text-label-sm text-outline bg-surface-container px-space-sm py-space-2xs border border-outline-variant/40">
+                <span className="text-on-surface font-semibold">{project.name}</span>
+                <span className="text-outline-variant">•</span>
+                <span className="text-primary">Directo</span>
+                <span className="text-outline-variant">•</span>
+                <span>{columns.reduce((s, c) => s + c.cards.length, 0)} tarjetas</span>
+              </div>
+            </div>
+            {board.description && (
+              <p className="font-body-sm text-body-sm text-outline mt-space-2xs max-w-2xl">
+                {board.description}
+              </p>
+            )}
           </div>
-          <header className="dash-header" style={{ marginBottom: 0 }}>
-            <h1>{board.name}</h1>
-            <p>{board.description || "Arrastra las tarjetas para moverlas."}</p>
-          </header>
         </div>
-      </div>
+      </section>
 
       <KanbanBoard
         slug={slug}
@@ -105,6 +125,6 @@ export default async function ProjectBoardDetailPage({
         members={members}
         canEdit={!!membership}
       />
-    </>
+    </div>
   );
 }

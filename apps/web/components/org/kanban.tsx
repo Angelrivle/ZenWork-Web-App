@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Modal, initials } from "./modal";
 
@@ -48,6 +48,30 @@ export function KanbanBoard({
   const [openCard, setOpenCard] = useState<KanbanCard | null>(null);
   const [addingIn, setAddingIn] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState("");
+
+  const [filterText, setFilterText] = useState("");
+  const [filterAssignee, setFilterAssignee] = useState<string>("all");
+
+  const displayCols = useMemo(() => {
+    const text = filterText.trim().toLowerCase();
+    if (!text && filterAssignee === "all") return cols;
+
+    return cols.map((col) => ({
+      ...col,
+      cards: col.cards.filter((card) => {
+        const matchesText =
+          !text ||
+          card.title.toLowerCase().includes(text) ||
+          (card.description && card.description.toLowerCase().includes(text));
+        const matchesAssignee =
+          filterAssignee === "all" ||
+          (filterAssignee === "unassigned"
+            ? !card.assignee
+            : card.assignee?.id === filterAssignee);
+        return matchesText && matchesAssignee;
+      }),
+    }));
+  }, [cols, filterText, filterAssignee]);
 
   async function onChange() {
     router.refresh();
@@ -134,109 +158,242 @@ export function KanbanBoard({
     return Math.round((done / all.length) * 100);
   }
 
+  const totalTasksCount = useMemo(() => {
+    return cols.reduce((sum, c) => sum + c.cards.length, 0);
+  }, [cols]);
+
   return (
-    <>
-      <div className="kanban">
-        {cols.map((col) => {
-          const doneTotal = col.cards.reduce((sum, c) => {
-            const d = cardDone(c);
-            return sum + (d ?? 0);
-          }, 0);
-          const overall = col.cards.length
-            ? Math.round(doneTotal / (col.cards.length * 100) * 100)
-            : 0;
-          return (
-            <div
-              key={col.id}
-              className={`kanban-col ${overCol === col.id ? "dragover" : ""}`}
-              onDragOver={(e) => {
-                e.preventDefault();
-                setOverCol(col.id);
-              }}
-              onDragLeave={() => setOverCol((prev) => (prev === col.id ? null : prev))}
-              onDrop={() => handleDrop(col.id)}
+    <div className="flex flex-col w-full">
+      {/* Stitch Filter & Controls Header */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md py-space-md px-space-xl bg-surface-dim border-b border-outline-variant/20">
+        <div className="flex flex-1 items-center gap-space-md max-w-2xl">
+          <div className="relative flex-1">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
+              filter_list
+            </span>
+            <input
+              type="text"
+              placeholder="Filtrar tarjetas por título o descripción..."
+              value={filterText}
+              onChange={(e) => setFilterText(e.target.value)}
+              className="w-full h-9 pl-9 pr-space-md bg-surface border border-outline-variant/40 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:border-primary-container focus:outline-none transition-colors"
+            />
+          </div>
+          <div className="relative w-56">
+            <select
+              value={filterAssignee}
+              onChange={(e) => setFilterAssignee(e.target.value)}
+              className="w-full h-9 px-space-md bg-surface border border-outline-variant/40 text-on-surface font-body-sm text-body-sm focus:border-primary-container focus:outline-none appearance-none cursor-pointer pr-8"
             >
-              <div className="kanban-col-head">
-                <strong>
-                  {col.color && <span className="badge dot" style={{ color: col.color }} />}
-                  {col.name}
-                  <span className="count">{col.cards.length}</span>
-                </strong>
-                {overall > 0 && <span className="count">{overall}%</span>}
+              <option value="all">Todos los miembros</option>
+              <option value="unassigned">Sin asignar</option>
+              {members.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+            <span className="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">
+              expand_more
+            </span>
+          </div>
+          {(filterText || filterAssignee !== "all") && (
+            <button
+              type="button"
+              className="text-primary text-body-sm hover:underline px-2"
+              onClick={() => {
+                setFilterText("");
+                setFilterAssignee("all");
+              }}
+            >
+              Limpiar
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-space-md justify-between lg:justify-end text-outline font-label-sm text-label-sm">
+          <div className="flex items-center gap-space-xs">
+            <span className="w-2 h-2 bg-primary-container"></span>
+            <span className="text-on-surface-variant font-code uppercase">
+              {totalTasksCount} TARJETAS EN TOTAL
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Board Scroll Area */}
+      <div className="p-space-xl overflow-x-auto bg-background min-h-[calc(100vh-14rem)]">
+        <div className="flex gap-space-lg items-start min-w-[1000px]">
+          {displayCols.map((col) => {
+            const doneTotal = col.cards.reduce((sum, c) => {
+              const d = cardDone(c);
+              return sum + (d ?? 0);
+            }, 0);
+            const overall = col.cards.length
+              ? Math.round(doneTotal / (col.cards.length * 100) * 100)
+              : 0;
+
+            return (
+              <div
+                key={col.id}
+                className={`w-80 flex-shrink-0 bg-surface-container-low border border-outline-variant/30 flex flex-col shadow-sm transition-all ${
+                  overCol === col.id ? "ring-2 ring-primary-container bg-surface-container" : ""
+                }`}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setOverCol(col.id);
+                }}
+                onDragLeave={() => setOverCol((prev) => (prev === col.id ? null : prev))}
+                onDrop={() => handleDrop(col.id)}
+              >
+                {/* Column Head */}
+                <div className="p-space-md border-b border-outline-variant/20 flex items-center justify-between bg-surface-dim">
+                  <div className="flex items-center gap-space-xs">
+                    <span
+                      className="w-2 h-2"
+                      style={{ backgroundColor: col.color || "#2d56cf" }}
+                    />
+                    <h2 className="font-headline-sm text-headline-sm text-on-surface font-medium">
+                      {col.name}
+                    </h2>
+                    <span className="font-code text-label-sm px-space-xs py-space-2xs bg-surface-variant text-on-surface-variant leading-none ml-space-xs">
+                      {col.cards.length}
+                    </span>
+                  </div>
+                  {overall > 0 && (
+                    <span className="font-code text-label-sm text-outline">{overall}%</span>
+                  )}
+                </div>
+
+                {/* Cards Container */}
+                <div className="p-space-sm space-y-space-sm flex flex-col min-h-[100px]">
+                  {col.cards.map((card) => {
+                    const pct = cardDone(card);
+                    return (
+                      <div
+                        key={card.id}
+                        className={`group p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/40 hover:border-outline-variant/80 transition-all cursor-pointer shadow-sm ${
+                          dragging === card.id ? "opacity-40" : ""
+                        }`}
+                        draggable={canEdit}
+                        onDragStart={() => canEdit && setDragging(card.id)}
+                        onDragEnd={() => setDragging(null)}
+                        onClick={() => setOpenCard(card)}
+                      >
+                        <div className="flex items-center justify-between gap-space-xs mb-space-xs">
+                          <span className="font-code text-label-sm text-outline group-hover:text-primary transition-colors">
+                            CARD
+                          </span>
+                          {card.dueDate && (
+                            <span className="font-code text-label-sm text-outline flex items-center gap-1">
+                              <span className="material-symbols-outlined text-[13px]">calendar_today</span>
+                              <span>
+                                {new Date(card.dueDate).toLocaleDateString("es-ES", {
+                                  day: "2-digit",
+                                  month: "short",
+                                })}
+                              </span>
+                            </span>
+                          )}
+                        </div>
+
+                        <h3 className="font-body-md text-body-md text-on-surface mb-space-sm leading-snug font-medium">
+                          {card.title}
+                        </h3>
+
+                        {card.description && (
+                          <p className="font-body-sm text-body-sm text-outline line-clamp-2 mb-space-sm">
+                            {card.description}
+                          </p>
+                        )}
+
+                        <div className="flex items-center justify-between pt-space-xs border-t border-outline-variant/20">
+                          {pct !== null ? (
+                            <div className="flex items-center gap-2 flex-1 mr-space-sm">
+                              <div className="h-1.5 flex-1 bg-surface-container-high overflow-hidden">
+                                <div
+                                  className="h-full bg-primary-container"
+                                  style={{ width: `${pct}%` }}
+                                />
+                              </div>
+                              <span className="font-code text-label-sm text-outline">{pct}%</span>
+                            </div>
+                          ) : (
+                            <span />
+                          )}
+
+                          {card.assignee && (
+                            <div
+                              className="w-6 h-6 bg-surface-variant border border-outline-variant text-on-surface font-code text-label-sm flex items-center justify-center font-bold"
+                              title={card.assignee.name}
+                            >
+                              {initials(card.assignee.name)}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Add Card Footer */}
+                {canEdit && (
+                  <div className="p-space-sm pt-0">
+                    {addingIn === col.id ? (
+                      <form onSubmit={handleAddSubmit} className="space-y-space-xs bg-surface p-space-sm border border-primary-container shadow-md">
+                        <textarea
+                          className="w-full bg-surface-container-low border border-outline-variant/50 text-on-surface p-2 text-body-sm focus:outline-none focus:border-primary-container resize-none"
+                          autoFocus
+                          value={newTitle}
+                          onChange={(e) => setNewTitle(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                              e.preventDefault();
+                              handleAddSubmit(e);
+                            }
+                            if (e.key === "Escape") {
+                              setAddingIn(null);
+                            }
+                          }}
+                          placeholder="Escribe el título de la tarjeta y presiona Enter..."
+                          rows={2}
+                        />
+                        <div className="flex items-center justify-between gap-space-xs">
+                          <button
+                            type="submit"
+                            disabled={!newTitle.trim()}
+                            className="bg-primary-container hover:bg-inverse-primary disabled:opacity-50 text-white px-space-md py-1 text-body-sm font-medium transition-colors"
+                          >
+                            Añadir tarjeta
+                          </button>
+                          <button
+                            type="button"
+                            className="px-2 py-1 bg-surface-container hover:bg-surface-container-high text-outline hover:text-on-surface text-body-sm transition-colors"
+                            onClick={() => setAddingIn(null)}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </form>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAddingIn(col.id);
+                          setNewTitle("");
+                        }}
+                        className="w-full py-2 px-space-sm border border-dashed border-outline-variant/40 hover:border-primary text-outline hover:text-primary font-body-sm text-body-sm flex items-center justify-center gap-space-xs transition-colors bg-surface-container-low hover:bg-surface-container"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">add</span>
+                        <span>Añadir tarjeta</span>
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
-
-              {col.cards.map((card) => {
-                const pct = cardDone(card);
-                return (
-                  <div
-                    key={card.id}
-                    className={`kanban-card ${dragging === card.id ? "dragging" : ""}`}
-                    draggable={canEdit}
-                    onDragStart={() => canEdit && setDragging(card.id)}
-                    onDragEnd={() => setDragging(null)}
-                    onClick={() => setOpenCard(card)}
-                  >
-                    <h4>{card.title}</h4>
-                    <div className="kanban-card-foot">
-                      {pct !== null ? (
-                        <span className="task-progress">
-                          <span className="bar">
-                            <i style={{ width: `${pct}%` }} />
-                          </span>
-                          {pct}%
-                        </span>
-                      ) : (
-                        <span />
-                      )}
-                      <span style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                        {card.dueDate && (
-                          <span title="Vence" style={{ color: "var(--text-3)", fontSize: 12 }}>
-                            {new Date(card.dueDate).toLocaleDateString("es-ES", { day: "2-digit", month: "short" })}
-                          </span>
-                        )}
-                        {card.assignee && (
-                          <span className="avatar" title={card.assignee.name}>
-                            {initials(card.assignee.name)}
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {addingIn === col.id ? (
-                <form onSubmit={handleAddSubmit} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <textarea
-                    className="input"
-                    autoFocus
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    placeholder="Título de la tarjeta..."
-                    rows={2}
-                  />
-                  <div style={{ display: "flex", gap: 6 }}>
-                    <button type="submit" className="btn btn-primary btn-sm" style={{ flex: 1 }}>
-                      Añadir
-                    </button>
-                    <button type="button" className="btn btn-ghost btn-sm" onClick={() => setAddingIn(null)}>
-                      ×
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <button
-                  className="kanban-card-add"
-                  onClick={() => setAddingIn(col.id)}
-                  style={{ cursor: canEdit ? "pointer" : "not-allowed", opacity: canEdit ? 1 : 0.5 }}
-                  disabled={!canEdit}
-                >
-                  + Añadir tarjeta
-                </button>
-              )}
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {openCard && (
@@ -250,7 +407,7 @@ export function KanbanBoard({
           onChanged={onChange}
         />
       )}
-    </>
+    </div>
   );
 }
 

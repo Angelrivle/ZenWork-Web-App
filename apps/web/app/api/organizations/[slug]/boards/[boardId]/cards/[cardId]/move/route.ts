@@ -71,6 +71,17 @@ export async function PATCH(
       );
     }
 
+    // Prevenir IDOR/BOLA: verificar que la columna destino pertenezca a este tablero
+    const targetCol = await prisma.boardColumn.findFirst({
+      where: { id: validation.data.columnId, boardId },
+    });
+    if (!targetCol) {
+      return NextResponse.json(
+        { error: "La columna destino no pertenece a este tablero" },
+        { status: 400 }
+      );
+    }
+
     const updatedCard = await moveCard(
       cardId,
       validation.data.columnId,

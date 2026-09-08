@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAccessToken } from "@zenwork/auth";
 import { prisma } from "@zenwork/db";
 import { createWebhookSchema, COOKIE_NAMES } from "@zenwork/shared";
-import { validateRequest } from "@zenwork/middleware";
+import { validateRequest, isSafeWebhookUrl } from "@zenwork/middleware";
 import { randomBytes } from "crypto";
 
 async function getOrgWithRole(slug: string, userId: string) {
@@ -93,6 +93,14 @@ export async function POST(
     if (!validation.success) {
       return NextResponse.json(
         { error: "Datos inválidos", details: validation.errors },
+        { status: 400 }
+      );
+    }
+
+    const safety = isSafeWebhookUrl(validation.data.url);
+    if (!safety.safe) {
+      return NextResponse.json(
+        { error: `URL rechazada por seguridad: ${safety.reason}` },
         { status: 400 }
       );
     }

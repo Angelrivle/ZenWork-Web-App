@@ -135,9 +135,14 @@ async function fetchDiscordUser(accessToken: string) {
   });
   const u = await res.json().catch(() => ({}));
   if (!u.id) throw new Error("No se pudo obtener el usuario de Discord");
+  
+  // Seguridad: solo confiar en el email si Discord confirma que fue verificado (u.verified === true)
+  // para evitar ataques de Account Takeover por vinculación ciega de emails no verificados.
+  const verifiedEmail = Boolean(u.verified && u.email) ? (u.email as string) : null;
+
   return {
     providerId: String(u.id),
-    email: u.email || null,
+    email: verifiedEmail,
     name: u.global_name || u.username || "Usuario Discord",
     avatarUrl: null,
   };

@@ -45,6 +45,15 @@ export interface JWTPayload {
   email: string;
   orgId?: string;
   roles: OrgRole[];
+  purpose?: string;
+  iat: number;
+  exp: number;
+}
+
+export interface TwoFactorTempPayload {
+  sub: string; // userId
+  email: string;
+  purpose: "2fa_pending";
   iat: number;
   exp: number;
 }

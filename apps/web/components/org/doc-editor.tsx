@@ -120,6 +120,22 @@ export function DocEditor({
         <div className="tiptap-content">
           <EditorContent editor={editor} />
         </div>
+
+        {editor && (
+          <div className="doc-reading-stats">
+            <span>{editor.getText().trim() ? editor.getText().trim().split(/\s+/).length : 0} palabras</span>
+            <span>•</span>
+            <span>{editor.getText().length} caracteres</span>
+            <span>•</span>
+            <span>~{Math.max(1, Math.ceil((editor.getText().trim().split(/\s+/).length || 0) / 200))} min de lectura</span>
+            {!canEdit && (
+              <>
+                <span>•</span>
+                <span className="badge" style={{ color: "var(--warning)" }}>Solo lectura (Invitado)</span>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -28,66 +28,113 @@ export function IssueFilters({
     router.push(qs ? `${basePath}?${qs}` : basePath);
   }
 
+  function clearAll() {
+    setSearch("");
+    router.push(basePath);
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     apply({ search });
   }
 
   return (
-    <div className="dash-toolbar" style={{ marginBottom: 14 }}>
-      <form className="actions" onSubmit={handleSubmit} style={{ flex: 1, display: "flex", gap: 8 }}>
-        <input
-          className="input"
-          style={{ maxWidth: 240 }}
-          placeholder="Buscar issue..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button type="submit" className="btn btn-outline btn-sm">
-          Buscar
-        </button>
-      </form>
-      <div className="actions">
-        <select
-          className="inline-select"
-          value={current.statusId}
-          onChange={(e) => apply({ statusId: e.target.value })}
-          aria-label="Filtrar por estado"
-        >
-          <option value="">Todos los estados</option>
-          {statuses.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-        <select
-          className="inline-select"
-          value={current.priority}
-          onChange={(e) => apply({ priority: e.target.value })}
-          aria-label="Filtrar por prioridad"
-        >
-          <option value="">Toda prioridad</option>
-          <option value="LOW">Baja</option>
-          <option value="MEDIUM">Media</option>
-          <option value="HIGH">Alta</option>
-          <option value="CRITICAL">Crítica</option>
-          <option value="BLOCKER">Bloqueante</option>
-        </select>
-        <select
-          className="inline-select"
-          value={current.assigneeId}
-          onChange={(e) => apply({ assigneeId: e.target.value })}
-          aria-label="Filtrar por responsable"
-        >
-          <option value="">Todos</option>
-          {members.map((m) => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
+    <section className="bg-surface-container-low border-b border-outline-variant/30 px-space-xl py-space-md">
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+        {/* Search Input & Quick Button */}
+        <form onSubmit={handleSubmit} className="flex items-stretch gap-space-xs max-w-lg w-full">
+          <div className="relative flex-1">
+            <span className="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">
+              search
+            </span>
+            <input
+              className="w-full h-9 pl-9 pr-space-md bg-surface border border-outline-variant/50 font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container transition-colors"
+              placeholder="Buscar issue por resumen o clave..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              type="text"
+            />
+          </div>
+          <button
+            className="h-9 px-space-lg bg-surface-container border border-outline-variant/50 hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors cursor-pointer"
+            type="submit"
+          >
+            Buscar
+          </button>
+        </form>
+
+        {/* Filter Dropdowns Matrix */}
+        <div className="flex items-center gap-space-xs flex-wrap">
+          {/* Status Dropdown */}
+          <div className="relative">
+            <select
+              className="appearance-none h-9 pl-space-md pr-8 bg-surface border border-outline-variant/50 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary-container cursor-pointer"
+              value={current.statusId}
+              onChange={(e) => apply({ statusId: e.target.value })}
+              aria-label="Filtrar por estado"
+            >
+              <option value="">Todos los estados</option>
+              {statuses.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+            <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">
+              expand_more
+            </span>
+          </div>
+
+          {/* Priority Dropdown */}
+          <div className="relative">
+            <select
+              className="appearance-none h-9 pl-space-md pr-8 bg-surface border border-outline-variant/50 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary-container cursor-pointer"
+              value={current.priority}
+              onChange={(e) => apply({ priority: e.target.value })}
+              aria-label="Filtrar por prioridad"
+            >
+              <option value="">Toda prioridad</option>
+              <option value="LOW">Baja</option>
+              <option value="MEDIUM">Media</option>
+              <option value="HIGH">Alta</option>
+              <option value="CRITICAL">Crítica</option>
+              <option value="BLOCKER">Bloqueante</option>
+            </select>
+            <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">
+              expand_more
+            </span>
+          </div>
+
+          {/* Assignee Dropdown */}
+          <div className="relative">
+            <select
+              className="appearance-none h-9 pl-space-md pr-8 bg-surface border border-outline-variant/50 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary-container cursor-pointer"
+              value={current.assigneeId}
+              onChange={(e) => apply({ assigneeId: e.target.value })}
+              aria-label="Filtrar por responsable"
+            >
+              <option value="">Todos los asignados</option>
+              {members.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+            <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline text-[16px] pointer-events-none">
+              expand_more
+            </span>
+          </div>
+
+          <button
+            className="h-9 w-9 flex items-center justify-center bg-surface border border-outline-variant/50 hover:bg-surface-container-high text-outline hover:text-on-surface transition-colors cursor-pointer"
+            title="Restablecer filtros"
+            type="button"
+            onClick={clearAll}
+          >
+            <span className="material-symbols-outlined text-[18px]">filter_alt_off</span>
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'secondary-container': '#48494c', 'inverse-primary': '#2a54cd', 'surface-variant': '#333535', 'outline': '#8e909f', 'surface-container-high': '#282a2b', 'on-secondary': '#2f3034', 'tertiary-fixed': '#e4e2e4', 'on-secondary-container': '#b8b8bc', 'surface-container-lowest': '#0c0f0f', 'tertiary': '#c8c6c8', 'on-surface-variant': '#c4c5d6', 'primary-fixed': '#dce1ff', 'on-secondary-fixed-variant': '#46474a', 'surface-container': '#1e2020', 'primary': '#b6c4ff', 'on-secondary-fixed': '#1a1b1f', 'surface-dim': '#121414', 'surface-tint': '#b6c4ff', 'on-tertiary-fixed-variant': '#474649', 'tertiary-fixed-dim': '#c8c6c8', 'on-primary-container': '#d3daff', 'secondary': '#c7c6ca', 'surface-bright': '#38393a', 'on-error': '#690005', 'primary-fixed-dim': '#b6c4ff', 'on-tertiary': '#303032', 'on-primary-fixed': '#001550', 'on-surface': '#e2e2e2', 'surface-container-low': '#1a1c1c', 'secondary-fixed-dim': '#c7c6ca', 'primary-container': '#2d56cf', 'tertiary-container': '#616062', 'inverse-surface': '#e2e2e2', 'on-primary-fixed-variant': '#003ab2', 'secondary-fixed': '#e3e2e6', 'on-error-container': '#ffdad6', 'surface': '#121414', 'on-tertiary-container': '#dedbdd', 'on-primary': '#00277f', 'on-tertiary-fixed': '#1b1b1d', 'background': '#121414', 'error': '#ffb4ab', 'inverse-on-surface': '#2f3131', 'error-container': '#93000a', 'surface-container-highest': '#333535', 'on-background': '#e2e2e2', 'outline-variant': '#434654' }, 'borderRadius': { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, 'spacing': { 'gutter': '1px', 'space-xs': '0.25rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-lg': '1rem', 'space-2xl': '2rem', 'sidebar-width': '16rem', 'space-md': '0.75rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem', 'space-sm': '0.5rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'headline-xl': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-lg': ['Geist'], 'label-md': ['JetBrains Mono'], 'body-sm': ['Geist'], 'body-md': ['Geist'], 'headline-md': ['Geist'], 'headline-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md font-semibold">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork Demo</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Test Org</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resumen-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span>Resumen / Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="miembros" href="#"><span class="material-symbols-outlined text-[18px]">group</span><span>Miembros</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="analiticas" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span>Analíticas</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vencimientos" href="#"><span class="material-symbols-outlined text-[18px]">event_upcoming</span><span>Vencimientos</span></a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Mi primer proyecto en ZenWork</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="issues" href="#"><span class="material-symbols-outlined text-[18px]">task_alt</span><span>Issues</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tablero" href="#"><span class="material-symbols-outlined text-[18px]">view_kanban</span><span>Tablero</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="vista-kanban" href="#"><span class="material-symbols-outlined text-[18px]">view_column</span><span>Vista Kanban</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary font-medium border-l-2 border-primary" data-path="documentos" href="#"><span class="material-symbols-outlined text-[18px]">description</span><span>Documentos</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="chat" href="#"><span class="material-symbols-outlined text-[18px]">forum</span><span>Chat</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="opciones" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Opciones</span></a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs"><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-medium border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="resumen-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">home</span><span>Inicio</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="perfil" href="#"><span class="material-symbols-outlined text-[18px]">account_circle</span><span>Perfil</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs font-body-sm text-body-sm text-error hover:bg-surface-container-high hover:text-error transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Cerrar sesión</span></a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg flex-1"><img alt="ZenWork Minimal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Ve2GrO3DIWI2aRCEkt5whFHMvxdXFzwtu1ycUy2umIaFLPdpQw3WZ1jHHvKVu5834N5-_13VSvSQL5pq8Qs1z3Xvv0yxVcilZtNGjm9mH0cuuronftlWC9Ut8uTWEeRStRwbKFrw7QKT2QyLJPlZckhXz5TcGR8c8EGGfiWyWtZjwVOoUnrbbB66qeup_8isoMFhLYpQ8w2kWfA_EtXw4pkpNIYx2Gf9Dbx1eSdkUp__vMbmjtoDZCsOvw"/><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full"><span class="material-symbols-outlined text-[18px] mr-space-sm">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-primary px-space-md py-space-xs font-body-sm text-body-sm font-medium transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-8 h-8 flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full"><div class="flex flex-col w-full">
+<div class="flex items-center justify-between px-space-xl py-space-md bg-surface-container-low border-b border-outline-variant/30">
+<div class="flex flex-col gap-space-2xs min-w-0">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline tracking-wider uppercase">
+<span class="hover:text-on-surface cursor-pointer">Test</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer">Proyectos</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer text-on-surface-variant">Mi primer proyecto en ZenWork</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium">Documentos</span>
+</nav>
+<div class="flex items-center gap-space-md mt-space-2xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Documentos del Proyecto</h1>
+<span class="font-code text-label-sm bg-surface-container px-space-xs py-space-2xs text-outline border border-outline-variant/40">ZEN-DOCS</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-9 px-space-md bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant/40 text-body-sm font-body-sm flex items-center gap-space-xs transition-colors rounded-none" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">history</span>
+<span>Historial</span>
+</button>
+<button class="h-9 px-space-md bg-primary-container hover:bg-inverse-primary text-on-primary text-body-sm font-body-sm font-medium flex items-center gap-space-xs transition-colors rounded-none shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Nueva página</span>
+</button>
+</div>
+</div>
+<div class="flex flex-1 w-full overflow-hidden">
+<aside class="w-72 flex-shrink-0 bg-surface-dim border-r border-outline-variant/30 flex flex-col justify-between select-none">
+<div class="p-space-md flex flex-col gap-space-md">
+<div class="relative w-full">
+<input class="w-full h-8 bg-surface-container-lowest text-on-surface placeholder-outline font-body-sm text-body-sm pl-8 pr- space-xs border border-outline-variant/40 rounded-none focus:border-primary-container focus:outline-none transition-colors" placeholder="Buscar páginas..." type="text"/>
+<span class="material-symbols-outlined text-[16px] text-outline absolute left-2.5 top-2 pointer-events-none">search</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<div class="px-space-xs py-space-2xs flex items-center justify-between text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<span>Estructura de Base</span>
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-on-surface">filter_list</span>
+</div>
+<div class="flex flex-col gap-gutter">
+<div>
+<div class="flex items-center justify-between px-space-xs py-1 text-on-surface bg-surface-container-high/60 cursor-pointer border-l-2 border-primary-container">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_drop_down</span>
+<span class="material-symbols-outlined text-[16px] text-primary">description</span>
+<span class="font-body-sm text-body-sm font-medium truncate">Especificación (ZEN-PRD)</span>
+</div>
+<span class="font-code text-[10px] text-outline">DOC-01</span>
+</div>
+<div class="pl-space-lg flex flex-col gap-gutter border-l border-outline-variant/20 ml-2 mt-0.5">
+<a class="flex items-center gap-space-xs px-space-xs py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-colors" href="#">
+<span class="material-symbols-outlined text-[15px] text-outline">article</span>
+<span class="font-body-sm text-body-sm truncate">Arquitectura del Sistema</span>
+</a>
+<a class="flex items-center gap-space-xs px-space-xs py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 transition-colors" href="#">
+<span class="material-symbols-outlined text-[15px] text-outline">api</span>
+<span class="font-body-sm text-body-sm truncate">API Endpoints &amp; Webhooks</span>
+</a>
+</div>
+</div>
+<div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_right</span>
+<span class="material-symbols-outlined text-[16px] text-outline">folder</span>
+<span class="font-body-sm text-body-sm truncate">Guías de Estilo y UI</span>
+</div>
+<span class="font-code text-[10px] text-outline/60">4</span>
+</div>
+<div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_right</span>
+<span class="material-symbols-outlined text-[16px] text-outline">folder</span>
+<span class="font-body-sm text-body-sm truncate">Reuniones y minutas</span>
+</div>
+<span class="font-code text-[10px] text-outline/60">12</span>
+</div>
+<div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/30 cursor-pointer transition-colors">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_right</span>
+<span class="material-symbols-outlined text-[16px] text-outline">folder</span>
+<span class="font-body-sm text-body-sm truncate">Roadmaps Q4 2026</span>
+</div>
+<span class="font-code text-[10px] text-outline/60">2</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-md border-t border-outline-variant/30 bg-surface-container-lowest/50 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>ALMACENAMIENTO WIKI</span>
+<span>48%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest">
+<div class="h-1 bg-primary-container w-[48%]"></div>
+</div>
+<span class="font-code text-[10px] text-outline/70">12.4 MB sincronizados</span>
+</div>
+</aside>
+<div class="flex-1 overflow-y-auto bg-surface flex flex-col">
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant/30 px-space-2xl py-space-sm flex flex-wrap items-center justify-between gap-space-md text-on-surface-variant">
+<div class="flex items-center gap-space-xl flex-wrap">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<span class="text-outline uppercase">Modificado:</span>
+<span class="text-on-surface font-code">Hace 12 min</span>
+<span class="text-outline">por</span>
+<span class="text-on-surface font-medium">Angel</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<span class="text-outline uppercase">Estado:</span>
+<span class="px-space-xs py-space-2xs bg-primary-container/15 text-primary border border-primary-container font-code">EN REVISIÓN</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<span class="text-outline uppercase">Asignados:</span>
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 bg-surface-container-highest text-on-surface font-code text-[10px] flex items-center justify-center border border-outline-variant/40">AZ</span>
+<span class="w-5 h-5 bg-primary-container text-on-primary font-code text-[10px] flex items-center justify-center">AG</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 hover:bg-surface-container-high text-outline hover:text-on-surface" title="Bloquear edición" type="button">
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high text-outline hover:text-on-surface" title="Exportar Markdown" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high text-outline hover:text-on-surface" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="max-w-4xl w-full mx-auto px-space-2xl py-space-2xl flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-primary">terminal</span>
+<span class="font-code text-label-sm text-outline uppercase tracking-wider">ZEN-PRD-0042 // REVISION 2.4</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight leading-tight">
+            Especificación Técnica: Módulo de Sincronización en Tiempo Real
+          </h1>
+</div>
+<div class="p-space-md bg-surface-container-lowest border-l-4 border-primary-container border-t border-r border-b border-outline-variant/30 flex items-start gap-space-md">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span>
+<div class="flex flex-col gap-space-2xs text-body-md font-body-md text-on-surface">
+<span class="font-medium text-primary">Nota de Arquitectura Crítica</span>
+<p class="text-on-surface-variant font-body-sm text-body-sm">
+              Este módulo gestiona las actualizaciones simultáneas del Tablero Kanban y el Chat mediante WebSockets bidireccionales con resolución determinista CRDT (Conflict-free Replicated Data Types).
+            </p>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">table_chart</span>
+              Matriz de Componentes y Despliegue
+            </span>
+<span class="font-label-sm text-label-sm text-outline">4 registros</span>
+</div>
+<div class="w-full overflow-x-auto border border-outline-variant/30 bg-surface-container-low">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30 bg-surface-container-high/40 font-label-sm text-label-sm text-outline">
+<th class="py-2.5 px-3 font-medium">MÓDULO</th>
+<th class="py-2.5 px-3 font-medium">RESPONSABLE</th>
+<th class="py-2.5 px-3 font-medium">ESTADO</th>
+<th class="py-2.5 px-3 font-medium text-right">ESTIMACIÓN</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-2.5 px-3 font-code text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-primary-container"></span>
+                    sync-broker-ws
+                  </td>
+<td class="py-2.5 px-3 text-on-surface-variant">Angel Z.</td>
+<td class="py-2.5 px-3">
+<span class="px-2 py-0.5 font-code text-[11px] bg-primary-container/20 text-primary border border-primary-container/40">DESARROLLO</span>
+</td>
+<td class="py-2.5 px-3 text-right font-code text-outline">16 hrs</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-2.5 px-3 font-code text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-outline"></span>
+                    crdt-resolver-engine
+                  </td>
+<td class="py-2.5 px-3 text-on-surface-variant">Equipo Core</td>
+<td class="py-2.5 px-3">
+<span class="px-2 py-0.5 font-code text-[11px] bg-surface-container-highest text-outline border border-outline-variant/40">PENDIENTE</span>
+</td>
+<td class="py-2.5 px-3 text-right font-code text-outline">32 hrs</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-2.5 px-3 font-code text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary"></span>
+                    kanban-event-emitter
+                  </td>
+<td class="py-2.5 px-3 text-on-surface-variant">Angel Z.</td>
+<td class="py-2.5 px-3">
+<span class="px-2 py-0.5 font-code text-[11px] bg-emerald-950/40 text-emerald-400 border border-emerald-800/40">COMPLETADO</span>
+</td>
+<td class="py-2.5 px-3 text-right font-code text-outline">8 hrs</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-2.5 px-3 font-code text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-error"></span>
+                    chat-history-indexer
+                  </td>
+<td class="py-2.5 px-3 text-on-surface-variant">DevOps Pool</td>
+<td class="py-2.5 px-3">
+<span class="px-2 py-0.5 font-code text-[11px] bg-error-container/20 text-error border border-error-container/40">BLOQUEADO</span>
+</td>
+<td class="py-2.5 px-3 text-right font-code text-outline">12 hrs</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">check_box</span>
+            Criterios de Aceptación y Testing
+          </span>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md border border-outline-variant/30">
+<label class="flex items-start gap-space-sm cursor-pointer group select-none">
+<input checked="" class="mt-1 w-3.5 h-3.5 rounded-none bg-surface-container-lowest border border-outline-variant/60 checked:bg-primary-container checked:border-primary-container cursor-pointer appearance-none flex items-center justify-center relative after:content-['✓'] after:text-[10px] after:text-white after:font-bold after:hidden checked:after:block" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface line-through opacity-60">Implementar handshake seguro TLS con token JWT del App Shell</span>
+<span class="font-code text-[10px] text-outline">Validado en stage-eu-central #commit-a8f12c</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm cursor-pointer group select-none">
+<input checked="" class="mt-1 w-3.5 h-3.5 rounded-none bg-surface-container-lowest border border-outline-variant/60 checked:bg-primary-container checked:border-primary-container cursor-pointer appearance-none flex items-center justify-center relative after:content-['✓'] after:text-[10px] after:text-white after:font-bold after:hidden checked:after:block" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface line-through opacity-60">Persistencia local de eventos no sincronizados en caso de pérdida de red (Offline-first)</span>
+<span class="font-code text-[10px] text-outline">Validado mediante IndexedDB Wrapper</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm cursor-pointer group select-none">
+<input class="mt-1 w-3.5 h-3.5 rounded-none bg-surface-container-lowest border border-outline-variant/60 checked:bg-primary-container checked:border-primary-container cursor-pointer appearance-none flex items-center justify-center relative after:content-['✓'] after:text-[10px] after:text-white after:font-bold after:hidden checked:after:block" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">Pruebas de estrés con 5,000 conexiones concurrentes bajo latencia simulada de 250ms</span>
+<span class="font-code text-[10px] text-primary">En ejecución con Artillery v2.1</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm cursor-pointer group select-none">
+<input class="mt-1 w-3.5 h-3.5 rounded-none bg-surface-container-lowest border border-outline-variant/60 checked:bg-primary-container checked:border-primary-container cursor-pointer appearance-none flex items-center justify-center relative after:content-['✓'] after:text-[10px] after:text-white after:font-bold after:hidden checked:after:block" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface">Protocolo de rollback en conflicto severo de estados concurrentes</span>
+<span class="font-code text-[10px] text-outline">Pendiente de revisión con arquitecto</span>
+</div>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">code</span>
+              Implementación del Socket Client
+            </span>
+<span class="font-code text-label-sm text-outline">typescript // client.ts</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-space-md font-code text-code text-on-surface leading-relaxed relative">
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-outline-variant/20 text-outline text-[11px]">
+<span>src/modules/sync/socketClient.ts</span>
+<button class="hover:text-on-surface flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copiar</span>
+</button>
+</div>
+<pre class="overflow-x-auto text-[12px]"><span class="text-outline-variant">// Inicialización del stream reactivo ZenWork</span>
+<span class="text-primary font-medium">export async function</span> <span class="text-on-surface">initSyncWorker</span>(projectId: <span class="text-primary-fixed-dim">string</span>): <span class="text-primary-fixed-dim">Promise</span>&lt;<span class="text-primary-fixed-dim">WebSocketStream</span>&gt; {
+  <span class="text-primary font-medium">const</span> endpoint = <span class="text-on-surface-variant">`wss://api.zenwork.internal/v1/projects/${projectId}/events`</span>;
+  <span class="text-primary font-medium">const</span> connection = <span class="text-primary font-medium">new</span> WebSocket(endpoint);
+
+  connection.onopen = () =&gt; {
+    connection.send(<span class="text-primary-fixed-dim">JSON</span>.stringify({
+      event: <span class="text-on-surface-variant">'SUB_KANBAN_DELTA'</span>,
+      workspace: <span class="text-on-surface-variant">'ZEN-PROD'</span>,
+      heartbeatIntervalMs: <span class="text-primary">15000</span>
+    }));
+  };
+
+  <span class="text-primary font-medium">return</span> connection;
+}</pre>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xl border-t border-outline-variant/30 text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>Documento visible para miembros con rol Desarrollador o superior</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-code">UTF-8</span>
+<span>•</span>
+<span class="font-code">1,248 Palabras</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

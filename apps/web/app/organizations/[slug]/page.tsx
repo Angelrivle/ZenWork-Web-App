@@ -52,84 +52,128 @@ export default async function OrganizationPage({
   const role = org.memberships[0]?.role || "MEMBER";
 
   return (
-    <>
-      <header className="dash-header">
-        <h1>{org.name}</h1>
-        <p>
-          {org.description || "Organización de trabajo de tu equipo."}{" "}
-          <span className="role-badge">{role}</span>
-        </p>
-      </header>
-
-      {/* OVERVIEW */}
-      <div className="dash-grid">
-        <div className="dash-card">
-          <strong>{org._count.projects}</strong>
-          <span>Proyectos</span>
-        </div>
-        <div className="dash-card">
-          <strong>{totalIssues}</strong>
-          <span>Issues</span>
-        </div>
-        <div className="dash-card">
-          <strong>{boards.length}</strong>
-          <span>Tableros</span>
-        </div>
-        <div className="dash-card">
-          <strong>{totalCards}</strong>
-          <span>Tarjetas</span>
-        </div>
-      </div>
-
-      {/* QUICK LINKS */}
-      <div className="dash-quick">
-        <Link className="dash-quick-item" href={`/organizations/${slug}/members`}>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          Miembros
-        </Link>
-        <Link className="dash-quick-item" href={`/organizations/${slug}/analytics`}>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 20V10M12 20V4M6 20v-6" />
-          </svg>
-          Analíticas
-        </Link>
-      </div>
-
-      {/* PROJECTS */}
-      <section className="dash-section">
-        <div className="dash-section-title">
-          <h2>Proyectos</h2>
-          <Link className="btn btn-ghost btn-sm" href={`/organizations/${slug}/projects`}>
-            Ver todos
-          </Link>
-        </div>
-        {projects.length === 0 ? (
-          <div className="dash-empty">Aún no hay proyectos en esta organización.</div>
-        ) : (
-          <div className="dash-list">
-            {projects.slice(0, 5).map((p) => (
-              <Link
-                className="dash-item"
-                href={`/organizations/${slug}/projects/${p.id}`}
-                key={p.id}
-              >
-                <div className="dash-item-icon">{p.key.slice(0, 2)}</div>
-                <div className="dash-item-body">
-                  <h3>{p.name}</h3>
-                  <p>{p.description || "Sin descripción"}</p>
-                </div>
-                <div className="dash-item-meta">
-                  {p._count.issues} issues · {p._count.boards} tableros
-                </div>
-              </Link>
-            ))}
+    <div className="w-full">
+      {/* Header Resumen de la Organización */}
+      <section className="border-b border-outline-variant/30 bg-surface-dim px-space-xl py-space-lg">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+          <div className="space-y-space-2xs min-w-0">
+            <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+              <span>Organización</span>
+              <span>/</span>
+              <span className="text-primary font-medium">{slug}</span>
+            </div>
+            <div className="flex items-baseline gap-space-md flex-wrap">
+              <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+                {org.name}
+              </h1>
+              <div className="flex items-center gap-space-xs font-code text-label-sm text-outline bg-surface-container px-space-sm py-space-2xs border border-outline-variant/40">
+                <span className="text-primary font-semibold">{role}</span>
+                <span className="text-outline-variant">•</span>
+                <span>{projects.length} proyectos</span>
+              </div>
+            </div>
+            <p className="font-body-sm text-body-sm text-outline mt-1 max-w-2xl">
+              {org.description || "Espacio de trabajo y colaboración de tu organización."}
+            </p>
           </div>
-        )}
+
+          <div className="flex items-center gap-space-xs">
+            <Link
+              href={`/organizations/${slug}/members`}
+              className="h-9 px-space-md bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface font-body-sm text-body-sm flex items-center gap-space-xs transition-colors"
+            >
+              <span className="material-symbols-outlined text-[16px] text-outline">group</span>
+              <span>Miembros</span>
+            </Link>
+            <Link
+              href={`/organizations/${slug}/analytics`}
+              className="h-9 px-space-md bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface font-body-sm text-body-sm flex items-center gap-space-xs transition-colors"
+            >
+              <span className="material-symbols-outlined text-[16px] text-outline">analytics</span>
+              <span>Analíticas</span>
+            </Link>
+          </div>
+        </div>
       </section>
+
+      <div className="p-space-xl max-w-7xl mx-auto space-y-space-2xl">
+        {/* Metric Strip */}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</p>
+              <p className="font-headline-md text-headline-md font-semibold text-on-surface">{org._count.projects}</p>
+            </div>
+            <span className="material-symbols-outlined text-outline text-[24px]">folder</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">Issues</p>
+              <p className="font-headline-md text-headline-md font-semibold text-on-surface">{totalIssues}</p>
+            </div>
+            <span className="material-symbols-outlined text-outline text-[24px]">task_alt</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">Tableros</p>
+              <p className="font-headline-md text-headline-md font-semibold text-on-surface">{boards.length}</p>
+            </div>
+            <span className="material-symbols-outlined text-outline text-[24px]">view_kanban</span>
+          </div>
+          <div className="p-space-md bg-surface border border-outline-variant/30 flex items-center justify-between">
+            <div>
+              <p className="font-label-sm text-label-sm uppercase tracking-wider text-outline">Tarjetas</p>
+              <p className="font-headline-md text-headline-md font-semibold text-on-surface">{totalCards}</p>
+            </div>
+            <span className="material-symbols-outlined text-outline text-[24px]">dashboard</span>
+          </div>
+        </section>
+
+        {/* PROJECTS */}
+        <section className="space-y-space-sm">
+          <div className="flex items-center justify-between pb-space-xs border-b border-outline-variant/30">
+            <h2 className="font-headline-sm text-headline-sm text-on-surface font-semibold">Proyectos del equipo</h2>
+            <Link className="font-body-sm text-body-sm text-primary hover:underline" href={`/organizations/${slug}/projects`}>
+              Ver todos los proyectos →
+            </Link>
+          </div>
+          {projects.length === 0 ? (
+            <div className="p-space-lg bg-surface border border-outline-variant/20 text-outline font-body-sm text-center">
+              Aún no hay proyectos en esta organización.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-sm">
+              {projects.slice(0, 6).map((p) => (
+                <Link
+                  className="p-space-md bg-surface hover:bg-surface-container-high border border-outline-variant/30 hover:border-outline-variant/60 transition-all flex flex-col justify-between group"
+                  href={`/organizations/${slug}/projects/${p.id}`}
+                  key={p.id}
+                >
+                  <div className="space-y-space-xs">
+                    <div className="flex items-center justify-between gap-space-xs">
+                      <span className="font-code text-label-sm text-primary bg-primary/10 px-1.5 py-0.5 border border-primary/20">
+                        {p.key}
+                      </span>
+                      <span className="material-symbols-outlined text-[16px] text-outline group-hover:text-primary transition-colors">
+                        chevron_right
+                      </span>
+                    </div>
+                    <h3 className="font-body-md text-body-md font-medium text-on-surface group-hover:text-primary transition-colors truncate">
+                      {p.name}
+                    </h3>
+                    <p className="font-body-sm text-body-sm text-outline line-clamp-2">
+                      {p.description || "Sin descripción asignada."}
+                    </p>
+                  </div>
+                  <div className="pt-space-sm mt-space-sm border-t border-outline-variant/20 flex items-center justify-between text-outline font-label-sm text-label-sm">
+                    <span>{p._count.issues} issues</span>
+                    <span>{p._count.boards} tableros</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
 
       {/* BOARDS */}
       <section className="dash-section">
@@ -196,6 +240,7 @@ export default async function OrganizationPage({
           </div>
         )}
       </section>
-    </>
+      </div>
+    </div>
   );
 }

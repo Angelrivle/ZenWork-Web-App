@@ -126,104 +126,267 @@ export default async function AnalyticsPage({
   });
 
   return (
-    <>
-      <div className="crumb">
-        <Link href={`/organizations/${slug}`}>{org.name}</Link>
-        <span>/</span>
-        <span>Analíticas</span>
-      </div>
-      <header className="dash-header" style={{ marginBottom: 20 }}>
-        <h1>Analíticas de {org.name}</h1>
-        <p>Un vistazo al rendimiento de tu organización.</p>
-      </header>
-
-      <div className="dash-grid">
-        <div className="dash-card"><strong>{projects}</strong><span>Proyectos</span></div>
-        <div className="dash-card"><strong>{totalIssues}</strong><span>Issues</span></div>
-        <div className="dash-card"><strong>{members}</strong><span>Miembros</span></div>
-        <div className="dash-card"><strong>{boards}</strong><span>Tableros</span></div>
-        <div className="dash-card"><strong>{documents}</strong><span>Documentos</span></div>
-        <div className="dash-card"><strong>{messages}</strong><span>Mensajes</span></div>
-      </div>
-
-      <div className="analytics-grid">
-        <div className="panel">
-          <h3 className="panel-title">Issues por estado</h3>
-          {byStatus.size === 0 ? (
-            <div className="dash-empty">Sin issues todavía.</div>
-          ) : (
-            Array.from(byStatus.entries()).map(([id, count]) => (
-              <Bar key={id} label={statusName.get(id)?.name || "?"} value={count} max={statusMax} color={statusColor.get(id)} />
-            ))
-          )}
+    <div className="p-space-xl space-y-space-xl max-w-7xl mx-auto w-full">
+      {/* Top Header Breadcrumb & Controls (Stitch) */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-outline-variant/30 pb-space-lg">
+        <div>
+          <div className="flex items-center gap-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline mb-space-2xs">
+            <Link href={`/organizations/${slug}`} className="hover:text-on-surface">
+              {org.name}
+            </Link>
+            <span>/</span>
+            <span className="text-primary font-medium">Analíticas</span>
+          </div>
+          <h1 className="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">
+            Analíticas de {org.name}
+          </h1>
+          <p className="font-body-md text-body-md text-outline mt-space-2xs">
+            Un vistazo al rendimiento global de tu organización y proyectos en tiempo real.
+          </p>
         </div>
-
-        <div className="panel">
-          <h3 className="panel-title">Issues por prioridad</h3>
-          {byPriority.size === 0 ? (
-            <div className="dash-empty">Sin issues todavía.</div>
-          ) : (
-            Array.from(byPriority.entries())
-              .sort(([a], [b]) => {
-                const order = ["BLOCKER", "CRITICAL", "HIGH", "MEDIUM", "LOW"];
-                return order.indexOf(a) - order.indexOf(b);
-              })
-              .map(([p, count]) => <Bar key={p} label={PRIORITY_LABEL[p] || p} value={count} max={priorityMax} />)
-          )}
-        </div>
-
-        <div className="panel">
-          <h3 className="panel-title">Tarjetas por columna</h3>
-          {totalCards === 0 ? (
-            <div className="dash-empty">Sin tarjetas todavía.</div>
-          ) : (
-            columns.map((c) => (
-              <Bar key={c.id} label={`${c.board.name} · ${c.name}`} value={byColumn.get(c.id) || 0} max={columnMax} />
-            ))
-          )}
-        </div>
-
-        <div className="panel">
-          <h3 className="panel-title">Resumen</h3>
-          <ul className="analytics-list">
-            <li>
-              <span>Issues totales</span>
-              <strong>{totalIssues}</strong>
-            </li>
-            <li>
-              <span>Tarjetas totales</span>
-              <strong>{totalCards}</strong>
-            </li>
-            <li>
-              <span>Issues vencidos</span>
-              <strong className={overdue > 0 ? "text-error" : ""}>{overdue}</strong>
-            </li>
-            <li>
-              <span>Miembros en la organización</span>
-              <strong>{members}</strong>
-            </li>
-          </ul>
+        <div className="flex items-center gap-space-sm self-start md:self-auto">
+          <div className="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs gap-space-sm font-label-md text-label-md text-on-surface">
+            <span className="material-symbols-outlined text-[16px] text-outline">calendar_today</span>
+            <span>Histórico Activo</span>
+          </div>
         </div>
       </div>
 
-      <div className="panel" style={{ marginTop: 16 }}>
-        <h3 className="panel-title">Actividad reciente</h3>
+      {/* Key Metrics Bento Grid (Stitch 6 items) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-space-md">
+        {/* Metric 1: Proyectos */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Proyectos</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">folder</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{projects}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            Espacios activos
+          </div>
+        </div>
+
+        {/* Metric 2: Issues */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Issues</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">task_alt</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{totalIssues}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            {overdue} vencidos
+          </div>
+        </div>
+
+        {/* Metric 3: Miembros */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Miembros</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">group</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{members}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            Equipo asignado
+          </div>
+        </div>
+
+        {/* Metric 4: Tableros */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Tableros</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">view_kanban</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{boards}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            {totalCards} tarjetas
+          </div>
+        </div>
+
+        {/* Metric 5: Documentos */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Documentos</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">description</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{documents}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            Base de conocimiento
+          </div>
+        </div>
+
+        {/* Metric 6: Mensajes */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-md flex flex-col justify-between group hover:border-outline-variant/80 transition-all shadow-sm">
+          <div className="flex items-center justify-between text-outline">
+            <span className="font-label-sm text-label-sm uppercase tracking-wider">Mensajes</span>
+            <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">forum</span>
+          </div>
+          <div className="my-space-md">
+            <div className="font-headline-xl text-headline-xl text-on-surface font-bold">{messages}</div>
+          </div>
+          <div className="font-body-sm text-body-sm text-outline border-t border-outline-variant/20 pt-space-xs">
+            Intercambiados
+          </div>
+        </div>
+      </div>
+
+      {/* Charts & Breakdown Section (Stitch Grid) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+        {/* Card 1: Issues por Estado */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-lg flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/30">
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">
+                Issues por Estado
+              </span>
+              <span className="font-code text-label-sm text-primary">{totalIssues} TOTAL</span>
+            </div>
+            <div className="py-space-md space-y-space-md">
+              {byStatus.size === 0 ? (
+                <div className="text-outline text-body-sm py-space-sm">Sin issues todavía.</div>
+              ) : (
+                Array.from(byStatus.entries()).map(([id, count]) => (
+                  <Bar
+                    key={id}
+                    label={statusName.get(id)?.name || "?"}
+                    value={count}
+                    max={statusMax}
+                    color={statusColor.get(id) || undefined}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Card 2: Issues por Prioridad */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-lg flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/30">
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">
+                Por Prioridad
+              </span>
+              <span className="font-code text-label-sm text-outline">RANGO</span>
+            </div>
+            <div className="py-space-md space-y-space-md">
+              {byPriority.size === 0 ? (
+                <div className="text-outline text-body-sm py-space-sm">Sin issues todavía.</div>
+              ) : (
+                Array.from(byPriority.entries())
+                  .sort(([a], [b]) => {
+                    const order = ["BLOCKER", "CRITICAL", "HIGH", "MEDIUM", "LOW"];
+                    return order.indexOf(a) - order.indexOf(b);
+                  })
+                  .map(([p, count]) => (
+                    <Bar key={p} label={PRIORITY_LABEL[p] || p} value={count} max={priorityMax} />
+                  ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Card 3: Tarjetas por Columna */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-lg flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/30">
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">
+                Flujo Kanban
+              </span>
+              <span className="font-code text-label-sm text-primary">{totalCards} CARDS</span>
+            </div>
+            <div className="py-space-md space-y-space-md">
+              {totalCards === 0 ? (
+                <div className="text-outline text-body-sm py-space-sm">Sin tarjetas todavía.</div>
+              ) : (
+                columns.map((c) => (
+                  <Bar
+                    key={c.id}
+                    label={`${c.board.name.slice(0, 10)} · ${c.name}`}
+                    value={byColumn.get(c.id) || 0}
+                    max={columnMax}
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Card 4: Resumen & Salud */}
+        <div className="bg-surface-container-low border border-outline-variant/30 p-space-lg flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/30">
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">
+                Resumen Ejecutivo
+              </span>
+              <span className="font-code text-label-sm text-success">OK</span>
+            </div>
+            <ul className="py-space-md space-y-space-sm font-body-sm text-body-sm divide-y divide-outline-variant/10">
+              <li className="flex items-center justify-between pt-space-2xs">
+                <span className="text-outline">Issues totales</span>
+                <strong className="text-on-surface font-medium">{totalIssues}</strong>
+              </li>
+              <li className="flex items-center justify-between pt-space-2xs">
+                <span className="text-outline">Tarjetas totales</span>
+                <strong className="text-on-surface font-medium">{totalCards}</strong>
+              </li>
+              <li className="flex items-center justify-between pt-space-2xs">
+                <span className="text-outline">Issues vencidos</span>
+                <strong className={overdue > 0 ? "text-error font-medium" : "text-on-surface font-medium"}>
+                  {overdue}
+                </strong>
+              </li>
+              <li className="flex items-center justify-between pt-space-2xs">
+                <span className="text-outline">Miembros activos</span>
+                <strong className="text-on-surface font-medium">{members}</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Actividad Reciente (Stitch) */}
+      <div className="bg-surface-container-low border border-outline-variant/30 p-space-lg shadow-sm">
+        <div className="flex items-center justify-between pb-space-sm border-b border-outline-variant/20 mb-space-md">
+          <span className="font-label-md text-label-md uppercase tracking-wider text-outline">
+            Actividad Reciente en la Organización
+          </span>
+          <span className="font-code text-label-sm text-outline">LOGS_EVENT</span>
+        </div>
         {recentActivity.length === 0 ? (
-          <div className="dash-empty">Todavía no hay actividad registrada.</div>
+          <div className="text-outline text-body-sm py-space-md text-center">
+            Todavía no hay actividad registrada.
+          </div>
         ) : (
-          <div className="activity-list">
+          <div className="divide-y divide-outline-variant/20">
             {recentActivity.map((a) => (
-              <div className="activity-row" key={a.id}>
-                <span className="activity-user">{a.user?.name || "Alguien"}</span>
-                <span className="activity-action">{a.action}</span>
-                <time className="activity-time">
-                  {a.createdAt.toLocaleDateString("es-ES", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
+              <div key={a.id} className="py-space-xs flex items-center justify-between gap-space-md text-body-sm">
+                <div className="flex items-center gap-space-sm">
+                  <span className="material-symbols-outlined text-[16px] text-outline">history</span>
+                  <span className="font-medium text-on-surface">{a.user?.name || "Alguien"}</span>
+                  <span className="text-outline">{a.action}</span>
+                </div>
+                <time className="font-code text-label-sm text-outline">
+                  {a.createdAt.toLocaleDateString("es-ES", {
+                    day: "2-digit",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </time>
               </div>
             ))}
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

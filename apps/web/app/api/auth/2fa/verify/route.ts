@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateAccessToken, generateRefreshToken, storeRefreshToken, verifyTwoFactorToken, verifyBackupCode, setAuthCookies, verifyAccessToken } from "@zenwork/auth";
+import { generateAccessToken, generateRefreshToken, storeRefreshToken, verifyTwoFactorToken, verifyBackupCode, setAuthCookies, verifyTwoFactorTempToken } from "@zenwork/auth";
 import { prisma } from "@zenwork/db";
 import { twoFactorVerifySchema } from "@zenwork/shared";
 import { validateRequest } from "@zenwork/middleware";
@@ -20,11 +20,11 @@ export async function POST(request: NextRequest) {
     // Decodificar y verificar el token temporal para obtener userId
     let userId: string;
     try {
-      const payload = await verifyAccessToken(tempToken);
+      const payload = await verifyTwoFactorTempToken(tempToken);
       userId = payload.sub;
     } catch {
       return NextResponse.json(
-        { error: "Token temporal inválido" },
+        { error: "Token temporal inválido o expirado" },
         { status: 401 }
       );
     }

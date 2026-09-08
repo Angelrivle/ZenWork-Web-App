@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LoginForm } from "./login-form";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ZenWorkLogo } from "@/components/logo";
 
 const discordConfigured = Boolean(
   process.env.ZENWORK_DISCORD_CLIENT_ID && process.env.ZENWORK_DISCORD_CLIENT_SECRET
@@ -26,9 +27,8 @@ export default async function LoginPage({
     <main className="auth-wrap">
       <div className="auth-glow" />
       <div className="auth-topbar">
-        <Link href="/" className="brand">
-          <span className="brand-logo">Z</span>
-          ZenWork
+        <Link href="/" className="brand" style={{ display: "flex", alignItems: "center" }}>
+          <ZenWorkLogo size="sm" />
         </Link>
         <ThemeToggle />
       </div>

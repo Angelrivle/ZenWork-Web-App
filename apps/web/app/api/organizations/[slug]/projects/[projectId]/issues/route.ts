@@ -82,13 +82,23 @@ export async function POST(
 
     const payload = await verifyAccessToken(sessionToken);
 
-    // Verificar acceso al proyecto
+    // Verificar acceso al proyecto y rol
     const project = await prisma.project.findFirst({
       where: {
         id: projectId,
         organization: {
           slug,
           memberships: { some: { userId: payload.sub, isActive: true } },
+        },
+      },
+      include: {
+        organization: {
+          select: {
+            memberships: {
+              where: { userId: payload.sub, isActive: true },
+              select: { role: true },
+            },
+          },
         },
       },
     });
@@ -100,11 +110,39 @@ export async function POST(
       );
     }
 
+    const myRole = project.organization.memberships[0]?.role || "GUEST";
+    if (myRole === "GUEST") {
+      return NextResponse.json(
+        { error: "Sin permisos para crear issues (rol invitado)" },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const validation = validateRequest(createIssueSchema, body);
     if (!validation.success) {
       return NextResponse.json(
         { error: "Datos inválidos", details: validation.errors },
+        { status: 400 }
+      );
+    }
+
+    // Validar pertenencia de typeId y statusId a este proyecto
+    const [validType, validStatus] = await Promise.all([
+      prisma.issueType.findFirst({ where: { id: validation.data.typeId, projectId } }),
+      prisma.issueStatus.findFirst({ where: { id: validation.data.statusId, projectId } }),
+    ]);
+
+    if (!validType) {
+      return NextResponse.json(
+        { error: "El tipo de issue especificado no pertenece a este proyecto" },
+        { status: 400 }
+      );
+    }
+
+    if (!validStatus) {
+      return NextResponse.json(
+        { error: "El estado de issue especificado no pertenece a este proyecto" },
         { status: 400 }
       );
     }

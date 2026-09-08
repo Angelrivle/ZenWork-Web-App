@@ -10,8 +10,13 @@ export function CreateOrganizationButton() {
 
   return (
     <>
-      <button type="button" className="btn btn-primary" onClick={() => setOpen(true)}>
-        Nueva organización
+      <button
+        type="button"
+        className="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-lg py-space-xs font-body-sm text-body-sm font-medium transition-colors shadow-sm"
+        onClick={() => setOpen(true)}
+      >
+        <span className="material-symbols-outlined text-[18px]">add</span>
+        <span>+ Nueva organización</span>
       </button>
       {open && (
         <Modal open title="Crear organización" onClose={() => setOpen(false)}>

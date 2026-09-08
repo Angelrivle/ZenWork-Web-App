@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'outline-variant': '#434654', 'primary-container': '#2d56cf', 'on-surface': '#e2e2e2', 'on-error': '#690005', 'surface-dim': '#121414', 'secondary-container': '#48494c', 'tertiary-fixed': '#e4e2e4', 'secondary': '#c7c6ca', 'on-primary-fixed-variant': '#003ab2', 'tertiary': '#c8c6c8', 'surface-variant': '#333535', 'surface-container-lowest': '#0c0f0f', 'inverse-on-surface': '#2f3131', 'on-error-container': '#ffdad6', 'on-surface-variant': '#c4c5d6', 'on-tertiary-fixed': '#1b1b1d', 'surface-container-high': '#282a2b', 'inverse-surface': '#e2e2e2', 'inverse-primary': '#2a54cd', 'secondary-fixed-dim': '#c7c6ca', 'on-primary-container': '#d3daff', 'on-primary-fixed': '#001550', 'error-container': '#93000a', 'on-tertiary-fixed-variant': '#474649', 'on-primary': '#00277f', 'primary': '#b6c4ff', 'background': '#121414', 'on-tertiary': '#303032', 'surface-container': '#1e2020', 'on-background': '#e2e2e2', 'outline': '#8e909f', 'surface-bright': '#38393a', 'tertiary-container': '#616062', 'surface': '#121414', 'on-secondary': '#2f3034', 'on-secondary-fixed-variant': '#46474a', 'surface-container-low': '#1a1c1c', 'secondary-fixed': '#e3e2e6', 'on-secondary-fixed': '#1a1b1f', 'on-secondary-container': '#b8b8bc', 'error': '#ffb4ab', 'primary-fixed-dim': '#b6c4ff', 'surface-tint': '#b6c4ff', 'tertiary-fixed-dim': '#c8c6c8', 'primary-fixed': '#dce1ff', 'on-tertiary-container': '#dedbdd', 'surface-container-highest': '#333535' }, 'borderRadius': { 'DEFAULT': '0px', 'none': '0px', 'lg': '0px', 'xl': '0px', 'full': '0px' }, 'spacing': { 'space-md': '0.75rem', 'gutter': '1px', 'space-xs': '0.25rem', 'space-lg': '1rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-sm': '0.5rem', 'sidebar-width': '16rem', 'space-2xl': '2rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'label-md': ['JetBrains Mono'], 'headline-sm': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-md': ['Geist'], 'body-md': ['Geist'], 'headline-lg': ['Geist'], 'headline-xl': ['Geist'], 'body-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased rounded-none"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none rounded-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim rounded-none"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-surface font-label-md text-label-md font-semibold rounded-none">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Espacio Principal</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl rounded-none"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="resumen-dashboard" href="#">Resumen / Dashboard</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="miembros" href="#">Miembros</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="analiticas" href="#">Analíticas</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="vencimientos" href="#">Vencimientos</a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none rounded-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Proyecto Activo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="issues" href="#">Issues</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="tablero" href="#">Tablero</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="documentos" href="#">Documentos</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="chat" href="#">Chat</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="opciones" href="#">Opciones</a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs rounded-none"><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a aria-current="page" class="block px-space-sm py-space-xs transition-colors rounded-none bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container" data-path="inicio" href="#">Inicio</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="perfil" href="#">Perfil</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-error transition-colors border-l-2 border-transparent rounded-none" data-path="cerrar-sesion" href="#">Cerrar sesión</a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col rounded-none"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg rounded-none"><div class="flex items-center gap-space-lg flex-1"><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full rounded-none"><span class="material-symbols-outlined text-[18px] mr-space-sm text-outline">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none rounded-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-md py-space-xs font-body-sm text-body-sm font-medium border border-primary-container transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-9 h-9 flex items-center justify-center text-outline hover:text-on-surface bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-9 h-9 bg-surface-container-high border border-outline-variant/40 flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-outline hover:text-on-surface text-[20px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full rounded-none"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-space-xl py-space-2xl space-y-space-3xl">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg pb-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary-container">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline">HOLA, ADMIN ZENWORK</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Mis organizaciones</h1>
+<p class="font-body-md text-body-md text-outline max-w-xl">
+          Crea un proyecto en cualquiera de tus organizaciones o únete a las que ya perteneces.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs bg-surface-container-low hover:bg-surface-container-high text-on-surface px-space-md py-space-xs font-body-sm text-body-sm transition-colors rounded-none" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">filter_list</span>
+<span>Filtrar</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-lg py-space-xs font-body-sm text-body-sm font-medium transition-colors rounded-none shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Nueva organización</span>
+</button>
+</div>
+</header>
+<!-- Visual Reference Workspace Teaser (Integrated context from IMAGE_18) -->
+<div class="relative w-full bg-surface-container-lowest overflow-hidden shadow-md">
+<div class="flex items-center justify-between px-space-md py-space-xs bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 bg-outline-variant inline-block"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Espacio de Trabajo Activo / Vista General</span>
+</div>
+<span class="font-code text-label-sm text-outline">SISTEMA v2.4.1 // CONECTADO</span>
+</div>
+<div class="relative aspect-[21/9] w-full max-h-56 overflow-hidden">
+<img alt="ZenWork Workspace Interface Preview" class="w-full h-full object-cover object-top opacity-50 filter contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQUoP5rS2JjiGu0KUKh6HZH-9xGh7zHE1r7WYlYEFA9JuCfhqbZ_Kw_-tqTXBYgTAC0tC3E1YaWL0P-SjFres06EqJa33h-hRtp9vzfGSOhrLUiGUWLjemZobTV_Pgsq_VXJ-yrGW7-pwMRsnnuc8qQSW8BawMTpbO70FxuQBLopYUwV6TI2I1LULnbXuSgRJ_W8m7BJI6Tr9TOErjlEvh7BWbqbyiPSlGTa1j_0BEIxdnnnbjli1a_T8myl7JQ67gvz4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/70 to-transparent flex items-end p-space-lg">
+<div class="flex items-center justify-between w-full">
+<div>
+<p class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Sincronización de Flujo Global</p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Instancia Principal: 3 Organizaciones operativas</h3>
+</div>
+<div class="flex items-center gap-space-md font-code text-label-sm text-outline">
+<span>LATENCIA: <strong class="text-on-surface font-normal">14ms</strong></span>
+<span>ESTADO: <strong class="text-primary font-normal">NOMINAL</strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Organizations Grid -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-outline">Organizaciones Registradas (3)</h2>
+<span class="font-code text-label-sm text-outline">SORT: ACTIVIDAD_REC</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Tarjeta 1: Test -->
+<article class="bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-colors shadow-sm rounded-none">
+<div class="p-space-lg space-y-space-md">
+<!-- Header Card -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 bg-primary-container text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold rounded-none">
+                  TE
+                </div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-medium">Test</h3>
+<span class="bg-primary-container/20 text-primary font-code text-label-sm px-space-xs py-space-2xs leading-none uppercase">
+                      OWNER
+                    </span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ID: ORG-001</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface p-space-2xs rounded-none transition-colors" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Espacio de pruebas unitarias, testing de integraciones y despliegue rápido.
+            </p>
+<!-- Metrics Quad -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-sm rounded-none">
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Proyectos</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">1</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Miembros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">4</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Issues</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">28</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tableros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">6</span>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="p-space-lg pt-0 flex flex-col gap-space-xs">
+<button class="w-full flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-bright text-on-surface py-space-xs font-body-sm text-body-sm transition-colors rounded-none" type="button">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+<span>Abrir espacio</span>
+</button>
+<div class="flex gap-space-xs pt-space-xs">
+<button class="flex-1 bg-primary-container hover:bg-inverse-primary text-on-surface py-space-xs font-body-sm text-body-sm text-center transition-colors rounded-none" type="button">
+                + Nuevo proyecto
+              </button>
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface py-space-xs font-body-sm text-body-sm text-center transition-colors rounded-none" type="button">
+                Ver proyectos (1)
+              </button>
+</div>
+</div>
+</article>
+<!-- Tarjeta 2: ZenWork Demo -->
+<article class="bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-colors shadow-sm rounded-none">
+<div class="p-space-lg space-y-space-md">
+<!-- Header Card -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 bg-primary-container text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold rounded-none">
+                  ZE
+                </div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-medium">ZenWork Demo</h3>
+<span class="bg-primary-container/20 text-primary font-code text-label-sm px-space-xs py-space-2xs leading-none uppercase">
+                      OWNER
+                    </span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ID: ORG-002</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface p-space-2xs rounded-none transition-colors" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Entorno de demostración oficial con configuraciones de equipo estándar.
+            </p>
+<!-- Metrics Quad -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-sm rounded-none">
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Proyectos</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">3</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Miembros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">8</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Issues</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">45</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tableros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">4</span>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="p-space-lg pt-0 flex flex-col gap-space-xs">
+<button class="w-full flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-bright text-on-surface py-space-xs font-body-sm text-body-sm transition-colors rounded-none" type="button">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+<span>Abrir espacio</span>
+</button>
+<div class="flex gap-space-xs pt-space-xs">
+<button class="flex-1 bg-primary-container hover:bg-inverse-primary text-on-surface py-space-xs font-body-sm text-body-sm text-center transition-colors rounded-none" type="button">
+                + Nuevo proyecto
+              </button>
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface py-space-xs font-body-sm text-body-sm text-center transition-colors rounded-none" type="button">
+                Ver proyectos (3)
+              </button>
+</div>
+</div>
+</article>
+<!-- Tarjeta 3: Fintech Core -->
+<article class="bg-surface-container-low flex flex-col justify-between hover:bg-surface-container transition-colors shadow-sm rounded-none">
+<div class="p-space-lg space-y-space-md">
+<!-- Header Card -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 bg-secondary-container text-on-surface flex items-center justify-center font-label-md text-label-md font-semibold rounded-none">
+                  FC
+                </div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface font-medium">Fintech Core</h3>
+<span class="bg-secondary-container/30 text-secondary font-code text-label-sm px-space-xs py-space-2xs leading-none uppercase">
+                      MEMBER
+                    </span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ID: ORG-003</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface p-space-2xs rounded-none transition-colors" title="Opciones" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Plataforma de procesamiento de pagos y motor de conciliación bancaria.
+            </p>
+<!-- Metrics Quad -->
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-lowest p-space-sm rounded-none">
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Proyectos</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">2</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Miembros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">12</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Issues</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">64</span>
+</div>
+<div class="flex flex-col p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tableros</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-medium">3</span>
+</div>
+</div>
+</div>
+<!-- Actions Footer -->
+<div class="p-space-lg pt-0 flex flex-col gap-space-xs">
+<button class="w-full flex items-center justify-center gap-space-xs bg-surface-container-high hover:bg-surface-bright text-on-surface py-space-xs font-body-sm text-body-sm transition-colors rounded-none" type="button">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+<span>Abrir espacio</span>
+</button>
+<div class="flex gap-space-xs pt-space-xs">
+<button class="w-full bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface py-space-xs font-body-sm text-body-sm text-center transition-colors rounded-none" type="button">
+                Ver proyectos (2)
+              </button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Recent Projects Section -->
+<section class="space-y-space-md pt-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Proyectos recientes en los que participas</h2>
+<p class="font-body-sm text-body-sm text-outline">Accesos rápidos a tus tableros de ejecución y seguimiento técnico</p>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:underline uppercase tracking-wider flex items-center gap-space-xs" href="#">
+<span>Ver todos los proyectos</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- Projects Linear Matrix -->
+<div class="flex flex-col space-y-space-xs">
+<!-- Project 1 -->
+<div class="bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md transition-colors rounded-none">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-code text-label-sm text-primary bg-primary-container/10 px-space-xs py-space-2xs">ZEN</span>
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Proyecto Activo / Core Platform</span>
+<span class="font-label-sm text-label-sm text-outline">· Test</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Última actualización hace 12 min por @alberto</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">view_kanban</span>
+<span>Tablero</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">check_box</span>
+<span>Issues</span>
+<span class="font-code text-label-sm text-outline ml-space-2xs bg-surface-container-lowest px-space-2xs">28</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">description</span>
+<span>Documentos</span>
+</a>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md transition-colors rounded-none">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-code text-label-sm text-secondary bg-secondary-container/20 px-space-xs py-space-2xs">DEM</span>
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">UI Design System &amp; Tokens</span>
+<span class="font-label-sm text-label-sm text-outline">· ZenWork Demo</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Última actualización hace 2 horas por @sofia</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">view_kanban</span>
+<span>Tablero</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">check_box</span>
+<span>Issues</span>
+<span class="font-code text-label-sm text-outline ml-space-2xs bg-surface-container-lowest px-space-2xs">14</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">description</span>
+<span>Documentos</span>
+</a>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="bg-surface-container-low hover:bg-surface-container p-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md transition-colors rounded-none">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-code text-label-sm text-primary bg-primary-container/10 px-space-xs py-space-2xs">FIN</span>
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Ledger Gateway Service</span>
+<span class="font-label-sm text-label-sm text-outline">· Fintech Core</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Última actualización ayer por @carlos.dev</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">view_kanban</span>
+<span>Tablero</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">check_box</span>
+<span>Issues</span>
+<span class="font-code text-label-sm text-outline ml-space-2xs bg-surface-container-lowest px-space-2xs">42</span>
+</a>
+<a class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-bright px-space-sm py-space-xs text-on-surface font-body-sm text-body-sm transition-colors rounded-none" href="#">
+<span class="material-symbols-outlined text-[16px] text-outline">description</span>
+<span>Documentos</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div></main></div></body></html>

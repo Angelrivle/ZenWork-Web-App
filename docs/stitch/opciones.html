@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'outline-variant': '#434654', 'primary-container': '#2d56cf', 'on-surface': '#e2e2e2', 'on-error': '#690005', 'surface-dim': '#121414', 'secondary-container': '#48494c', 'tertiary-fixed': '#e4e2e4', 'secondary': '#c7c6ca', 'on-primary-fixed-variant': '#003ab2', 'tertiary': '#c8c6c8', 'surface-variant': '#333535', 'surface-container-lowest': '#0c0f0f', 'inverse-on-surface': '#2f3131', 'on-error-container': '#ffdad6', 'on-surface-variant': '#c4c5d6', 'on-tertiary-fixed': '#1b1b1d', 'surface-container-high': '#282a2b', 'inverse-surface': '#e2e2e2', 'inverse-primary': '#2a54cd', 'secondary-fixed-dim': '#c7c6ca', 'on-primary-container': '#d3daff', 'on-primary-fixed': '#001550', 'error-container': '#93000a', 'on-tertiary-fixed-variant': '#474649', 'on-primary': '#00277f', 'primary': '#b6c4ff', 'background': '#121414', 'on-tertiary': '#303032', 'surface-container': '#1e2020', 'on-background': '#e2e2e2', 'outline': '#8e909f', 'surface-bright': '#38393a', 'tertiary-container': '#616062', 'surface': '#121414', 'on-secondary': '#2f3034', 'on-secondary-fixed-variant': '#46474a', 'surface-container-low': '#1a1c1c', 'secondary-fixed': '#e3e2e6', 'on-secondary-fixed': '#1a1b1f', 'on-secondary-container': '#b8b8bc', 'error': '#ffb4ab', 'primary-fixed-dim': '#b6c4ff', 'surface-tint': '#b6c4ff', 'tertiary-fixed-dim': '#c8c6c8', 'primary-fixed': '#dce1ff', 'on-tertiary-container': '#dedbdd', 'surface-container-highest': '#333535' }, 'borderRadius': { 'DEFAULT': '0px', 'none': '0px', 'lg': '0px', 'xl': '0px', 'full': '0px' }, 'spacing': { 'space-md': '0.75rem', 'gutter': '1px', 'space-xs': '0.25rem', 'space-lg': '1rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-sm': '0.5rem', 'sidebar-width': '16rem', 'space-2xl': '2rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'label-md': ['JetBrains Mono'], 'headline-sm': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-md': ['Geist'], 'body-md': ['Geist'], 'headline-lg': ['Geist'], 'headline-xl': ['Geist'], 'body-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased rounded-none"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none rounded-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim rounded-none"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-surface font-label-md text-label-md font-semibold rounded-none">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Espacio Principal</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl rounded-none"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="resumen-dashboard" href="#">Resumen / Dashboard</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="miembros" href="#">Miembros</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="analiticas" href="#">Analíticas</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="vencimientos" href="#">Vencimientos</a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none rounded-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Proyecto Activo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="issues" href="#">Issues</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="tablero" href="#">Tablero</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="documentos" href="#">Documentos</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="chat" href="#">Chat</a><a aria-current="page" class="block px-space-sm py-space-xs transition-colors rounded-none bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container" data-path="opciones" href="#">Opciones</a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs rounded-none"><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="inicio" href="#">Inicio</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="perfil" href="#">Perfil</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-error transition-colors border-l-2 border-transparent rounded-none" data-path="cerrar-sesion" href="#">Cerrar sesión</a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col rounded-none"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg rounded-none"><div class="flex items-center gap-space-lg flex-1"><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full rounded-none"><span class="material-symbols-outlined text-[18px] mr-space-sm text-outline">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none rounded-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-md py-space-xs font-body-sm text-body-sm font-medium border border-primary-container transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-9 h-9 flex items-center justify-center text-outline hover:text-on-surface bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-9 h-9 bg-surface-container-high border border-outline-variant/40 flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-outline hover:text-on-surface text-[20px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full rounded-none"><div class="flex flex-col w-full">
+<!-- Subtle Architectural Atmospheric Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 right-12 w-96 h-96 bg-primary-container/10 blur-3xl pointer-events-none rounded-none"></div>
+<!-- Top Breadcrumb & Project Header Layer -->
+<div class="w-full bg-surface-container-low px-space-2xl pt-space-xl pb-space-lg">
+<div class="max-w-6xl mx-auto flex flex-col gap-space-md">
+<!-- Monospaced Breadcrumb Track -->
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline tracking-wider uppercase">
+<span class="hover:text-on-surface cursor-pointer transition-colors">Test</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer transition-colors">Proyectos</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer transition-colors">Mi primer proyecto en ZenWork</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium">Opciones</span>
+</div>
+<!-- Master Title & Contextual Meta Badges -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+              Opciones de Mi primer proyecto en ZenWork
+            </h1>
+<div class="flex flex-wrap items-center gap-space-sm pt-space-2xs">
+<span class="font-code text-label-sm bg-surface-container-high text-primary px-space-sm py-space-2xs font-medium uppercase">
+                ZEN
+              </span>
+<div class="flex items-center gap-space-2xs bg-surface-container px-space-sm py-space-2xs">
+<span class="w-1.5 h-1.5 bg-emerald-500 inline-block"></span>
+<span class="font-label-sm text-label-sm text-on-surface">Activo</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-space-2xs bg-surface-container px-space-sm py-space-2xs">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                Creado el 4/9/2026
+              </span>
+<span class="font-label-sm text-label-sm text-outline bg-surface-container px-space-sm py-space-2xs">
+                v2.4.0-prod
+              </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-end">
+<button class="h-9 px-space-md bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm transition-colors flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Registro de Cambios</span>
+</button>
+<button class="h-9 px-space-md bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-sm text-body-sm transition-colors flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Exportar Config</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Horizontal Tab Navigation Bar -->
+<div class="w-full bg-surface-dim">
+<div class="max-w-6xl mx-auto px-space-2xl flex items-center overflow-x-auto">
+<a class="px-space-lg py-space-md font-body-md text-body-md font-medium text-on-surface bg-surface-container-low shadow-[inset_0_-2px_0_0_#2d56cf] flex items-center gap-space-xs whitespace-nowrap" href="#ajustes">
+<span class="material-symbols-outlined text-[18px] text-primary">tune</span>
+<span>Ajustes generales</span>
+</a>
+<a class="px-space-lg py-space-md font-body-md text-body-md text-outline hover:text-on-surface hover:bg-surface-container-low/50 transition-colors flex items-center gap-space-xs whitespace-nowrap" href="#tipos">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+<span>Tipos de issue</span>
+<span class="font-code text-label-sm px-space-2xs bg-surface-container-high text-outline">5</span>
+</a>
+<a class="px-space-lg py-space-md font-body-md text-body-md text-outline hover:text-on-surface hover:bg-surface-container-low/50 transition-colors flex items-center gap-space-xs whitespace-nowrap" href="#flujo">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+<span>Estados del flujo</span>
+</a>
+<a class="px-space-lg py-space-md font-body-md text-body-md text-outline hover:text-on-surface hover:bg-surface-container-low/50 transition-colors flex items-center gap-space-xs whitespace-nowrap" href="#etiquetas">
+<span class="material-symbols-outlined text-[18px]">label</span>
+<span>Etiquetas</span>
+</a>
+<a class="px-space-lg py-space-md font-body-md text-body-md text-outline hover:text-on-surface hover:bg-surface-container-low/50 transition-colors flex items-center gap-space-xs whitespace-nowrap" href="#integraciones">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+<span>Integraciones (GitHub, Slack)</span>
+<span class="w-2 h-2 bg-primary-container"></span>
+</a>
+<a class="px-space-lg py-space-md font-body-md text-body-md text-error hover:bg-error/10 transition-colors flex items-center gap-space-xs whitespace-nowrap ml-auto" href="#peligro">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span>Zona de peligro</span>
+</a>
+</div>
+</div>
+<!-- Main Blueprint / Workspace Canvas -->
+<div class="w-full px-space-2xl py-space-2xl">
+<div class="max-w-6xl mx-auto space-y-space-3xl">
+<!-- Top Reference Blueprint Preview Card (Image 13 Integration) -->
+<div class="w-full bg-surface-container-low p-space-md relative group">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="font-code text-label-sm text-primary uppercase">Snapshot Visual del Proyecto</span>
+<span class="font-label-sm text-label-sm text-outline">· Captura de referencia de arquitectura y tablero</span>
+</div>
+<span class="font-code text-label-sm text-outline">LAYOUT_ID: ZEN_REF_13</span>
+</div>
+<div class="relative w-full overflow-hidden bg-surface-container-lowest max-h-56 flex items-center justify-center">
+<img alt="ZenWork project layout and configuration board snapshot" class="w-full h-auto object-cover object-top opacity-85 group-hover:opacity-100 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQbqTxXnZQ44ishwiYo-9S80moappz0n2ZtbJD3v3FgkkObCPc0Jmnn4rZSUt3SLzMcMDBSkaqlF-_AEYfouCTyyBc90Uu3-WfARalmav7uarlW-i6cDnB9_GiJtJLFYp5YqOYdE5lsSu5D_Wg6iSSQ9Bd3w0VdjdBp-a6oy5r0ugcT7w2enGJndTpQM9JHsAU6wMvfizJbdS8b2QShaM-Yd7KpNKJ4R97ENoudPTUamyVg8L7sTFZG1jd94iPwpLjvbg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent pointer-events-none"></div>
+</div>
+</div>
+<!-- General Form Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-start">
+<!-- Left Column: Form Core Configuration Fields -->
+<div class="lg:col-span-8 space-y-space-2xl">
+<div class="bg-surface-container-low p-space-xl space-y-space-xl">
+<div class="space-y-space-2xs">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Parámetros Esenciales</h2>
+<p class="font-body-md text-body-md text-outline">Identificación unívoca del proyecto en el workspace y configuración de claves operativas.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Nombre del Proyecto -->
+<div class="md:col-span-2 space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                    Nombre del proyecto <span class="text-primary">*</span>
+</label>
+<input class="w-full h-10 px-space-md bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors" type="text" value="Mi primer proyecto en ZenWork"/>
+<span class="block font-label-sm text-label-sm text-outline">Visible en todos los tableros y paneles ejecutivos.</span>
+</div>
+<!-- Key / Clave -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                    Key / Clave <span class="text-primary">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-10 px-space-md font-code text-body-md text-primary font-bold bg-surface focus:outline-none uppercase" maxlength="5" type="text" value="ZEN"/>
+<span class="absolute right-3 top-2.5 font-label-sm text-label-sm text-outline">PREFIX</span>
+</div>
+<span class="block font-label-sm text-label-sm text-outline">Prefijo para tickets (ej. ZEN-104).</span>
+</div>
+</div>
+<!-- Descripción -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                  Descripción
+                </label>
+<textarea class="w-full p-space-md bg-surface text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container transition-colors resize-none leading-relaxed" rows="4">Proyecto de ejemplo para explorar ZenWork, fusionando Jira, Trello y Notion en un flujo ágil y unificado.</textarea>
+<div class="flex justify-between items-center font-label-sm text-label-sm text-outline">
+<span>Markdown básico soportado.</span>
+<span class="font-code">107 / 500 caracteres</span>
+</div>
+</div>
+<!-- Fila de Selectores: Estado y Metodología -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg pt-space-xs">
+<!-- Selector Estado -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                    Estado Operativo
+                  </label>
+<div class="relative">
+<select class="w-full h-10 px-space-md pr-10 bg-surface text-on-surface font-body-md text-body-md appearance-none focus:outline-none cursor-pointer">
+<option selected="" value="activo">Activo (En ejecución)</option>
+<option value="pausado">Pausado / En revisión</option>
+<option value="completado">Completado / Ready</option>
+<option value="mantenimiento">Mantenimiento crítico</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-[20px]">
+                      expand_more
+                    </span>
+</div>
+<span class="block font-label-sm text-label-sm text-outline">Determina visibilidad en reportes de sprint.</span>
+</div>
+<!-- Selector Metodología -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                    Metodología de Flujo
+                  </label>
+<div class="relative">
+<select class="w-full h-10 px-space-md pr-10 bg-surface text-on-surface font-body-md text-body-md appearance-none focus:outline-none cursor-pointer">
+<option selected="" value="hibrido">Kanban + Scrum híbrido</option>
+<option value="kanban">Kanban Puro (Flujo continuo)</option>
+<option value="scrum">Scrum Estricto (Sprints fijos)</option>
+<option value="shapeup">Shape Up (Ciclos de 6 semanas)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-outline pointer-events-none text-[20px]">
+                      tune
+                    </span>
+</div>
+<span class="block font-label-sm text-label-sm text-outline">Habilita tableros continuos y ciclos de sprints simultáneos.</span>
+</div>
+</div>
+<!-- Configuración de Visibilidad -->
+<div class="space-y-space-sm pt-space-xs">
+<label class="block font-label-md text-label-md text-on-surface uppercase tracking-wide">
+                  Nivel de Visibilidad y Acceso
+                </label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Privado (Activo) -->
+<label class="flex items-start gap-space-md p-space-md bg-surface-container hover:bg-surface-variant cursor-pointer transition-colors">
+<input checked="" class="mt-1 accent-primary-container h-4 w-4 rounded-none cursor-pointer" name="visibilidad" type="radio"/>
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">lock</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Privado</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+                        Solo miembros designados explícitamente y administradores del espacio.
+                      </p>
+</div>
+</label>
+<!-- Público para el workspace -->
+<label class="flex items-start gap-space-md p-space-md bg-surface hover:bg-surface-container cursor-pointer transition-colors">
+<input class="mt-1 accent-primary-container h-4 w-4 rounded-none cursor-pointer" name="visibilidad" type="radio"/>
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">domain</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Espacio Completo</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+                        Cualquier miembro de ZenWork puede visualizar y comentar tareas.
+                      </p>
+</div>
+</label>
+</div>
+</div>
+<!-- Botón Primario de Acción -->
+<div class="pt-space-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md bg-surface-container p-space-md">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span class="material-symbols-outlined text-[16px] text-primary">cloud_done</span>
+<span>Sin cambios pendientes de sincronización</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-10 px-space-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-body-md text-body-md transition-colors" type="button">
+                    Descartar
+                  </button>
+<button class="h-10 px-space-xl bg-primary-container hover:bg-inverse-primary text-on-surface font-body-md text-body-md font-medium tracking-wide transition-all shadow-md flex items-center justify-center gap-space-xs" id="saveBtn" onclick="this.innerText='Guardando...'; setTimeout(() =&gt; { this.innerText='Cambios Guardados'; this.classList.add('bg-emerald-600'); setTimeout(() =&gt; { this.innerText='Guardar cambios'; this.classList.remove('bg-emerald-600'); }, 1800); }, 600);" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Guardar cambios</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Integraciones Activas: GitHub & Slack Quickview -->
+<div class="bg-surface-container-low p-space-xl space-y-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sincronizaciones Externas</h3>
+<p class="font-body-sm text-body-sm text-outline">Servicios vinculados al ciclo de desarrollo de este proyecto.</p>
+</div>
+<button class="font-label-sm text-label-sm text-primary uppercase hover:underline">Gestionar todo</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- GitHub Card -->
+<div class="p-space-md bg-surface flex items-start gap-space-md">
+<div class="w-8 h-8 bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="font-code text-[14px] font-bold">GH</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">GitHub Sync</span>
+<span class="font-code text-label-sm text-emerald-400 bg-emerald-950/60 px-space-xs py-space-2xs">CONECTADO</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">zenwork-org/core-runtime</p>
+<span class="font-label-sm text-label-sm text-outline-variant mt-space-2xs block">Pull Requests vinculadas automáticamente</span>
+</div>
+</div>
+<!-- Slack Card -->
+<div class="p-space-md bg-surface flex items-start gap-space-md">
+<div class="w-8 h-8 bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="font-code text-[14px] font-bold">#</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Slack Notifications</span>
+<span class="font-code text-label-sm text-emerald-400 bg-emerald-950/60 px-space-xs py-space-2xs">ACTIVO</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">#proj-zenwork-alerts</p>
+<span class="font-label-sm text-label-sm text-outline-variant mt-space-2xs block">Alertas de incidencias y blockers</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Operational Metrics & Project Health -->
+<div class="lg:col-span-4 space-y-space-xl">
+<!-- Health & Quick Data Widget -->
+<div class="bg-surface-container-low p-space-lg space-y-space-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Métricas del Proyecto</span>
+<span class="font-code text-label-sm text-primary">ID: #9942</span>
+</div>
+<!-- Linear Progress Visual -->
+<div class="space-y-space-xs">
+<div class="flex justify-between items-end font-label-sm text-label-sm">
+<span class="text-on-surface">Progreso del Sprint Actual</span>
+<span class="font-code text-primary">68%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary-container w-[68%]"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-outline">
+<span>34 resueltas</span>
+<span>16 restantes</span>
+</div>
+</div>
+<!-- Vector Micro-Chart: Flow Velocity -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase block">Rendimiento de Entrega (14 días)</span>
+<div class="w-full h-16 bg-surface p-space-xs flex items-end justify-between gap-1">
+<!-- SVG inline chart for brutalist precision -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 240 50">
+<polyline fill="none" points="0,38 20,35 40,42 60,25 80,30 100,18 120,22 140,12 160,19 180,8 200,14 220,5 240,10" stroke="#2d56cf" stroke-width="2"></polyline>
+<polygon fill="#2d56cf" fill-opacity="0.12" points="0,50 0,38 20,35 40,42 60,25 80,30 100,18 120,22 140,12 160,19 180,8 200,14 220,5 240,10 240,50"></polygon>
+</svg>
+</div>
+<div class="flex justify-between font-code text-label-sm text-outline">
+<span>Día 01</span>
+<span>Promedio: 14.8 pts/día</span>
+<span>Hoy</span>
+</div>
+</div>
+<!-- Metadata List -->
+<div class="space-y-space-sm pt-space-sm">
+<div class="flex justify-between items-center py-space-xs bg-surface px-space-sm">
+<span class="font-body-sm text-body-sm text-outline">Responsable Principal</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Alex Rivera</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface px-space-sm">
+<span class="font-body-sm text-body-sm text-outline">Miembros Asignados</span>
+<span class="font-code text-body-sm text-on-surface">12 personas</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface px-space-sm">
+<span class="font-body-sm text-body-sm text-outline">Ramas Git Conectadas</span>
+<span class="font-code text-body-sm text-on-surface">4 activas</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface px-space-sm">
+<span class="font-body-sm text-body-sm text-outline">Documentos de Notion</span>
+<span class="font-code text-body-sm text-on-surface">8 docs vinculados</span>
+</div>
+</div>
+</div>
+<!-- Workflow Summary Card -->
+<div class="bg-surface-container-low p-space-lg space-y-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Estados Configurados</span>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between p-space-xs bg-surface">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-outline"></span>
+<span class="font-body-sm text-body-sm text-on-surface">Por Iniciar (Backlog)</span>
+</div>
+<span class="font-code text-label-sm text-outline">28 tickets</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-primary"></span>
+<span class="font-body-sm text-body-sm text-on-surface">En Desarrollo</span>
+</div>
+<span class="font-code text-label-sm text-primary">14 tickets</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-amber-400"></span>
+<span class="font-body-sm text-body-sm text-on-surface">Revisión de Código</span>
+</div>
+<span class="font-code text-label-sm text-amber-400">6 tickets</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-emerald-400"></span>
+<span class="font-body-sm text-body-sm text-on-surface">Listo para Despliegue</span>
+</div>
+<span class="font-code text-label-sm text-emerald-400">42 tickets</span>
+</div>
+</div>
+<button class="w-full py-space-xs bg-surface-container hover:bg-surface-container-high text-outline hover:text-on-surface font-label-sm text-label-sm tracking-wider uppercase transition-colors">
+                Personalizar Columnas del Tablero
+              </button>
+</div>
+</div>
+</div>
+<!-- Section: Zona de Peligro (Danger Zone) -->
+<div class="bg-surface-container-lowest p-space-xl relative overflow-hidden" id="peligro">
+<!-- Subtle danger accent strip -->
+<div class="absolute top-0 left-0 bottom-0 w-1 bg-error"></div>
+<div class="flex flex-col gap-space-lg pl-space-xs">
+<div class="flex items-center justify-between">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs text-error">
+<span class="material-symbols-outlined text-[20px]">dangerous</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-wider font-semibold">Zona de Peligro</h3>
+</div>
+<p class="font-body-sm text-body-sm text-outline max-w-2xl">
+                  Acciones irreversibles sobre el repositorio de incidencias, documentación interna y métricas de sprints. Proceda con estricta autorización.
+                </p>
+</div>
+<span class="font-code text-label-sm bg-error/15 text-error px-space-sm py-space-2xs uppercase">
+                Requiere rol: Admin
+              </span>
+</div>
+<!-- Danger Actions Table -->
+<div class="space-y-space-md divide-y divide-outline-variant/20 pt-space-sm">
+<!-- Archivar Proyecto -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-md">
+<div class="space-y-space-2xs">
+<div class="font-headline-sm text-headline-sm text-on-surface">Archivar este proyecto</div>
+<p class="font-body-sm text-body-sm text-outline">
+                    El proyecto entrará en estado de solo lectura. Ningún miembro podrá crear nuevos tickets ni editar la documentación.
+                  </p>
+</div>
+<button class="h-9 px-space-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-colors whitespace-nowrap self-start md:self-center" type="button">
+                  Archivar Proyecto
+                </button>
+</div>
+<!-- Transferir Propiedad -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-md">
+<div class="space-y-space-2xs">
+<div class="font-headline-sm text-headline-sm text-on-surface">Transferir propiedad del proyecto</div>
+<p class="font-body-sm text-body-sm text-outline">
+                    Transfiere el control administrativo completo y la titularidad de facturación a otro usuario o workspace.
+                  </p>
+</div>
+<button class="h-9 px-space-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-sm text-label-sm uppercase tracking-wider transition-colors whitespace-nowrap self-start md:self-center" type="button">
+                  Transferir Propiedad
+                </button>
+</div>
+<!-- Eliminar Proyecto Definitivamente -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pt-space-md">
+<div class="space-y-space-2xs">
+<div class="font-headline-sm text-headline-sm text-error">Eliminar permanentemente este proyecto</div>
+<p class="font-body-sm text-body-sm text-outline">
+                    Borra irrevocablemente todas las incidencias (tickets ZEN), sprints, historiales de chat, comentarios y analíticas.
+                  </p>
+</div>
+<button class="h-9 px-space-lg bg-error-container hover:bg-error text-on-error font-label-sm text-label-sm uppercase tracking-wider font-semibold transition-colors whitespace-nowrap self-start md:self-center" onclick="if(confirm('¿Está seguro de que desea eliminar permanentemente el proyecto ZEN? Esta acción no se puede deshacer.')) { alert('Operación cancelada por política de protección de datos.'); }" type="button">
+                  Eliminar Proyecto
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Audit Meta -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md py-space-lg text-outline font-label-sm text-label-sm bg-surface-container-low px-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="w-2 h-2 bg-primary"></span>
+<span>Espacio de Trabajo: ZenWork Core Engine</span>
+</div>
+<div class="flex items-center gap-space-lg font-code">
+<span>AUDIT_LOG_ID: #88392-ZEN</span>
+<span>LATENCY: 18ms</span>
+<span>SEGURIDAD: SHA-256</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

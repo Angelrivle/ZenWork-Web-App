@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ZenWork</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'outline-variant': '#434654', 'primary-container': '#2d56cf', 'on-surface': '#e2e2e2', 'on-error': '#690005', 'surface-dim': '#121414', 'secondary-container': '#48494c', 'tertiary-fixed': '#e4e2e4', 'secondary': '#c7c6ca', 'on-primary-fixed-variant': '#003ab2', 'tertiary': '#c8c6c8', 'surface-variant': '#333535', 'surface-container-lowest': '#0c0f0f', 'inverse-on-surface': '#2f3131', 'on-error-container': '#ffdad6', 'on-surface-variant': '#c4c5d6', 'on-tertiary-fixed': '#1b1b1d', 'surface-container-high': '#282a2b', 'inverse-surface': '#e2e2e2', 'inverse-primary': '#2a54cd', 'secondary-fixed-dim': '#c7c6ca', 'on-primary-container': '#d3daff', 'on-primary-fixed': '#001550', 'error-container': '#93000a', 'on-tertiary-fixed-variant': '#474649', 'on-primary': '#00277f', 'primary': '#b6c4ff', 'background': '#121414', 'on-tertiary': '#303032', 'surface-container': '#1e2020', 'on-background': '#e2e2e2', 'outline': '#8e909f', 'surface-bright': '#38393a', 'tertiary-container': '#616062', 'surface': '#121414', 'on-secondary': '#2f3034', 'on-secondary-fixed-variant': '#46474a', 'surface-container-low': '#1a1c1c', 'secondary-fixed': '#e3e2e6', 'on-secondary-fixed': '#1a1b1f', 'on-secondary-container': '#b8b8bc', 'error': '#ffb4ab', 'primary-fixed-dim': '#b6c4ff', 'surface-tint': '#b6c4ff', 'tertiary-fixed-dim': '#c8c6c8', 'primary-fixed': '#dce1ff', 'on-tertiary-container': '#dedbdd', 'surface-container-highest': '#333535' }, 'borderRadius': { 'DEFAULT': '0px', 'none': '0px', 'lg': '0px', 'xl': '0px', 'full': '0px' }, 'spacing': { 'space-md': '0.75rem', 'gutter': '1px', 'space-xs': '0.25rem', 'space-lg': '1rem', 'space-3xl': '3rem', 'topbar-height': '3.25rem', 'space-sm': '0.5rem', 'sidebar-width': '16rem', 'space-2xl': '2rem', 'space-xl': '1.5rem', 'space-2xs': '0.125rem' }, 'fontFamily': { 'label-sm': ['JetBrains Mono'], 'label-md': ['JetBrains Mono'], 'headline-sm': ['Geist'], 'code': ['JetBrains Mono'], 'body-lg': ['Geist'], 'headline-md': ['Geist'], 'body-md': ['Geist'], 'headline-lg': ['Geist'], 'headline-xl': ['Geist'], 'body-sm': ['Geist'] }, 'fontSize': { 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.06em', 'fontWeight': '400' }], 'label-md': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.04em', 'fontWeight': '500' }], 'headline-sm': ['15px', { 'lineHeight': '20px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }], 'code': ['13px', { 'lineHeight': '18px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'body-lg': ['16px', { 'lineHeight': '26px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-md': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.015em', 'fontWeight': '500' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.03em', 'fontWeight': '600' }], 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.01em', 'fontWeight': '400' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased rounded-none"><aside class="fixed top-0 left-0 bottom-0 w-sidebar-width bg-surface-container-low border-r border-outline-variant/30 flex flex-col z-30 select-none rounded-none"><div class="h-topbar-height px-space-md flex items-center justify-between border-b border-outline-variant/30 bg-surface-dim rounded-none"><div class="flex items-center gap-space-sm min-w-0"><div class="w-6 h-6 bg-primary-container flex items-center justify-center text-on-surface font-label-md text-label-md font-semibold rounded-none">Z</div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-none">ZenWork</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-space-2xs">Espacio Principal</span></div></div><button class="text-outline hover:text-on-surface p-space-2xs flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-[18px]">unfold_more</span></button></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-xl rounded-none"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Espacio de Trabajo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="resumen-dashboard" href="#">Resumen / Dashboard</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="miembros" href="#">Miembros</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="analiticas" href="#">Analíticas</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="vencimientos" href="#">Vencimientos</a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Proyectos</span><span class="font-code text-label-sm text-outline border border-outline-variant/40 px-space-2xs leading-none rounded-none">ZEN</span></div><div class="px-space-sm pb-space-2xs font-body-sm text-body-sm text-on-surface truncate">Proyecto Activo</div><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="issues" href="#">Issues</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="tablero" href="#">Tablero</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="documentos" href="#">Documentos</a><a aria-current="page" class="block px-space-sm py-space-xs transition-colors rounded-none bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container" data-path="chat" href="#">Chat</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="opciones" href="#">Opciones</a></nav></div></div><div class="border-t border-outline-variant/30 p-space-sm bg-surface-dim space-y-space-2xs rounded-none"><nav class="space-y-space-2xs rounded-none" data-active-classes="bg-surface-container-high text-on-surface font-medium border-l-2 border-primary-container"><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="inicio" href="#">Inicio</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors border-l-2 border-transparent rounded-none" data-path="perfil" href="#">Perfil</a><a class="block px-space-sm py-space-xs font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-error transition-colors border-l-2 border-transparent rounded-none" data-path="cerrar-sesion" href="#">Cerrar sesión</a></nav></div></aside><div class="pl-sidebar-width min-h-screen flex flex-col rounded-none"><header class="fixed top-0 left-sidebar-width right-0 h-topbar-height bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-space-lg rounded-none"><div class="flex items-center gap-space-lg flex-1"><div class="relative max-w-md w-full"><div class="flex items-center bg-surface-container-low border border-outline-variant/40 px-space-md py-space-xs text-outline font-body-sm text-body-sm w-full rounded-none"><span class="material-symbols-outlined text-[18px] mr-space-sm text-outline">search</span><span class="text-outline flex-1 select-none">Buscar o presionar</span><kbd class="font-code text-label-sm text-outline border border-outline-variant/60 px-space-xs py-space-2xs bg-surface-container-high leading-none select-none rounded-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-md py-space-xs font-body-sm text-body-sm font-medium border border-primary-container transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Crear</span></button><button aria-label="Notificaciones" class="w-9 h-9 flex items-center justify-center text-outline hover:text-on-surface bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors rounded-none" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="w-9 h-9 bg-surface-container-high border border-outline-variant/40 flex items-center justify-center rounded-none"><span class="material-symbols-outlined text-outline hover:text-on-surface text-[20px]">person</span></div></div></header><main class="flex-1 pt-topbar-height bg-background w-full rounded-none"><div class="flex flex-col w-full">
+<div class="flex flex-col h-[calc(100vh-3.25rem)] w-full overflow-hidden bg-background">
+<!-- Sub-header con migas de pan y metadatos del proyecto -->
+<header class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low border-b border-outline-variant/30 flex-shrink-0 z-10">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline overflow-hidden whitespace-nowrap">
+<span class="hover:text-on-surface cursor-pointer transition-colors">Test</span>
+<span class="text-outline-variant">/</span>
+<span class="hover:text-on-surface cursor-pointer transition-colors">Proyectos</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface truncate font-medium">Mi primer proyecto en ZenWork</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-code">Chat</span>
+</div>
+<div class="hidden md:flex items-center gap-space-xs ml-space-sm pl-space-sm border-l border-outline-variant/30">
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-primary-container/20 text-primary border border-primary-container uppercase tracking-wider font-semibold">
+            Canal General
+          </span>
+<span class="flex items-center gap-space-xs text-label-sm font-label-sm text-outline ml-space-xs">
+<span class="w-1.5 h-1.5 bg-green-500 rounded-none inline-block"></span>
+            3 Miembros activos
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30 transition-colors" title="Iniciar llamada de voz / screen share" type="button">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30 transition-colors" title="Mensajes fijados" type="button">
+<span class="material-symbols-outlined text-[18px]">push_pin</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/30 transition-colors" title="Buscar en este canal" type="button">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:text-on-surface bg-surface-container-high border border-outline-variant/40 transition-colors" id="toggle-members-btn" title="Alternar panel de participantes" type="button">
+<span class="material-symbols-outlined text-[18px]">group</span>
+</button>
+</div>
+</header>
+<!-- Visual Canvas Split View (Canales + Chat Principal + Info lateral) -->
+<div class="flex-1 flex min-h-0 relative">
+<!-- Panel de Canales e Hilos Secundario -->
+<aside class="w-56 flex-shrink-0 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col hidden lg:flex select-none">
+<div class="p-space-sm border-b border-outline-variant/30 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Canales de Proyecto</span>
+<button class="text-outline hover:text-on-surface p-space-2xs" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto p-space-xs space-y-space-2xs">
+<a class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container text-on-surface border-l-2 border-primary-container font-headline-sm text-body-sm group" href="#">
+<div class="flex items-center gap-space-xs truncate">
+<span class="font-code text-primary text-label-md">#</span>
+<span class="truncate font-medium">general</span>
+</div>
+<span class="w-2 h-2 bg-primary"></span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border-l-2 border-transparent font-headline-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-space-xs truncate">
+<span class="font-code text-outline text-label-md">#</span>
+<span class="truncate">desarrollo-core</span>
+</div>
+<span class="font-code text-label-sm text-outline bg-surface-container-high px-space-2xs">12</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border-l-2 border-transparent font-headline-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-space-xs truncate">
+<span class="font-code text-outline text-label-md">#</span>
+<span class="truncate">diseño-ui</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border-l-2 border-transparent font-headline-sm text-body-sm transition-colors" href="#">
+<div class="flex items-center gap-space-xs truncate">
+<span class="font-code text-outline text-label-md">#</span>
+<span class="truncate">anuncios</span>
+</div>
+<span class="material-symbols-outlined text-[14px] text-outline">lock</span>
+</a>
+<div class="pt-space-md px-space-sm pb-space-2xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Hilos y Tareas</span>
+</div>
+<a class="flex items-center gap-space-xs px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border-l-2 border-transparent font-body-sm text-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[15px] text-outline">forum</span>
+<span class="truncate font-code text-label-sm">ZEN-101 sync</span>
+</a>
+<a class="flex items-center gap-space-xs px-space-sm py-space-xs text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border-l-2 border-transparent font-body-sm text-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[15px] text-outline">forum</span>
+<span class="truncate font-code text-label-sm">Deploy v0.4</span>
+</a>
+</nav>
+<!-- Quick Status Card -->
+<div class="p-space-sm bg-surface-dim border-t border-outline-variant/30 space-y-space-xs">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span>SOCKET SERVER</span>
+<span class="text-green-400 flex items-center gap-1 font-code">
+<span class="w-1.5 h-1.5 bg-green-400"></span>LIVE
+            </span>
+</div>
+<div class="text-label-sm font-code text-on-surface-variant/80 truncate">
+            gateway-eu-west.zen:8443
+          </div>
+</div>
+</aside>
+<!-- Panel Central: Área de Conversación en tiempo real -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- Stream de Mensajes con Scroll -->
+<div class="flex-1 overflow-y-auto px-space-lg py-space-lg space-y-space-lg" id="messages-container">
+<!-- Separador temporal / Day line -->
+<div class="flex items-center justify-center my-space-md">
+<div class="h-px bg-outline-variant/30 flex-1"></div>
+<span class="font-code text-label-sm text-outline px-space-md bg-surface border border-outline-variant/30 uppercase tracking-wider">
+              Hoy, 24 de Octubre
+            </span>
+<div class="h-px bg-outline-variant/30 flex-1"></div>
+</div>
+<!-- Mensaje 1: Admin ZenWork (Owner) -->
+<div class="group flex items-start gap-space-md hover:bg-surface-container-low/40 p-space-xs -mx-space-xs transition-colors">
+<div class="w-9 h-9 bg-primary-container text-on-primary-container font-label-md text-label-md font-bold flex items-center justify-center border border-primary-container flex-shrink-0 select-none">
+              AZ
+            </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-sm mb-space-2xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Admin ZenWork</span>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-primary-container/30 text-primary border border-primary-container text-[10px] leading-none uppercase">
+                  Owner
+                </span>
+<span class="font-code text-label-sm text-outline">10:42 AM</span>
+</div>
+<p class="text-body-md text-on-surface leading-relaxed">
+                Buenos días equipo. He configurado la arquitectura base del módulo de tiempo real. Pueden revisar el pull request vinculado en <a class="inline-flex items-center gap-space-2xs font-code text-label-sm text-primary hover:underline bg-primary-container/10 px-space-xs py-space-2xs border border-primary-container/40" href="#">#ZEN-101</a>.
+              </p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-space-2xs bg-surface-container-high border border-outline-variant/40 px-space-xs py-space-2xs transition-opacity">
+<button class="text-outline hover:text-on-surface" title="Reaccionar"><span class="material-symbols-outlined text-[16px]">add_reaction</span></button>
+<button class="text-outline hover:text-on-surface" title="Responder en hilo"><span class="material-symbols-outlined text-[16px]">reply</span></button>
+<button class="text-outline hover:text-on-surface" title="Fijar mensaje"><span class="material-symbols-outlined text-[16px]">push_pin</span></button>
+</div>
+</div>
+<!-- Mensaje 2: Mateo (Backend) con Bloque de Código -->
+<div class="group flex items-start gap-space-md hover:bg-surface-container-low/40 p-space-xs -mx-space-xs transition-colors">
+<div class="w-9 h-9 bg-surface-variant text-on-surface font-label-md text-label-md font-bold flex items-center justify-center border border-outline-variant/50 flex-shrink-0 select-none">
+              M
+            </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-sm mb-space-2xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Mateo</span>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-on-surface-variant border border-outline-variant/40 text-[10px] leading-none uppercase">
+                  Backend
+                </span>
+<span class="font-code text-label-sm text-outline">10:45 AM</span>
+</div>
+<p class="text-body-md text-on-surface leading-relaxed mb-space-xs">
+                Revisado. Ya integré el listener para eventos de presencia y confirmación de recepción en el WebSocket dispatcher:
+              </p>
+<!-- Code Snippet Container -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 p-space-md overflow-x-auto my-space-xs font-code text-code text-on-surface">
+<div class="flex items-center justify-between pb-space-xs mb-space-xs border-b border-outline-variant/20 text-outline text-label-sm">
+<span>presence_handler.rs</span>
+<span class="uppercase">Rust</span>
+</div>
+<pre class="leading-5"><code><span class="text-primary font-semibold">pub async fn</span> <span class="text-primary-fixed">broadcast_presence</span>(cx: &amp;<span class="text-primary font-semibold">Context</span>, channel: &amp;<span class="text-primary font-semibold">str</span>) -&gt; <span class="text-primary font-semibold">Result</span>&lt;()&gt; {
+    <span class="text-outline">// Broadcast state packet across room subscribers</span>
+    <span class="text-primary font-semibold">let</span> payload = <span class="text-green-400">serde_json::to_vec</span>(&amp;<span class="text-tertiary">json!</span>({ <span class="text-green-400">"status"</span>: <span class="text-green-400">"connected"</span>, <span class="text-green-400">"nodes"</span>: 3 }))?;
+    cx.broker.publish(channel, payload).<span class="text-primary font-semibold">await</span>?;
+    <span class="text-primary font-semibold">Ok</span>(())
+}</code></pre>
+</div>
+<!-- Reactions Bar -->
+<div class="flex items-center gap-space-xs mt-space-xs">
+<button class="flex items-center gap-space-xs px-space-xs py-space-2xs bg-surface-container-low border border-outline-variant/40 text-on-surface hover:bg-surface-container font-code text-label-sm" type="button">
+<span>🔥</span>
+<span>2</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-xs py-space-2xs bg-surface-container-low border border-outline-variant/40 text-on-surface hover:bg-surface-container font-code text-label-sm" type="button">
+<span>⚡</span>
+<span>1</span>
+</button>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-space-2xs bg-surface-container-high border border-outline-variant/40 px-space-xs py-space-2xs transition-opacity">
+<button class="text-outline hover:text-on-surface" title="Reaccionar"><span class="material-symbols-outlined text-[16px]">add_reaction</span></button>
+<button class="text-outline hover:text-on-surface" title="Responder en hilo"><span class="material-symbols-outlined text-[16px]">reply</span></button>
+<button class="text-outline hover:text-on-surface" title="Fijar mensaje"><span class="material-symbols-outlined text-[16px]">push_pin</span></button>
+</div>
+</div>
+<!-- Mensaje 3: Notificación de Sistema / CI-CD -->
+<div class="flex items-center gap-space-md py-space-xs px-space-sm bg-surface-container-low/60 border border-outline-variant/30">
+<span class="material-symbols-outlined text-green-400 text-[20px]">check_circle</span>
+<div class="flex-1 font-body-sm text-body-sm text-on-surface-variant truncate">
+<span class="font-code text-label-sm text-primary font-bold">ZEN-BOT</span> ejecutó pipeline exitoso en commit <code class="font-code text-label-sm text-on-surface bg-surface-container-highest px-space-2xs">#a8f2c0b</code> en rama <span class="font-code text-label-sm text-on-surface">main</span>.
+            </div>
+<span class="font-code text-label-sm text-outline">10:48 AM</span>
+</div>
+<!-- Mensaje 4: Angel (Developer) con Visual Asset del Contexto -->
+<div class="group flex items-start gap-space-md hover:bg-surface-container-low/40 p-space-xs -mx-space-xs transition-colors">
+<div class="w-9 h-9 bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold flex items-center justify-center border border-outline-variant/40 flex-shrink-0 select-none">
+              A
+            </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-space-sm mb-space-2xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Angel</span>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-secondary border border-outline-variant/40 text-[10px] leading-none uppercase">
+                  Developer
+                </span>
+<span class="font-code text-label-sm text-outline">10:52 AM</span>
+</div>
+<p class="text-body-md text-on-surface leading-relaxed mb-space-sm">
+                Diseño sincronizado con el tablero Kanban. Adjunto captura del estado actual del panel de métricas y tareas para validar con el equipo de frontend:
+              </p>
+<!-- Imagen Compartida en el Chat referenciada obligatoriamente -->
+<div class="border border-outline-variant/40 bg-surface-container-lowest max-w-2xl overflow-hidden group/img relative">
+<div class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container-low border-b border-outline-variant/30 text-label-sm font-label-sm text-outline">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-primary">image</span>
+<span class="text-on-surface font-code">zenwork_overview_board.png</span>
+<span class="text-outline">· 1892x915 · 420 KB</span>
+</div>
+<a class="hover:text-primary transition-colors flex items-center gap-space-2xs" href="https://lh3.googleusercontent.com/aida-public/AB6AXuDWmVuXxSe3aiJ1sE0OKTbmrDJwCf-kEG7JPNGsXjBj48JuM9EslR18ynyaWQo7hWsnlBPFOp6jEiGFbpewV3Xsxk9vc9u-xecDNp935y3U-v_smf-Kbyd7F-gUDQXIot2RfHrLYmwp1K_PopxOuAOdGKPyNaKK6LoMPtbGlBZwy_wAQ-xAZIWzol5OLOqpRVOuAyVM4BiYrfI6cYaWlGmv70e6nQTMNMF-0KpUQCm32FwCi9AwReNPAf8PRT70K8ynDG4" target="_blank">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+<div class="relative bg-surface-container-highest flex items-center justify-center">
+<img alt="ZenWork overview and Kanban state preview" class="w-full h-auto object-cover max-h-[360px] select-none pointer-events-auto cursor-pointer hover:opacity-95 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHiyE2sWiHSz4zdUtAF2LK3_JQQ074Emlnprg9AFvDN66BRIQG5ELz2qjDjpOjMNelh9oO_hMLXABumNFtICH1J-ihMeqQEyVHXk04XgQg7-8LVm_Fct9Nn5j8T5cSVnfcaaw6r8gsM4wG2UyIT0ss61n8ie9bQAt6WopfP1N4M5nMzzfwTdISac9MGTQseyENWQeaYINRqphmg3sO5zPnpWHbkwyAmWHZ6xjJOQjiIUyQ9p_ywLiouKcq7C0jb8V5Rss"/>
+</div>
+</div>
+<!-- Comentario adicional -->
+<p class="text-body-sm text-on-surface-variant mt-space-sm">
+                ¿Todo listo para el merge a staging? Avisen <span class="text-primary font-code font-medium">@Admin ZenWork</span> <span class="text-primary font-code font-medium">@Mateo</span>.
+              </p>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-space-2xs bg-surface-container-high border border-outline-variant/40 px-space-xs py-space-2xs transition-opacity">
+<button class="text-outline hover:text-on-surface" title="Reaccionar"><span class="material-symbols-outlined text-[16px]">add_reaction</span></button>
+<button class="text-outline hover:text-on-surface" title="Responder en hilo"><span class="material-symbols-outlined text-[16px]">reply</span></button>
+<button class="text-outline hover:text-on-surface" title="Fijar mensaje"><span class="material-symbols-outlined text-[16px]">push_pin</span></button>
+</div>
+</div>
+</div>
+<!-- Input Box y Toolbar de Composición (Barra Inferior) -->
+<div class="p-space-md bg-surface-dim border-t border-outline-variant/30 flex-shrink-0">
+<div class="border border-outline-variant/40 focus-within:border-primary-container bg-surface-container-lowest transition-colors flex flex-col">
+<!-- Barra de Formato Rápido -->
+<div class="flex items-center justify-between px-space-sm py-space-xs border-b border-outline-variant/20 bg-surface-container-low/50">
+<div class="flex items-center gap-space-2xs">
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Negrita (Ctrl+B)" type="button">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Cursiva (Ctrl+I)" type="button">
+<span class="material-symbols-outlined text-[18px]">format_italic</span>
+</button>
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Código en bloque" type="button">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</button>
+<div class="h-4 w-px bg-outline-variant/30 mx-space-2xs"></div>
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Mencionar miembro (@)" type="button">
+<span class="material-symbols-outlined text-[18px]">alternate_email</span>
+</button>
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Vincular Issue o Tarea" type="button">
+<span class="material-symbols-outlined text-[18px]">tag</span>
+</button>
+<button class="p-space-2xs text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Adjuntar documento o captura" type="button">
+<span class="material-symbols-outlined text-[18px]">attach_file</span>
+</button>
+</div>
+<div class="font-code text-label-sm text-outline flex items-center gap-space-xs">
+<span>Markdown activo</span>
+</div>
+</div>
+<!-- Textarea Area -->
+<div class="p-space-sm flex items-start gap-space-sm">
+<textarea class="w-full bg-transparent text-on-surface placeholder:text-outline font-body-md text-body-md focus:outline-none resize-none" id="chat-message-input" placeholder="Enviar mensaje a #general... (Presiona Enter para enviar, Shift+Enter para nueva línea)" rows="2"></textarea>
+</div>
+<!-- Footer del Input / Botón de Envío -->
+<div class="flex items-center justify-between px-space-sm pb-space-sm pt-space-2xs">
+<div class="flex items-center gap-space-xs text-outline font-code text-label-sm">
+<span class="w-2 h-2 bg-green-500 inline-block"></span>
+<span>Canal encriptado de extremo a extremo</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs bg-primary-container hover:bg-inverse-primary text-on-surface px-space-lg py-space-xs font-headline-sm text-body-sm font-semibold border border-primary-container transition-colors select-none" id="send-message-btn" type="button">
+<span>Enviar</span>
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Panel Lateral Derecho: Miembros en Línea y Detalles de Sala (Colapsable) -->
+<aside class="w-64 flex-shrink-0 bg-surface-container-low border-l border-outline-variant/30 flex flex-col hidden md:flex select-none" id="members-sidebar">
+<!-- Header del Panel de Miembros -->
+<div class="h-10 px-space-md border-b border-outline-variant/30 flex items-center justify-between bg-surface-dim">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Participantes — 3</span>
+<span class="font-code text-label-sm text-primary">#general</span>
+</div>
+<div class="flex-1 overflow-y-auto p-space-md space-y-space-lg">
+<!-- Lista de Miembros Conectados -->
+<div class="space-y-space-xs">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline px-space-xs">
+              En Línea — 3
+            </div>
+<!-- Miembro 1: Admin ZenWork -->
+<div class="flex items-center justify-between p-space-xs hover:bg-surface-container cursor-pointer transition-colors group">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-8 h-8 bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center justify-center border border-primary-container">
+                    AZ
+                  </div>
+<span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border border-surface"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface truncate font-medium group-hover:text-primary transition-colors">Admin ZenWork</span>
+<span class="font-label-sm text-label-sm text-outline truncate">Project Lead</span>
+</div>
+</div>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-primary-container/20 text-primary border border-primary-container text-[9px] uppercase">
+                Owner
+              </span>
+</div>
+<!-- Miembro 2: Angel -->
+<div class="flex items-center justify-between p-space-xs hover:bg-surface-container cursor-pointer transition-colors group">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-8 h-8 bg-secondary-container text-on-secondary font-label-md text-label-md font-bold flex items-center justify-center border border-outline-variant/40">
+                    A
+                  </div>
+<span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border border-surface"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface truncate font-medium group-hover:text-primary transition-colors">Angel</span>
+<span class="font-label-sm text-label-sm text-outline truncate">Frontend Architect</span>
+</div>
+</div>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-secondary border border-outline-variant/40 text-[9px] uppercase">
+                Dev
+              </span>
+</div>
+<!-- Miembro 3: Mateo -->
+<div class="flex items-center justify-between p-space-xs hover:bg-surface-container cursor-pointer transition-colors group">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-8 h-8 bg-surface-variant text-on-surface font-label-md text-label-md font-bold flex items-center justify-center border border-outline-variant/40">
+                    M
+                  </div>
+<span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border border-surface"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface truncate font-medium group-hover:text-primary transition-colors">Mateo</span>
+<span class="font-label-sm text-label-sm text-outline truncate">Systems Engineer</span>
+</div>
+</div>
+<span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-outline border border-outline-variant/40 text-[9px] uppercase">
+                Backend
+              </span>
+</div>
+</div>
+<!-- Archivos y Enlaces Compartidos -->
+<div class="pt-space-md border-t border-outline-variant/30 space-y-space-sm">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline px-space-xs">
+              Recursos del Canal
+            </div>
+<div class="p-space-xs bg-surface-dim border border-outline-variant/30 space-y-space-2xs">
+<div class="flex items-center gap-space-xs text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">description</span>
+<span class="truncate font-medium">arquitectura-v1.pdf</span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-code text-outline">
+<span>1.4 MB</span>
+<span>Ayer</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-dim border border-outline-variant/30 space-y-space-2xs">
+<div class="flex items-center gap-space-xs text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">image</span>
+<span class="truncate font-medium">zenwork_overview_board.png</span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-code text-outline">
+<span>420 KB</span>
+<span>Hoy 10:52</span>
+</div>
+</div>
+</div>
+<!-- Tareas vinculadas al canal -->
+<div class="pt-space-md border-t border-outline-variant/30 space-y-space-xs">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline px-space-xs">
+              Issues Activas Mencionadas
+            </div>
+<a class="block p-space-xs bg-surface-dim border border-outline-variant/30 hover:border-primary-container transition-colors" href="#">
+<div class="flex items-center justify-between font-code text-label-sm text-primary mb-1">
+<span>ZEN-101</span>
+<span class="text-green-400 font-label-sm">REVIEW</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">
+                Sync Realtime Gateway &amp; WebSocket Node
+              </div>
+</a>
+</div>
+</div>
+<!-- Barra inferior del sidebar -->
+<div class="p-space-sm bg-surface-dim border-t border-outline-variant/30 flex items-center justify-between">
+<span class="font-code text-label-sm text-outline">LATENCY: 18ms</span>
+<span class="material-symbols-outlined text-[16px] text-outline">wifi</span>
+</div>
+</aside>
+</div>
+</div>
+<script>
+    (function() {
+      // Toggle sidebar de miembros en pantallas medianas
+      const toggleBtn = document.getElementById('toggle-members-btn');
+      const membersSidebar = document.getElementById('members-sidebar');
+
+      if (toggleBtn && membersSidebar) {
+        toggleBtn.addEventListener('click', () => {
+          membersSidebar.classList.toggle('hidden');
+        });
+      }
+
+      // Interacción de envío de mensajes en tiempo real
+      const input = document.getElementById('chat-message-input');
+      const sendBtn = document.getElementById('send-message-btn');
+      const container = document.getElementById('messages-container');
+
+      function sendMessage() {
+        if (!input || !container) return;
+        const text = input.value.trim();
+        if (!text) return;
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const messageEl = document.createElement('div');
+        messageEl.className = 'group flex items-start gap-space-md hover:bg-surface-container-low/40 p-space-xs -mx-space-xs transition-colors';
+        messageEl.innerHTML = `
+          <div class="w-9 h-9 bg-primary-container text-on-primary font-label-md text-label-md font-bold flex items-center justify-center border border-primary-container flex-shrink-0 select-none">
+            TU
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-space-sm mb-space-2xs">
+              <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tú</span>
+              <span class="font-code text-label-sm px-space-xs py-space-2xs bg-surface-container-high text-primary border border-primary-container text-[10px] leading-none uppercase">
+                Colaborador
+              </span>
+              <span class="font-code text-label-sm text-outline">${timeStr}</span>
+            </div>
+            <p class="text-body-md text-on-surface leading-relaxed whitespace-pre-wrap">${escapeHtml(text)}</p>
+          </div>
+          <div class="opacity-0 group-hover:opacity-100 flex items-center gap-space-2xs bg-surface-container-high border border-outline-variant/40 px-space-xs py-space-2xs transition-opacity">
+            <button title="Reaccionar" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">add_reaction</span></button>
+            <button title="Responder en hilo" class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">reply</span></button>
+          </div>
+        `;
+
+        container.appendChild(messageEl);
+        input.value = '';
+        input.focus();
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function escapeHtml(string) {
+        const div = document.createElement('div');
+        div.textContent = string;
+        return div.innerHTML;
+      }
+
+      if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
+      }
+
+      if (input) {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+      }
+
+      // Auto scroll hacia el último mensaje al cargar
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    })();
+  </script>
+</div></main></div></body></html>

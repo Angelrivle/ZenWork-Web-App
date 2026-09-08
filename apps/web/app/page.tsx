@@ -8,6 +8,7 @@ import { LandingPage } from "@/components/landing";
 import { AppHome, type HomeOrg, type PendingInvitation } from "@/components/app/app-home";
 import { LogoutButton } from "@/app/organizations/org-client";
 import { getPendingInvitationsForEmail } from "@/lib/services";
+import { ZenWorkLogo } from "@/components/logo";
 
 export const dynamic = "force-dynamic";
 
@@ -97,18 +98,17 @@ export default async function HomePage() {
       }));
 
       return (
-        <div className="app-wrap">
-          <header className="app-topbar">
-            <Link href="/" className="brand">
-              <span className="brand-logo">Z</span>
-              ZenWork
+        <div className="min-h-screen bg-background text-on-surface antialiased">
+          <header className="h-topbar-height bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 px-space-xl flex items-center justify-between sticky top-0 z-20">
+            <Link href="/" className="flex items-center gap-space-sm">
+              <ZenWorkLogo size="sm" />
             </Link>
-            <div className="app-topbar-actions">
+            <div className="flex items-center gap-space-md">
               <ThemeToggle />
-              <LogoutButton />
+              <LogoutButton className="flex items-center gap-space-xs px-space-md py-space-xs font-body-sm text-body-sm text-error bg-surface-container-low hover:bg-surface-container-high border border-outline-variant/30 transition-colors" />
             </div>
           </header>
-          <main className="app-main">
+          <main className="bg-background w-full">
             <AppHome
               userName={user?.name || ""}
               organizations={organizations}

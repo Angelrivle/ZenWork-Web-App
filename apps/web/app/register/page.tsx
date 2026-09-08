@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { RegisterForm } from "./register-form";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ZenWorkLogo } from "@/components/logo";
 
 export default function RegisterPage() {
   return (
     <main className="auth-wrap">
       <div className="auth-glow" />
       <div className="auth-topbar">
-        <Link href="/" className="brand">
-          <span className="brand-logo">Z</span>
-          ZenWork
+        <Link href="/" className="brand" style={{ display: "flex", alignItems: "center" }}>
+          <ZenWorkLogo size="sm" />
         </Link>
         <ThemeToggle />
       </div>
