@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { verifyAccessToken } from "@zenwork/auth";
 import { COOKIE_NAMES } from "@zenwork/shared";
 import { prisma } from "@zenwork/db";
-import { getBoards } from "@/lib/services";
+import { getBoards, createBoard } from "@/lib/services";
 import { CreateBoardButton } from "@/components/org/create-board";
 
 export default async function ProjectBoardsPage({
@@ -53,5 +53,10 @@ export default async function ProjectBoardsPage({
   }
 
   // Redirigir directamente al primer tablero para no mostrar cards intermedias
-  redirect(`/organizations/${slug}/projects/${project.id}/boards/${boards[0].id}`);
+  const targetBoard = boards[0];
+  if (targetBoard) {
+    redirect(`/organizations/${slug}/projects/${project.id}/boards/${targetBoard.id}`);
+  }
+
+  redirect(`/organizations/${slug}/projects/${project.id}`);
 }

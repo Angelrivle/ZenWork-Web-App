@@ -117,8 +117,8 @@ export default async function HomePage() {
           </main>
         </div>
       );
-    } catch {
-      // Sesión inválida: mostrar landing
+    } catch (err) {
+      console.error("[HomePage] Error verificando sesión en /:", err);
     }
   }
 

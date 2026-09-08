@@ -16,11 +16,27 @@ const ERROR_MESSAGES: Record<string, string> = {
   oauth_failed: "No se pudo completar el inicio de sesión. Intenta de nuevo.",
 };
 
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyAccessToken } from "@zenwork/auth";
+import { COOKIE_NAMES } from "@zenwork/shared";
+
 export default async function LoginPage({
   searchParams,
 }: {
   searchParams: Promise<{ error?: string; registered?: string }>;
 }) {
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get(COOKIE_NAMES.SESSION)?.value;
+  if (sessionToken) {
+    try {
+      await verifyAccessToken(sessionToken);
+      redirect("/");
+    } catch {
+      // Token expirado o inválido, permitir login
+    }
+  }
+
   const params = await searchParams;
 
   return (

@@ -44,8 +44,8 @@ export function LoginForm() {
         return;
       }
 
-      // Ir al inicio de la app (organizaciones y proyectos)
-      router.push("/");
+      // Ir al inicio de la app (organizaciones y proyectos) con recarga completa para asegurar cookies
+      window.location.href = "/";
     } catch {
       setError("Error de conexión con el servidor");
       setLoading(false);

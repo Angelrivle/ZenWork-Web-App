@@ -33,33 +33,66 @@ export async function GET(
       return NextResponse.json({ error: "Organización no encontrada" }, { status: 404 });
     }
 
-    const notifications = await prisma.notification.findMany({
-      where: {
-        organizationId: org.id,
-        userId: payload.sub,
-      },
-      orderBy: { createdAt: "desc" },
-      take: 50,
-    });
+    const [user, notifications] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: payload.sub },
+        select: { email: true },
+      }),
+      prisma.notification.findMany({
+        where: {
+          userId: payload.sub,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 50,
+      }),
+    ]);
+
+    // Obtener invitaciones pendientes globales para este email
+    const pendingInvites = user
+      ? await prisma.invitation.findMany({
+          where: {
+            email: user.email.toLowerCase(),
+            status: "PENDING",
+            acceptedAt: null,
+            expiresAt: { gt: new Date() },
+          },
+          include: {
+            organization: { select: { id: true, name: true, slug: true } },
+            invitedBy: { select: { id: true, name: true } },
+          },
+        })
+      : [];
+
+    const inviteNotifications = pendingInvites.map((inv) => ({
+      id: `inv-${inv.id}`,
+      type: "invite",
+      title: "Invitación a organización",
+      message: `${inv.invitedBy?.name || "Un administrador"} te invitó a unirte a "${inv.organization.name}" como ${inv.role}.`,
+      data: { invitationId: inv.id, organizationSlug: inv.organization.slug },
+      readAt: null,
+      createdAt: inv.createdAt,
+    }));
+
+    const allNotifications = [...inviteNotifications, ...notifications.map((n) => {
+      let parsedData: Record<string, unknown> = {};
+      try {
+        parsedData = JSON.parse(n.data || "{}");
+      } catch {
+        parsedData = {};
+      }
+      return {
+        id: n.id,
+        type: n.type,
+        title: n.title,
+        message: n.message,
+        data: parsedData,
+        readAt: n.readAt,
+        createdAt: n.createdAt,
+      };
+    })];
 
     const data = {
-      notifications: notifications.map((n) => {
-        let parsedData: Record<string, unknown> = {};
-        try {
-          parsedData = JSON.parse(n.data || "{}");
-        } catch {
-          parsedData = {};
-        }
-        return {
-          id: n.id,
-          type: n.type,
-          title: n.title,
-          message: n.message,
-          data: parsedData,
-          readAt: n.readAt,
-          createdAt: n.createdAt,
-        };
-      }),
+      notifications: allNotifications,
     };
 
     return NextResponse.json({ success: true, data });

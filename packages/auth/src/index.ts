@@ -37,12 +37,17 @@ export async function verifyPassword(
 // JWT UTILITIES
 // ============================================================
 
-const accessSecret = new TextEncoder().encode(
-  process.env.ZENWORK_JWT_SECRET || "dev-jwt-secret"
-);
-const refreshSecret = new TextEncoder().encode(
-  process.env.ZENWORK_JWT_REFRESH_SECRET || "dev-refresh-secret"
-);
+function getAccessSecret(): Uint8Array {
+  return new TextEncoder().encode(
+    process.env.ZENWORK_JWT_SECRET || "dev-jwt-secret"
+  );
+}
+
+function getRefreshSecret(): Uint8Array {
+  return new TextEncoder().encode(
+    process.env.ZENWORK_JWT_REFRESH_SECRET || "dev-refresh-secret"
+  );
+}
 
 export async function generateAccessToken(
   userId: string,
@@ -64,7 +69,7 @@ export async function generateAccessToken(
     .setIssuer(JWT_CONFIG.ISSUER)
     .setIssuedAt()
     .setExpirationTime(`${JWT_CONFIG.ACCESS_TOKEN_EXPIRY}s`)
-    .sign(accessSecret);
+    .sign(getAccessSecret());
 }
 
 export async function generateTwoFactorTempToken(
@@ -85,11 +90,11 @@ export async function generateTwoFactorTempToken(
     .setIssuer(JWT_CONFIG.ISSUER)
     .setIssuedAt()
     .setExpirationTime(`${expiry}s`)
-    .sign(accessSecret);
+    .sign(getAccessSecret());
 }
 
 export async function verifyTwoFactorTempToken(token: string): Promise<TwoFactorTempPayload> {
-  const { payload } = await jwtVerify(token, accessSecret, {
+  const { payload } = await jwtVerify(token, getAccessSecret(), {
     issuer: JWT_CONFIG.ISSUER,
   });
   if (payload.purpose !== "2fa_pending") {
@@ -99,7 +104,7 @@ export async function verifyTwoFactorTempToken(token: string): Promise<TwoFactor
 }
 
 export async function verifyAccessToken(token: string): Promise<JWTPayload> {
-  const { payload } = await jwtVerify(token, accessSecret, {
+  const { payload } = await jwtVerify(token, getAccessSecret(), {
     issuer: JWT_CONFIG.ISSUER,
   });
   if (payload.purpose === "2fa_pending") {
@@ -118,7 +123,7 @@ export async function verifyAccessTokenAllowExpired(
   token: string
 ): Promise<JWTPayload> {
   try {
-    const { payload } = await jwtVerify(token, accessSecret, {
+    const { payload } = await jwtVerify(token, getAccessSecret(), {
       issuer: JWT_CONFIG.ISSUER,
     });
     if (payload.purpose === "2fa_pending") {
@@ -423,7 +428,7 @@ export function setAuthCookies(
   setCookie(COOKIE_NAMES.SESSION, accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "lax",
     path: "/",
     maxAge: JWT_CONFIG.ACCESS_TOKEN_EXPIRY,
   });
@@ -431,7 +436,7 @@ export function setAuthCookies(
   setCookie(COOKIE_NAMES.REFRESH_TOKEN, refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "lax",
     path: "/",
     maxAge: JWT_CONFIG.REFRESH_TOKEN_EXPIRY,
   });

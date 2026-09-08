@@ -1,9 +1,23 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyAccessToken } from "@zenwork/auth";
+import { COOKIE_NAMES } from "@zenwork/shared";
 import { RegisterForm } from "./register-form";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ZenWorkLogo } from "@/components/logo";
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get(COOKIE_NAMES.SESSION)?.value;
+  if (sessionToken) {
+    try {
+      await verifyAccessToken(sessionToken);
+      redirect("/");
+    } catch {
+      // Token expirado o inválido, permitir registro
+    }
+  }
   return (
     <main className="auth-wrap">
       <div className="auth-glow" />

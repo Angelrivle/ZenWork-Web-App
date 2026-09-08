@@ -108,7 +108,11 @@ function SecurityIcon({ icon: Icon }: { icon: React.ElementType }) {
   return <Icon size={20} />;
 }
 
-export function LandingPage() {
+export function LandingPage({
+  user,
+}: {
+  user?: { name: string; email: string } | null;
+} = {}) {
   return (
     <div className="landing">
       {/* NAVBAR */}
@@ -124,9 +128,15 @@ export function LandingPage() {
             <a href="#seguridad">Seguridad</a>
             <ThemeToggle />
             <div className="nav-cta">
-              <Link href="/login" className="btn btn-outline">
-                Iniciar sesión
-              </Link>
+              {user ? (
+                <Link href="/" className="btn btn-primary">
+                  Mi Espacio ({user.name.split(" ")[0]}) →
+                </Link>
+              ) : (
+                <Link href="/login" className="btn btn-outline">
+                  Iniciar sesión
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -147,9 +157,15 @@ export function LandingPage() {
               defecto y lista para producción.
             </p>
             <div className="hero-ctas">
-              <Link href="/login" className="btn btn-primary btn-lg">
-                Comenzar gratis
-              </Link>
+              {user ? (
+                <Link href="/" className="btn btn-primary btn-lg">
+                  Entrar a mi espacio de trabajo →
+                </Link>
+              ) : (
+                <Link href="/login" className="btn btn-primary btn-lg">
+                  Comenzar gratis
+                </Link>
+              )}
               <a href="#producto" className="btn btn-outline btn-lg">
                 Ver el producto
               </a>
