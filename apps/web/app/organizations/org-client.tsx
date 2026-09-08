@@ -144,6 +144,18 @@ export function OrgNav({
             "event_upcoming",
             pathname === `${orgBase}/tareas`
           )}
+          {navLink(
+            `${orgBase}/notifications`,
+            "Notificaciones",
+            "notifications",
+            pathname === `${orgBase}/notifications`
+          )}
+          {navLink(
+            `${orgBase}/profile`,
+            "Mi Perfil",
+            "account_circle",
+            pathname === `${orgBase}/profile`
+          )}
         </nav>
       </div>
 

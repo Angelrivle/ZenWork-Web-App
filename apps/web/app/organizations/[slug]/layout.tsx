@@ -117,11 +117,15 @@ export default async function OrganizationLayout({
               <span>Crear</span>
             </Link>
             <NotificationBell slug={slug} />
-            <div className="w-9 h-9 bg-surface-container-high border border-outline-variant/40 flex items-center justify-center">
+            <Link
+              href={`/organizations/${slug}/profile`}
+              title="Mi Perfil"
+              className="w-9 h-9 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant/40 flex items-center justify-center transition-colors"
+            >
               <span className="material-symbols-outlined text-outline hover:text-on-surface text-[20px]">
                 person
               </span>
-            </div>
+            </Link>
           </div>
         </header>
 
